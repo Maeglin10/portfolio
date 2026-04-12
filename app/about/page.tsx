@@ -17,7 +17,7 @@ const timelineItems = [
   {
     title: "Building the Sky ecosystem",
     description:
-      "6 interconnected SaaS products: Skybot Inbox, SkySecurity, SkyMarket, SkyLive, SkyApp, SkyLaunch",
+      "6 interconnected SaaS products: Skybot Inbox, AeviaSecurity, AeviaMarket, AeviaLive, AeviaApp, AeviaLaunch",
   },
   {
     title: "Available for freelance",

@@ -50,12 +50,12 @@ export const projects: Project[] = [
   },
   {
     slug: "skysecurity",
-    title: "SkySecurity",
+    title: "AeviaSecurity",
     tagline: "Automated security audit platform",
     description:
       "SaaS that runs DNS, SSL, HTTP headers and HaveIBeenPwned checks on any domain, then generates an AI-written security report with a risk score.",
     longDescription:
-      "SkySecurity lets users audit any domain in seconds. The backend runs parallel checks — DNS record analysis, SSL certificate validation, HTTP security headers scan, HaveIBeenPwned breach lookup — then feeds the results to Claude to generate a plain-English security report with a 0-100 risk score. Free tier allows 1 audit/month; Pro users get unlimited audits plus scheduled monitoring. Built as a NestJS API + Next.js dashboard.",
+      "AeviaSecurity lets users audit any domain in seconds. The backend runs parallel checks — DNS record analysis, SSL certificate validation, HTTP security headers scan, HaveIBeenPwned breach lookup — then feeds the results to Claude to generate a plain-English security report with a 0-100 risk score. Free tier allows 1 audit/month; Pro users get unlimited audits plus scheduled monitoring. Built as a NestJS API + Next.js dashboard.",
     tags: ["NestJS", "Next.js", "Claude AI", "PostgreSQL", "Security", "Stripe"],
     category: "SaaS",
     status: "beta",
@@ -82,12 +82,12 @@ export const projects: Project[] = [
   },
   {
     slug: "skymarket",
-    title: "SkyMarket",
+    title: "AeviaMarket",
     tagline: "Creator services marketplace",
     description:
       "Full-stack marketplace where creators sell digital services, with Stripe payments, seller profiles, reviews and a complete auth flow.",
     longDescription:
-      "SkyMarket is a two-sided marketplace for creators to list and sell digital services (design, video, consulting…). Buyers browse, purchase via Stripe Checkout, and leave reviews. Sellers manage their profile, services and earnings. The platform includes a complete auth flow with password reset by email (Resend), rich seed data with 5 demo sellers and 10 services, and a clean Next.js App Router frontend.",
+      "AeviaMarket is a two-sided marketplace for creators to list and sell digital services (design, video, consulting…). Buyers browse, purchase via Stripe Checkout, and leave reviews. Sellers manage their profile, services and earnings. The platform includes a complete auth flow with password reset by email (Resend), rich seed data with 5 demo sellers and 10 services, and a clean Next.js App Router frontend.",
     tags: ["Next.js", "PostgreSQL", "Prisma", "Stripe", "Resend", "TypeScript"],
     category: "Marketplace",
     status: "beta",
@@ -109,12 +109,12 @@ export const projects: Project[] = [
   },
   {
     slug: "skylive",
-    title: "SkyLive",
+    title: "AeviaLive",
     tagline: "Live streaming creator platform",
     description:
       "Creator-first live streaming platform with RTMP ingest, HLS playback, subscriptions, and a tipping system.",
     longDescription:
-      "SkyLive lets creators go live in one click — stream via OBS or any RTMP source, and viewers watch over HLS with low latency. Fans can subscribe (Fan free / Supporter €4.99 / VIP €14.99) and send tips during streams. The platform takes a 10% fee on all transactions. Built with Next.js App Router frontend, NestJS backend, Nginx RTMP for ingest, and HLS for delivery.",
+      "AeviaLive lets creators go live in one click — stream via OBS or any RTMP source, and viewers watch over HLS with low latency. Fans can subscribe (Fan free / Supporter €4.99 / VIP €14.99) and send tips during streams. The platform takes a 10% fee on all transactions. Built with Next.js App Router frontend, NestJS backend, Nginx RTMP for ingest, and HLS for delivery.",
     tags: ["Next.js", "NestJS", "HLS", "RTMP", "Stripe", "WebSocket"],
     category: "Creator Platform",
     status: "wip",
@@ -141,12 +141,12 @@ export const projects: Project[] = [
   },
   {
     slug: "skyapp",
-    title: "SkyApp",
+    title: "AeviaApp",
     tagline: "Multi-tenant AI agent SDK & API",
     description:
       "API platform that lets developers embed AI agents with persistent memory, semantic search and tool use into any product.",
     longDescription:
-      "SkyApp is a developer-first AI platform — think a self-hosted LangChain with a clean REST API. Developers create an account, get an API key, and can spin up AI agents with persistent pgvector memory, tool definitions, and configurable system prompts. The SDK handles context management, memory retrieval, streaming responses and function calling. Multi-tenant by design — all data scoped by accountId.",
+      "AeviaApp is a developer-first AI platform — think a self-hosted LangChain with a clean REST API. Developers create an account, get an API key, and can spin up AI agents with persistent pgvector memory, tool definitions, and configurable system prompts. The SDK handles context management, memory retrieval, streaming responses and function calling. Multi-tenant by design — all data scoped by accountId.",
     tags: ["NestJS", "pgvector", "Claude AI", "PostgreSQL", "TypeScript", "SDK"],
     category: "Developer Tool",
     status: "wip",
