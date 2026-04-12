@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, Zap, Shield, ShoppingBag, Radio, Code2, Layout } from "lucide-react";
 import { GithubIcon } from "@/components/GithubIcon";
 import { motion } from "framer-motion";
+import { LinkedinIcon } from "@/components/LinkedinIcon";
 import { projects } from "@/lib/projects";
 
 const skills = [
@@ -257,7 +258,12 @@ export default function Home() {
           <div className="flex items-center gap-6">
             <Link href="/projects" className="hover:text-zinc-300 transition-colors">Projects</Link>
             <Link href="/contact" className="hover:text-zinc-300 transition-colors">Contact</Link>
-            <a href="https://github.com/Maeglin10" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">GitHub</a>
+            <a href="https://linkedin.com/in/valentin-milliand" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-zinc-300 transition-colors" title="LinkedIn">
+              <LinkedinIcon className="w-4 h-4" />
+            </a>
+            <a href="https://github.com/Maeglin10" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-zinc-300 transition-colors" title="GitHub">
+              <GithubIcon className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </footer>

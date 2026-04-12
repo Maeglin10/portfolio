@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { GithubIcon } from "@/components/GithubIcon";
+import { LinkedinIcon } from "@/components/LinkedinIcon";
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact" },
 ];
@@ -39,12 +41,22 @@ export function Nav() {
             </Link>
           ))}
           <a
-            href="https://github.com/Maeglin10"
+            href="https://linkedin.com/in/valentin-milliand"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 px-3 py-1.5 rounded-md text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
+            title="LinkedIn"
           >
-            GitHub
+            <LinkedinIcon className="w-4 h-4" />
+          </a>
+          <a
+            href="https://github.com/Maeglin10"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 rounded-md text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
+            title="GitHub"
+          >
+            <GithubIcon className="w-4 h-4" />
           </a>
         </nav>
 
@@ -75,12 +87,22 @@ export function Nav() {
             </Link>
           ))}
           <a
+            href="https://linkedin.com/in/valentin-milliand"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-2 rounded-md text-sm text-zinc-400 hover:text-white"
+            title="LinkedIn"
+          >
+            <LinkedinIcon className="w-4 h-4" />
+          </a>
+          <a
             href="https://github.com/Maeglin10"
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-2 rounded-md text-sm text-zinc-400 hover:text-white"
+            title="GitHub"
           >
-            GitHub
+            <GithubIcon className="w-4 h-4" />
           </a>
         </div>
       )}

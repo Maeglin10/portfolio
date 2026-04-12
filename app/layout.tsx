@@ -14,15 +14,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://valentin-milliand.vercel.app"),
   title: "Valentin Milliand — Full Stack Engineer & AI Builder",
   description:
     "Building production-ready AI products: multi-channel inbox, creator platforms, security SaaS, and more. NestJS · Next.js · Anthropic Claude.",
   authors: [{ name: "Valentin Milliand", url: "https://github.com/Maeglin10" }],
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     title: "Valentin Milliand — Full Stack Engineer & AI Builder",
     description:
       "Building production-ready AI products with NestJS, Next.js, and Anthropic Claude.",
-    url: "https://portfolio-nexxa.vercel.app",
+    url: "https://valentin-milliand.vercel.app",
     siteName: "Valentin Milliand",
     type: "website",
   },
