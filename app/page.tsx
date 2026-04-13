@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Zap, Shield, ShoppingBag, Radio, Code2, Layout } from "lucide-react";
+import { ArrowRight, ExternalLink, Zap, Shield, ShoppingBag, Radio, Code2, Layout, Sparkles } from "lucide-react";
 import { GithubIcon } from "@/components/GithubIcon";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { LinkedinIcon } from "@/components/LinkedinIcon";
-import { projects } from "@/lib/projects";
 
 const skills = [
   { label: "NestJS", category: "backend" },
@@ -36,28 +36,156 @@ const categoryColor: Record<string, string> = {
   devops: "bg-zinc-500/10 text-zinc-300 ring-zinc-500/20",
 };
 
-const projectIcons: Record<string, React.ReactNode> = {
-  "skybot-inbox": <Zap className="w-5 h-5" />,
-  skysecurity: <Shield className="w-5 h-5" />,
-  skymarket: <ShoppingBag className="w-5 h-5" />,
-  skylive: <Radio className="w-5 h-5" />,
-  skyapp: <Code2 className="w-5 h-5" />,
-  templates: <Layout className="w-5 h-5" />,
+interface AeviaProject {
+  slug: string;
+  title: string;
+  description: string;
+  url: string;
+  tags: string[];
+  icon: React.ReactNode;
+  accentFrom: string;
+  accentTo: string;
+  glowColor: string;
+}
+
+const aeviaProjects: AeviaProject[] = [
+  {
+    slug: "skylaunch",
+    title: "AeviaLaunch",
+    description:
+      "Generateur de sites IA avec 15+ themes premium. Decrivez votre business, obtenez un site production-ready en quelques secondes.",
+    url: "https://aevia-launch.vercel.app",
+    tags: ["AI", "Next.js", "Framer Motion"],
+    icon: <Sparkles className="w-5 h-5" />,
+    accentFrom: "from-violet-500",
+    accentTo: "to-fuchsia-500",
+    glowColor: "group-hover:shadow-violet-500/20",
+  },
+  {
+    slug: "skyapp",
+    title: "AeviaApp",
+    description:
+      "API d'orchestration multi-agents IA. DAG scheduling, memoire vectorielle pgvector, multi-provider (Claude, GPT-4o, Gemini).",
+    url: "https://aevia-app.vercel.app",
+    tags: ["NestJS", "PostgreSQL", "Anthropic API"],
+    icon: <Code2 className="w-5 h-5" />,
+    accentFrom: "from-cyan-500",
+    accentTo: "to-blue-500",
+    glowColor: "group-hover:shadow-cyan-500/20",
+  },
+  {
+    slug: "skysecurity",
+    title: "AeviaSecurity",
+    description:
+      "Audit de securite et performance web automatise par IA. Rapports PDF, scoring 0-100, recommandations actionnables.",
+    url: "https://aevia-security.vercel.app",
+    tags: ["NestJS", "AI", "Security"],
+    icon: <Shield className="w-5 h-5" />,
+    accentFrom: "from-emerald-500",
+    accentTo: "to-teal-500",
+    glowColor: "group-hover:shadow-emerald-500/20",
+  },
+  {
+    slug: "skylive",
+    title: "AeviaLive",
+    description:
+      "Plateforme de streaming live avec tips et monetisation createurs. HLS, WebSocket, chat temps reel.",
+    url: "https://aevia-live.vercel.app",
+    tags: ["WebSocket", "HLS", "Real-time"],
+    icon: <Radio className="w-5 h-5" />,
+    accentFrom: "from-pink-500",
+    accentTo: "to-rose-500",
+    glowColor: "group-hover:shadow-pink-500/20",
+  },
+  {
+    slug: "skymarket",
+    title: "AeviaMarket",
+    description:
+      "Marketplace de services freelance. Auth JWT, Prisma, gestion commandes, paiements Stripe.",
+    url: "https://aevia-market.vercel.app",
+    tags: ["Next.js", "Prisma", "PostgreSQL"],
+    icon: <ShoppingBag className="w-5 h-5" />,
+    accentFrom: "from-amber-500",
+    accentTo: "to-orange-500",
+    glowColor: "group-hover:shadow-amber-500/20",
+  },
+];
+
+const tagColors: Record<string, string> = {
+  "AI": "bg-violet-500/10 text-violet-300 ring-1 ring-violet-500/20",
+  "Next.js": "bg-violet-500/10 text-violet-300 ring-1 ring-violet-500/20",
+  "Framer Motion": "bg-violet-500/10 text-violet-300 ring-1 ring-violet-500/20",
+  "NestJS": "bg-blue-500/10 text-blue-300 ring-1 ring-blue-500/20",
+  "PostgreSQL": "bg-blue-500/10 text-blue-300 ring-1 ring-blue-500/20",
+  "Anthropic API": "bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-500/20",
+  "Security": "bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-500/20",
+  "WebSocket": "bg-cyan-500/10 text-cyan-300 ring-1 ring-cyan-500/20",
+  "HLS": "bg-cyan-500/10 text-cyan-300 ring-1 ring-cyan-500/20",
+  "Real-time": "bg-cyan-500/10 text-cyan-300 ring-1 ring-cyan-500/20",
+  "Prisma": "bg-zinc-500/10 text-zinc-300 ring-1 ring-zinc-500/20",
 };
 
-const statusBadge: Record<string, string> = {
-  live: "bg-emerald-500/15 text-emerald-400 ring-emerald-500/30",
-  beta: "bg-amber-500/15 text-amber-400 ring-amber-500/30",
-  wip: "bg-zinc-500/15 text-zinc-400 ring-zinc-500/30",
-};
+function ProjectCard({ project, index }: { project: AeviaProject; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`group relative flex flex-col h-full p-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm
+          hover:border-zinc-600 hover:-translate-y-1.5 hover:shadow-2xl
+          ${project.glowColor}
+          transition-all duration-300 cursor-pointer overflow-hidden`}
+      >
+        {/* Subtle gradient overlay on hover */}
+        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br ${project.accentFrom}/5 ${project.accentTo}/5 rounded-2xl pointer-events-none`} />
 
-const statusLabel: Record<string, string> = {
-  live: "Live",
-  beta: "Beta",
-  wip: "In Progress",
-};
+        {/* Top row: icon + arrow */}
+        <div className="flex items-start justify-between mb-5 relative z-10">
+          <div className={`p-2.5 rounded-xl bg-gradient-to-br ${project.accentFrom}/20 ${project.accentTo}/10 border border-white/5 text-white`}>
+            {project.icon}
+          </div>
+          <div className="flex items-center gap-1.5 text-zinc-600 group-hover:text-zinc-300 transition-colors">
+            <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">Visit</span>
+            <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className={`text-white font-bold text-lg mb-2.5 relative z-10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:${project.accentFrom} group-hover:${project.accentTo} transition-all duration-300`}>
+          {project.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-zinc-400 text-sm leading-relaxed mb-5 flex-1 relative z-10">
+          {project.description}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 relative z-10">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium ${tagColors[tag] ?? "bg-zinc-800 text-zinc-400"}`}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </a>
+    </motion.div>
+  );
+}
 
 export default function Home() {
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const isProjectsInView = useInView(projectsRef, { once: true, margin: "-80px" });
+
   return (
     <div className="min-h-screen">
       {/* Hero */}
@@ -150,84 +278,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="px-6 pb-32">
+      {/* What I've Built — Premium Projects Section */}
+      <section className="relative px-6 py-24 overflow-hidden" ref={projectsRef}>
+        {/* Subtle background differentiation */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-zinc-950/60" />
+          {/* Dot grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: "radial-gradient(circle, #a78bfa 1px, transparent 1px)",
+              backgroundSize: "32px 32px",
+            }}
+          />
+          {/* Glow accents */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-violet-600/6 blur-[100px]" />
+        </div>
+
         <div className="mx-auto max-w-5xl">
+          {/* Section header */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-14"
           >
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-bold text-white">Featured Projects</h2>
-              <Link
-                href="/projects"
-                className="text-sm text-zinc-400 hover:text-white transition-colors inline-flex items-center gap-1"
-              >
-                All projects <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium mb-4">
+              <Sparkles className="w-3 h-3" />
+              Aevia Ecosystem
             </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 tracking-tight">
+              What I&apos;ve Built
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-xl">
+              Production-ready products shipped solo. Full-stack, AI-powered, deployed.
+            </p>
+          </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {projects.map((p, i) => (
-                <motion.div
-                  key={p.slug}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 * i }}
-                >
-                  <Link
-                    href={`/projects/${p.slug}`}
-                    className="group block h-full p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 hover:bg-zinc-800/50 transition-all duration-200"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="p-2 rounded-lg bg-zinc-800 text-zinc-300 group-hover:bg-zinc-700 transition-colors">
-                        {projectIcons[p.slug] ?? <Code2 className="w-5 h-5" />}
-                      </div>
-                      <span
-                        className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold ring-1 ${statusBadge[p.status]}`}
-                      >
-                        {statusLabel[p.status]}
-                      </span>
-                    </div>
+          {/* Cards grid — 2 cols desktop, 1 col mobile, with a centered last card if 5 items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {aeviaProjects.map((project, i) => (
+              <ProjectCard key={project.slug} project={project} index={i} />
+            ))}
+          </div>
 
-                    <h3 className="text-white font-semibold mb-1.5 group-hover:text-violet-300 transition-colors">
-                      {p.title}
-                    </h3>
-                    <p className="text-zinc-400 text-sm leading-relaxed mb-4 line-clamp-2">
-                      {p.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5">
-                      {p.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded-md text-[11px] bg-zinc-800 text-zinc-400"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {p.tags.length > 3 && (
-                        <span className="px-2 py-0.5 rounded-md text-[11px] bg-zinc-800 text-zinc-500">
-                          +{p.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+          {/* View all link */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-10 flex justify-center"
+          >
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-700 text-zinc-400 text-sm font-medium hover:border-violet-500/50 hover:text-violet-300 transition-all duration-200"
+            >
+              View all projects
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="px-6 pb-24">
+      <section className="px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-900/50 p-10 text-center">
-            <h2 className="text-2xl font-bold text-white mb-3">Let's build something together</h2>
+            <h2 className="text-2xl font-bold text-white mb-3">Let&apos;s build something together</h2>
             <p className="text-zinc-400 max-w-md mx-auto mb-8">
-              Looking for a full-stack engineer to ship your AI product? I'm available for freelance projects.
+              Looking for a full-stack engineer to ship your AI product? I&apos;m available for freelance projects.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link

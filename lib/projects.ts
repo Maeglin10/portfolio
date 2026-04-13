@@ -16,6 +16,39 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "skylaunch",
+    title: "AeviaLaunch",
+    tagline: "AI-powered website generator with 15+ premium themes",
+    description:
+      "Choose a template, describe your business, get a production-ready site in seconds. Claude Haiku generates all copy — headline, about, services, testimonials.",
+    longDescription:
+      "AeviaLaunch lets anyone generate a full website in seconds. Pick from 15+ premium themes (Luxury, Brutalist, Aurora, Magazine, 3D-Tech, Minimal Pro and more), describe your business, and Claude Haiku generates tailored copy for every section. Framer Motion handles parallax scrolling, staggered reveals, magnetic buttons and word-by-word text animations. Users can upload their logo, pick a brand color and hero image, then share a unique preview link instantly.",
+    tags: ["Next.js", "React 19", "Framer Motion", "Claude AI", "TypeScript"],
+    category: "AI Tool",
+    status: "live",
+    github: "https://github.com/Maeglin10/skylaunch",
+    live: "https://aevia-launch.vercel.app",
+    highlights: [
+      "15+ premium templates — Luxury, Brutalist, Aurora, Magazine, 3D-Tech, Minimal Pro",
+      "Claude Haiku generates all copy (headline, about, services, testimonials)",
+      "Framer Motion animations: parallax, stagger, magnetic buttons, word-by-word reveal",
+      "Custom brand color, logo upload, hero image",
+      "Instant preview + shareable link",
+    ],
+    tech: [
+      { name: "Next.js 16", role: "Framework" },
+      { name: "React 19", role: "UI layer" },
+      { name: "Framer Motion", role: "Animations" },
+      { name: "Anthropic Claude Haiku", role: "AI copy generation" },
+      { name: "TypeScript", role: "Type safety" },
+    ],
+    metrics: [
+      { label: "Templates", value: "15+" },
+      { label: "Gen time", value: "<5s" },
+      { label: "Animations", value: "8 types" },
+    ],
+  },
+  {
     slug: "skybot-inbox",
     title: "Skybot Inbox",
     tagline: "AI-powered multi-channel customer inbox",
@@ -60,6 +93,7 @@ export const projects: Project[] = [
     category: "SaaS",
     status: "beta",
     github: "https://github.com/Maeglin10/skysecurity",
+    live: "https://aevia-security.vercel.app",
     highlights: [
       "DNS, SSL, HTTP headers and HIBP checks run in parallel",
       "Claude AI generates a full security report from raw scan data",
@@ -92,6 +126,7 @@ export const projects: Project[] = [
     category: "Marketplace",
     status: "beta",
     github: "https://github.com/Maeglin10/skymarket",
+    live: "https://aevia-market.vercel.app",
     highlights: [
       "Stripe Checkout for service purchases + payout flow",
       "Password reset via email (Resend) with SHA-256 token hashing",
@@ -119,6 +154,7 @@ export const projects: Project[] = [
     category: "Creator Platform",
     status: "wip",
     github: "https://github.com/Maeglin10/skylive",
+    live: "https://aevia-live.vercel.app",
     highlights: [
       "RTMP ingest via Nginx — stream key per creator",
       "HLS delivery with adaptive bitrate",
@@ -151,6 +187,7 @@ export const projects: Project[] = [
     category: "Developer Tool",
     status: "wip",
     github: "https://github.com/Maeglin10/skyapp",
+    live: "https://aevia-app.vercel.app",
     highlights: [
       "pgvector semantic memory — agents remember past conversations",
       "REST API with API key auth — drop-in for any stack",
