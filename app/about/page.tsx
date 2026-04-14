@@ -95,7 +95,7 @@ const itemVariants = {
 
 export default function About() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" id="main-content">
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 px-6">
         <div className="mx-auto max-w-3xl">
@@ -286,6 +286,7 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-zinc-300 transition-colors"
+              aria-label="Visit my LinkedIn profile"
             >
               LinkedIn
             </a>
@@ -294,6 +295,7 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-zinc-300 transition-colors"
+              aria-label="Visit my GitHub profile"
             >
               GitHub
             </a>

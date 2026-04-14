@@ -187,7 +187,7 @@ export default function Home() {
   const isProjectsInView = useInView(projectsRef, { once: true, margin: "-80px" });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" id="main-content">
       {/* Hero */}
       <section className="relative pt-32 pb-24 px-6 overflow-hidden">
         {/* Gradient blob */}
@@ -244,8 +244,9 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-zinc-700 text-zinc-400 text-sm hover:border-zinc-500 hover:text-white transition-colors"
+                aria-label="Visit my GitHub profile"
               >
-                <GithubIcon className="w-4 h-4" />
+                <GithubIcon className="w-4 h-4" aria-hidden="true" />
                 GitHub
               </a>
             </div>
@@ -356,15 +357,16 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
               >
                 Start a conversation
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
               <a
                 href="https://github.com/Maeglin10"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors"
+                aria-label="View my GitHub profile"
               >
-                <GithubIcon className="w-4 h-4" />
+                <GithubIcon className="w-4 h-4" aria-hidden="true" />
                 View GitHub
               </a>
             </div>
@@ -379,11 +381,11 @@ export default function Home() {
           <div className="flex items-center gap-6">
             <Link href="/projects" className="hover:text-zinc-300 transition-colors">Projects</Link>
             <Link href="/contact" className="hover:text-zinc-300 transition-colors">Contact</Link>
-            <a href="https://linkedin.com/in/valentin-milliand" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-zinc-300 transition-colors" title="LinkedIn">
-              <LinkedinIcon className="w-4 h-4" />
+            <a href="https://linkedin.com/in/valentin-milliand" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-zinc-300 transition-colors" aria-label="Visit my LinkedIn profile">
+              <LinkedinIcon className="w-4 h-4" aria-hidden="true" />
             </a>
-            <a href="https://github.com/Maeglin10" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-zinc-300 transition-colors" title="GitHub">
-              <GithubIcon className="w-4 h-4" />
+            <a href="https://github.com/Maeglin10" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-zinc-300 transition-colors" aria-label="Visit my GitHub profile">
+              <GithubIcon className="w-4 h-4" aria-hidden="true" />
             </a>
           </div>
         </div>

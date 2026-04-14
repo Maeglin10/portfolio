@@ -49,7 +49,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-32 px-6">
+    <div className="min-h-screen pt-24 pb-32 px-6" id="main-content">
       {/* Background */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-violet-600/8 blur-[120px]" />
@@ -153,21 +153,21 @@ export default function ContactPage() {
               <h2 className="text-white font-semibold">Contact info</h2>
 
               <div className="flex items-center gap-3 text-sm">
-                <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 flex-shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 flex-shrink-0" aria-hidden="true">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span className="text-zinc-300">valentin.milliand@gmail.com</span>
               </div>
 
               <div className="flex items-center gap-3 text-sm">
-                <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 flex-shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 flex-shrink-0" aria-hidden="true">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <span className="text-zinc-300">Paris, France</span>
               </div>
 
               <div className="flex items-center gap-3 text-sm">
-                <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 flex-shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400 flex-shrink-0" aria-hidden="true">
                   <GithubIcon className="w-4 h-4" />
                 </div>
                 <a
@@ -175,6 +175,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-zinc-300 hover:text-white transition-colors"
+                  aria-label="Visit my GitHub profile"
                 >
                   github.com/Maeglin10
                 </a>

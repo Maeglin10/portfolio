@@ -37,7 +37,7 @@ const categoryColor: Record<string, string> = {
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen pt-24 pb-32 px-6">
+    <div className="min-h-screen pt-24 pb-32 px-6" id="main-content">
       {/* Background */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-violet-600/8 blur-[120px]" />
@@ -70,7 +70,7 @@ export default function ProjectsPage() {
               >
                 {/* Icon */}
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-xl bg-zinc-800 group-hover:bg-zinc-700 transition-colors flex items-center justify-center text-zinc-300">
+                  <div className="w-12 h-12 rounded-xl bg-zinc-800 group-hover:bg-zinc-700 transition-colors flex items-center justify-center text-zinc-300" aria-hidden="true">
                     {projectIcons[p.slug] ?? <Code2 className="w-6 h-6" />}
                   </div>
                 </div>
@@ -109,25 +109,25 @@ export default function ProjectsPage() {
 
                 {/* Links */}
                 <div className="flex sm:flex-col items-center sm:items-end justify-start sm:justify-center gap-3 flex-shrink-0">
-                  <ArrowRight className="w-5 h-5 text-zinc-600 group-hover:text-violet-400 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-5 h-5 text-zinc-600 group-hover:text-violet-400 group-hover:translate-x-1 transition-all" aria-hidden="true" />
                   <div className="flex gap-2">
                     {p.github && (
-                      <span
+                      <button
                         onClick={(e) => { e.preventDefault(); window.open(p.github, "_blank"); }}
                         className="p-1.5 rounded-lg text-zinc-500 hover:text-white hover:bg-zinc-700 transition-colors"
-                        title="GitHub"
+                        aria-label={`View ${p.title} on GitHub`}
                       >
-                        <GithubIcon className="w-4 h-4" />
-                      </span>
+                        <GithubIcon className="w-4 h-4" aria-hidden="true" />
+                      </button>
                     )}
                     {p.live && (
-                      <span
+                      <button
                         onClick={(e) => { e.preventDefault(); window.open(p.live, "_blank"); }}
                         className="p-1.5 rounded-lg text-zinc-500 hover:text-white hover:bg-zinc-700 transition-colors"
-                        title="Live demo"
+                        aria-label={`View ${p.title} live demo`}
                       >
-                        <ExternalLink className="w-4 h-4" />
-                      </span>
+                        <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                      </button>
                     )}
                   </div>
                 </div>

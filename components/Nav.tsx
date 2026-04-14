@@ -45,18 +45,18 @@ export function Nav() {
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 px-3 py-1.5 rounded-md text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
-            title="LinkedIn"
+            aria-label="Visit my LinkedIn profile"
           >
-            <LinkedinIcon className="w-4 h-4" />
+            <LinkedinIcon className="w-4 h-4" aria-hidden="true" />
           </a>
           <a
             href="https://github.com/Maeglin10"
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-1.5 rounded-md text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
-            title="GitHub"
+            aria-label="Visit my GitHub profile"
           >
-            <GithubIcon className="w-4 h-4" />
+            <GithubIcon className="w-4 h-4" aria-hidden="true" />
           </a>
         </nav>
 
@@ -64,6 +64,9 @@ export function Nav() {
         <button
           className="sm:hidden text-zinc-400 hover:text-white"
           onClick={() => setOpen(!open)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
         >
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -71,7 +74,7 @@ export function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="sm:hidden border-t border-zinc-800 bg-[#09090b] px-6 py-3 flex flex-col gap-1">
+        <div className="sm:hidden border-t border-zinc-800 bg-[#09090b] px-6 py-3 flex flex-col gap-1" id="mobile-nav">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -91,18 +94,18 @@ export function Nav() {
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-2 rounded-md text-sm text-zinc-400 hover:text-white"
-            title="LinkedIn"
+            aria-label="Visit my LinkedIn profile"
           >
-            <LinkedinIcon className="w-4 h-4" />
+            <LinkedinIcon className="w-4 h-4" aria-hidden="true" />
           </a>
           <a
             href="https://github.com/Maeglin10"
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-2 rounded-md text-sm text-zinc-400 hover:text-white"
-            title="GitHub"
+            aria-label="Visit my GitHub profile"
           >
-            <GithubIcon className="w-4 h-4" />
+            <GithubIcon className="w-4 h-4" aria-hidden="true" />
           </a>
         </div>
       )}
