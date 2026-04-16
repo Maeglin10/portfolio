@@ -6,6 +6,7 @@ import { GithubIcon } from "@/components/GithubIcon";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { LinkedinIcon } from "@/components/LinkedinIcon";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 
 // ─── Tech Stack ─────────────────────────────────────────────────────────────
 
@@ -208,6 +209,100 @@ const tagColors: Record<string, string> = {
   "Real-time": "bg-cyan-500/10 text-cyan-300 ring-1 ring-cyan-500/20",
   "Prisma": "bg-zinc-500/10 text-zinc-300 ring-1 ring-zinc-500/20",
 };
+
+// ─── Site Type Selector Data ─────────────────────────────────────────────────
+
+const siteTypes = [
+  {
+    type: "landing",
+    label: "Landing Page",
+    desc: "High-conversion page for your product or campaign",
+    icon: "🚀",
+    color: "from-violet-500/20 to-fuchsia-500/10",
+    accent: "#8b5cf6",
+    themes: 5,
+  },
+  {
+    type: "business",
+    label: "Business Site",
+    desc: "Professional multi-page presence for your company",
+    icon: "🏢",
+    color: "from-blue-500/20 to-cyan-500/10",
+    accent: "#38bdf8",
+    themes: 8,
+  },
+  {
+    type: "ecommerce",
+    label: "E-commerce Store",
+    desc: "Sell products and services with a full storefront",
+    icon: "🛍️",
+    color: "from-amber-500/20 to-orange-500/10",
+    accent: "#f59e0b",
+    themes: 4,
+  },
+];
+
+// ─── Showcase Projects Data ───────────────────────────────────────────────────
+
+const showcaseProjects = [
+  {
+    name: "AeviaLaunch",
+    tagline: "AI-powered site builder",
+    description: "Describe your business, choose from 21 premium templates, get a production-ready website in seconds. No code. No waiting.",
+    url: "https://aevia-launch.vercel.app",
+    status: "live" as const,
+    accentColor: "#8b5cf6",
+    features: ["21 premium templates", "AI content generation", "Live preview", "One-click deploy"],
+    screenshots: [
+      { src: "/screenshots/launch/launch-home.webp", alt: "AeviaLaunch homepage", caption: "Homepage" },
+      { src: "/screenshots/launch/launch-themes.webp", alt: "Theme gallery", caption: "21 themes gallery" },
+      { src: "/screenshots/launch/launch-theme-saas.webp", alt: "SaaS theme preview", caption: "SaaS template" },
+      { src: "/screenshots/launch/launch-theme-restaurant.webp", alt: "Restaurant theme", caption: "Restaurant template" },
+      { src: "/screenshots/launch/launch-theme-aurora.webp", alt: "Aurora theme", caption: "Aurora template" },
+      { src: "/screenshots/launch/launch-configure.webp", alt: "Configure wizard", caption: "AI wizard" },
+    ],
+  },
+  {
+    name: "AeviaSecurity",
+    tagline: "Automated security & performance audit",
+    description: "DNS, SSL, security headers analysis + AI recommendations. PDF report. Score your site 0–100 in under 60 seconds.",
+    url: "https://aevia-security.vercel.app",
+    status: "live" as const,
+    accentColor: "#38bdf8",
+    features: ["DNS/SSL analysis", "AI scoring 0–100", "PDF report", "Security headers check"],
+    screenshots: [
+      { src: "/screenshots/security/security-home.webp", alt: "AeviaSecurity homepage", caption: "Homepage" },
+      { src: "/screenshots/security/security-audit.webp", alt: "Audit interface", caption: "Audit center" },
+      { src: "/screenshots/security/security-pricing.webp", alt: "Pricing plans", caption: "Pricing" },
+    ],
+  },
+  {
+    name: "AeviaMarket",
+    tagline: "Freelance service marketplace",
+    description: "Buy and sell professional services. Stripe payments, dispute resolution, seller dashboards — a complete marketplace platform.",
+    url: "#",
+    status: "soon" as const,
+    accentColor: "#f59e0b",
+    features: ["Service listings", "Stripe checkout", "Seller analytics", "Dispute system"],
+    screenshots: [
+      { src: "/screenshots/market/market-home.webp", alt: "Marketplace homepage", caption: "Homepage" },
+      { src: "/screenshots/market/market-services.webp", alt: "Services listing", caption: "Services catalog" },
+    ],
+  },
+  {
+    name: "AeviaLive",
+    tagline: "Live streaming platform",
+    description: "HLS streaming with tips, creator monetization, real-time chat and viewer analytics.",
+    url: "#",
+    status: "soon" as const,
+    accentColor: "#ec4899",
+    features: ["HLS streaming", "Real-time chat", "Creator tips", "Viewer analytics"],
+    screenshots: [
+      { src: "/screenshots/live/live-home.webp", alt: "AeviaLive homepage", caption: "Homepage" },
+      { src: "/screenshots/live/live-feed.webp", alt: "Live feed", caption: "Live feed" },
+    ],
+  },
+];
 
 // ─── Components ──────────────────────────────────────────────────────────────
 
@@ -516,6 +611,89 @@ export default function Home() {
               </div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── Create Your Website (Site Type Selector) ─────────────────── */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium mb-4">
+              <Globe className="w-3 h-3" />
+              AeviaLaunch
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">Create your website</h2>
+            <p className="text-zinc-400 text-lg max-w-xl mb-10">Choose your site type — browse all templates instantly, no registration needed.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            {siteTypes.map((t, i) => (
+              <motion.a
+                key={t.type}
+                href="https://aevia-launch.vercel.app/themes"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className={`group flex flex-col p-6 rounded-2xl border border-zinc-800 bg-gradient-to-br ${t.color} hover:border-zinc-600 hover:-translate-y-1 transition-all duration-300 cursor-pointer`}
+              >
+                <span className="text-3xl mb-4">{t.icon}</span>
+                <h3 className="text-white font-bold text-lg mb-1">{t.label}</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{t.desc}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-zinc-500">{t.themes}+ themes</span>
+                  <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                </div>
+              </motion.a>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <a
+              href="https://aevia-launch.vercel.app/themes"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-zinc-400 hover:text-violet-300 text-sm font-medium transition-colors"
+            >
+              Browse all 21 themes <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── See It In Action (Product Showcase Carousels) ─────────────── */}
+      <section className="px-6 py-24 bg-zinc-950/40">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">See it in action</h2>
+            <p className="text-zinc-400 text-lg">Real products. Real interfaces. No mockups.</p>
+          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {showcaseProjects.map((p, i) => (
+              <motion.div
+                key={p.name}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: (i % 2) * 0.1 }}
+              >
+                <ProjectShowcase {...p} />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
