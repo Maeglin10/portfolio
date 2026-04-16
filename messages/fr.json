@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact",
+    "ecosystem": "Écosystème"
+  },
+  "hero": {
+    "badge": "Disponible pour des projets freelance",
+    "role": "Full Stack Engineer",
+    "subtitle": "& AI Builder",
+    "description": "Je construis des produits IA prêts pour la production — boîtes de réception multicanales, plateformes créateurs, SaaS sécurité et outils développeurs.",
+    "cta_primary": "Explorer Avia",
+    "cta_contact": "Me contacter",
+    "cta_github": "GitHub"
+  },
+  "ecosystem": {
+    "badge": "Avia Ecosystem",
+    "title": "Un écosystème, tous les outils nécessaires",
+    "subtitle": "Du lancement de votre site à la gestion de vos clients — Avia couvre tout le parcours.",
+    "stats_templates": "Templates",
+    "stats_products": "Produits",
+    "stats_languages": "Langues",
+    "stats_possibilities": "Possibilités"
+  },
+  "themes": {
+    "badge": "Templates AeviaLaunch",
+    "title": "21 thèmes premium",
+    "description": "Chaque thème est entièrement personnalisable et généré avec du contenu IA — prêt à déployer en 60 secondes.",
+    "browse": "Voir tous les thèmes"
+  },
+  "projects": {
+    "title": "Ce que j'ai construit",
+    "subtitle": "Des produits prêts pour la production, développés en solo. Full-stack, propulsés par l'IA, déployés.",
+    "view_all": "Voir tous les projets"
+  },
+  "cta": {
+    "title": "Construisons quelque chose ensemble",
+    "description": "Vous cherchez un ingénieur full-stack pour lancer votre produit IA ? Je suis disponible pour des projets freelance.",
+    "start": "Démarrer une conversation",
+    "github": "Voir GitHub"
+  },
+  "footer": {
+    "copyright": "© 2026 Valentin Milliand · Avia Ecosystem"
+  },
+  "skills": {
+    "title": "Stack technique"
+  }
+}
