@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink, CheckCircle2, Code2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, CheckCircle2, Code2, ArrowRight } from "lucide-react";
 import { GithubIcon } from "@/components/GithubIcon";
 import { getProject, projects } from "@/lib/projects";
 
@@ -87,6 +88,30 @@ export default async function ProjectPage({
           </div>
         </div>
 
+        {/* Screenshots gallery */}
+        {project.screenshots && project.screenshots.length > 0 && (
+          <div className="mb-10">
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+              {project.screenshots.map((s, i) => (
+                <div key={i} className="flex-shrink-0 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 group">
+                  <div className="relative w-64 h-40 sm:w-80 sm:h-48">
+                    <Image
+                      src={s.src}
+                      alt={s.alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 640px) 256px, 320px"
+                    />
+                  </div>
+                  <div className="px-3 py-2">
+                    <span className="text-xs text-zinc-500">{s.caption}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main */}
           <div className="lg:col-span-2 space-y-8">
@@ -160,21 +185,38 @@ export default async function ProjectPage({
             </div>
 
             {/* CTA */}
-            <div className="p-5 rounded-2xl border border-zinc-700 bg-violet-600/5">
-              <div className="flex items-center gap-2 mb-3">
-                <Code2 className="w-4 h-4 text-violet-400" />
-                <span className="text-white text-sm font-semibold">Interested?</span>
+            {project.cta ? (
+              <div className="p-5 rounded-2xl border border-violet-700/40 bg-violet-600/8">
+                <p className="text-zinc-400 text-xs leading-relaxed mb-4">
+                  Try it live — no credit card required.
+                </p>
+                <a
+                  href={project.cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
+                >
+                  {project.cta.label}
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
-              <p className="text-zinc-400 text-xs leading-relaxed mb-4">
-                Want to know more about this project or hire me to build something similar?
-              </p>
-              <Link
-                href="/contact"
-                className="block text-center px-4 py-2 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium transition-colors"
-              >
-                Get in touch
-              </Link>
-            </div>
+            ) : (
+              <div className="p-5 rounded-2xl border border-zinc-700 bg-violet-600/5">
+                <div className="flex items-center gap-2 mb-3">
+                  <Code2 className="w-4 h-4 text-violet-400" />
+                  <span className="text-white text-sm font-semibold">Interested?</span>
+                </div>
+                <p className="text-zinc-400 text-xs leading-relaxed mb-4">
+                  Want to know more or hire me to build something similar?
+                </p>
+                <Link
+                  href="/contact"
+                  className="block text-center px-4 py-2 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium transition-colors"
+                >
+                  Get in touch
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

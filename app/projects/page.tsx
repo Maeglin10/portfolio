@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink, ArrowRight, Code2, Zap, Shield, ShoppingBag, Radio, Layout } from "lucide-react";
 import { GithubIcon } from "@/components/GithubIcon";
 import { motion } from "framer-motion";
@@ -68,11 +69,23 @@ export default function ProjectsPage() {
                 href={`/projects/${p.slug}`}
                 className="group flex flex-col sm:flex-row gap-6 p-6 rounded-2xl border border-zinc-800 bg-zinc-900/40 hover:border-zinc-600 hover:bg-zinc-800/40 transition-all duration-200"
               >
-                {/* Icon */}
+                {/* Thumbnail or Icon */}
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-xl bg-zinc-800 group-hover:bg-zinc-700 transition-colors flex items-center justify-center text-zinc-300" aria-hidden="true">
-                    {projectIcons[p.slug] ?? <Code2 className="w-6 h-6" />}
-                  </div>
+                  {p.screenshots && p.screenshots[0] ? (
+                    <div className="w-24 h-16 sm:w-32 sm:h-20 rounded-xl overflow-hidden border border-zinc-800 relative">
+                      <Image
+                        src={p.screenshots[0].src}
+                        alt={p.screenshots[0].alt}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="128px"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-12 h-12 rounded-xl bg-zinc-800 group-hover:bg-zinc-700 transition-colors flex items-center justify-center text-zinc-300" aria-hidden="true">
+                      {projectIcons[p.slug] ?? <Code2 className="w-6 h-6" />}
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}

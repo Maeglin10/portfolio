@@ -12,6 +12,8 @@ export interface Project {
   highlights: string[];
   tech: { name: string; role: string }[];
   metrics?: { label: string; value: string }[];
+  screenshots?: { src: string; alt: string; caption: string }[];
+  cta?: { label: string; href: string };
 }
 
 export const projects: Project[] = [
@@ -43,10 +45,19 @@ export const projects: Project[] = [
       { name: "TypeScript", role: "Type safety" },
     ],
     metrics: [
-      { label: "Templates", value: "15+" },
+      { label: "Templates", value: "181" },
       { label: "Gen time", value: "<5s" },
       { label: "Animations", value: "8 types" },
     ],
+    screenshots: [
+      { src: "/screenshots/launch/launch-home.webp", alt: "AeviaLaunch homepage", caption: "Homepage" },
+      { src: "/screenshots/launch/launch-themes.webp", alt: "Theme gallery — 181 themes", caption: "Theme gallery" },
+      { src: "/screenshots/launch/launch-theme-saas.webp", alt: "SaaS template preview", caption: "SaaS template" },
+      { src: "/screenshots/launch/launch-theme-aurora.webp", alt: "Aurora wellness template", caption: "Aurora template" },
+      { src: "/screenshots/launch/launch-theme-brutalist.webp", alt: "Brutalist editorial template", caption: "Brutalist template" },
+      { src: "/screenshots/launch/launch-configure.webp", alt: "AI configuration wizard", caption: "AI wizard" },
+    ],
+    cta: { label: "Build your website", href: "https://aevia-launch.vercel.app/configure" },
   },
   {
     slug: "skybot-inbox",
@@ -113,10 +124,20 @@ export const projects: Project[] = [
       { label: "Avg scan time", value: "<3s" },
       { label: "Risk score range", value: "0–100" },
     ],
+    screenshots: [
+      { src: "/screenshots/security/security-home.webp", alt: "AeviaSecurity homepage", caption: "Homepage" },
+      { src: "/screenshots/security/security-audit.webp", alt: "Audit interface", caption: "Run an audit" },
+      { src: "/screenshots/security/security-pricing.webp", alt: "Pricing plans", caption: "Pricing" },
+    ],
+    cta: { label: "Scan your website", href: "https://aevia-security.vercel.app/audit" },
   },
   {
     slug: "skymarket",
     title: "AeviaMarket",
+    screenshots: [
+      { src: "/screenshots/market/market-home.webp", alt: "AeviaMarket homepage", caption: "Homepage" },
+      { src: "/screenshots/market/market-services.webp", alt: "Services catalog", caption: "Services" },
+    ],
     tagline: "Creator services marketplace",
     description:
       "Full-stack marketplace where creators sell digital services, with Stripe payments, seller profiles, reviews and a complete auth flow.",
@@ -146,6 +167,10 @@ export const projects: Project[] = [
     slug: "skylive",
     title: "AeviaLive",
     tagline: "Live streaming creator platform",
+    screenshots: [
+      { src: "/screenshots/live/live-home.webp", alt: "AeviaLive homepage", caption: "Homepage" },
+      { src: "/screenshots/live/live-feed.webp", alt: "Live feed", caption: "Live feed" },
+    ],
     description:
       "Creator-first live streaming platform with RTMP ingest, HLS playback, subscriptions, and a tipping system.",
     longDescription:
