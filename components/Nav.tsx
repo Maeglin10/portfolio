@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, X, Sparkles, Shield, MessageSquare, ChevronDown, ExternalLink } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { Menu, X, Sparkles, Shield, MessageSquare, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import { AeviaLogo } from "@/components/AeviaLogo";
-
 const navLinks = [
   { href: "/templates", label: "Sites web" },
   { href: "/contact", label: "Contact" },
@@ -14,7 +13,7 @@ const navLinks = [
 const products = [
   {
     name: "AeviaLaunch",
-    href: "https://aevia-launch.vercel.app",
+    href: "https://skylaunch-xi.vercel.app",
     internal: "/templates",
     description: "Site web en 7 jours — 3 templates pro",
     icon: Sparkles,
@@ -23,7 +22,7 @@ const products = [
   },
   {
     name: "AeviaSecurity",
-    href: "https://aevia-security.vercel.app",
+    href: "https://web-bx4tjhk2h-valentins-projects-7cad2c95.vercel.app",
     internal: null,
     description: "Audit sécurité & performance en 60s",
     icon: Shield,
@@ -41,6 +40,70 @@ const products = [
   },
 ];
 
+const LOCALES = [
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "en", label: "English",  flag: "🇬🇧" },
+  { code: "es", label: "Español",  flag: "🇪🇸" },
+  { code: "de", label: "Deutsch",  flag: "🇩🇪" },
+  { code: "pt", label: "Português",flag: "🇵🇹" },
+];
+
+function LangSwitcher() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [, startTransition] = useTransition();
+
+  const segments = pathname.split("/");
+  const detectedCode = LOCALES.find(l => l.code === segments[1])?.code ?? "fr";
+  const current = LOCALES.find(l => l.code === detectedCode) ?? LOCALES[0];
+
+  function switchLocale(code: string) {
+    setOpen(false);
+    const segs = pathname.split("/");
+    if (LOCALES.some(l => l.code === segs[1])) {
+      segs[1] = code;
+    } else {
+      segs.splice(1, 0, code);
+    }
+    startTransition(() => {
+      router.push(segs.join("/") || "/");
+    });
+  }
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
+        aria-label="Change language"
+      >
+        <Globe size={14} />
+        <span className="hidden md:inline">{current.flag} {current.code.toUpperCase()}</span>
+        <span className="md:hidden">{current.flag}</span>
+        <ChevronDown size={12} className={`transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute right-0 mt-1 w-40 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl shadow-black/40 overflow-hidden z-50">
+          {LOCALES.map(l => (
+            <button
+              key={l.code}
+              onClick={() => switchLocale(l.code)}
+              className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors hover:bg-zinc-800 ${
+                l.code === locale ? "text-white font-semibold" : "text-zinc-400"
+              }`}
+            >
+              <span>{l.flag}</span>
+              <span>{l.label}</span>
+              {l.code === locale && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-violet-400" />}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function Nav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -50,15 +113,11 @@ export function Nav() {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/60 bg-[#09090b]/80 backdrop-blur-md">
       <div className="mx-auto max-w-5xl px-6 h-14 flex items-center justify-between">
 
-        {/* Logo */}
         <Link href="/" className="hover:opacity-80 transition-opacity">
           <AeviaLogo />
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden sm:flex items-center gap-1">
-
-          {/* Products dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setDropdownOpen(true)}
@@ -98,12 +157,8 @@ export function Nav() {
                       </div>
                     );
 
-                    if (p.internal) {
-                      return <Link key={p.name} href={p.internal}>{content}</Link>;
-                    }
-                    if (isExternal) {
-                      return <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer">{content}</a>;
-                    }
+                    if (p.internal) return <Link key={p.name} href={p.internal}>{content}</Link>;
+                    if (isExternal) return <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer">{content}</a>;
                     return <div key={p.name} className="opacity-60 cursor-not-allowed">{content}</div>;
                   })}
                 </div>
@@ -116,17 +171,17 @@ export function Nav() {
               key={l.href}
               href={l.href}
               className={`px-3 py-1.5 rounded-md text-sm transition-colors ${
-                pathname === l.href
-                  ? "text-white bg-zinc-800"
-                  : "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
+                pathname === l.href ? "text-white bg-zinc-800" : "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
               }`}
             >
               {l.label}
             </Link>
           ))}
 
+          <LangSwitcher />
+
           <a
-            href="https://aevia-security.vercel.app"
+            href="https://web-bx4tjhk2h-valentins-projects-7cad2c95.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 px-4 py-1.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
@@ -135,7 +190,6 @@ export function Nav() {
           </a>
         </nav>
 
-        {/* Mobile toggle */}
         <button
           className="sm:hidden text-zinc-400 hover:text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -145,7 +199,6 @@ export function Nav() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="sm:hidden border-t border-zinc-800 bg-[#09090b] px-6 py-4 flex flex-col gap-1">
           {navLinks.map((l) => (
@@ -187,9 +240,14 @@ export function Nav() {
             })}
           </div>
 
+          <div className="mt-2 pt-2 border-t border-zinc-800">
+            <p className="text-xs text-zinc-600 px-3 py-1 uppercase tracking-wider font-medium mb-1">Langue</p>
+            <LangSwitcher />
+          </div>
+
           <div className="mt-3 pt-3 border-t border-zinc-800">
             <a
-              href="https://aevia-security.vercel.app"
+              href="https://web-bx4tjhk2h-valentins-projects-7cad2c95.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center px-4 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"

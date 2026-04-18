@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "contact": "Kontakt",
+    "ecosystem": "Ökosystem"
+  },
+  "hero": {
+    "badge": "Verfügbar für Freelance-Projekte",
+    "role": "Full Stack Engineer",
+    "subtitle": "& AI Builder",
+    "description": "Ich entwickle produktionsreife KI-Produkte — Multi-Channel-Posteingänge, Creator-Plattformen, Security-SaaS und Entwickler-Tools.",
+    "cta_primary": "Aevia entdecken",
+    "cta_contact": "Kontakt aufnehmen",
+    "cta_github": "GitHub"
+  },
+  "ecosystem": {
+    "badge": "Aevia Ökosystem",
+    "title": "Ein Ökosystem, alle notwendigen Tools",
+    "subtitle": "Vom Website-Launch bis zur Kundenverwaltung — Aevia deckt den gesamten Weg ab.",
+    "stats_templates": "Vorlagen",
+    "stats_products": "Produkte",
+    "stats_languages": "Sprachen",
+    "stats_possibilities": "Möglichkeiten"
+  },
+  "themes": {
+    "badge": "AeviaLaunch Vorlagen",
+    "title": "21 Premium-Themes",
+    "description": "Jedes Theme ist vollständig anpassbar und wird mit KI-Inhalten generiert — in 60 Sekunden einsatzbereit.",
+    "browse": "Alle Themes ansehen"
+  },
+  "projects": {
+    "title": "Was ich gebaut habe",
+    "subtitle": "Produktionsreife Produkte, solo entwickelt. Full-Stack, KI-gestützt, deployed.",
+    "view_all": "Alle Projekte ansehen"
+  },
+  "cta": {
+    "title": "Lassen Sie uns etwas gemeinsam bauen",
+    "description": "Suchen Sie einen Full-Stack-Engineer für Ihr KI-Produkt? Ich bin für Freelance-Projekte verfügbar.",
+    "start": "Gespräch beginnen",
+    "github": "GitHub ansehen"
+  },
+  "footer": {
+    "copyright": "© 2026 Valentin Milliand · Aevia Ökosystem"
+  },
+  "skills": {
+    "title": "Tech-Stack"
+  }
+}
