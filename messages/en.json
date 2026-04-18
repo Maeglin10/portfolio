@@ -11,14 +11,14 @@
     "role": "Full Stack Engineer",
     "subtitle": "& AI Builder",
     "description": "I build production-ready AI products — multi-channel inboxes, creator platforms, security SaaS, and developer tools.",
-    "cta_primary": "Explore Avia",
+    "cta_primary": "Explore Aevia",
     "cta_contact": "Get in touch",
     "cta_github": "GitHub"
   },
   "ecosystem": {
-    "badge": "Avia Ecosystem",
+    "badge": "Aevia Ecosystem",
     "title": "One ecosystem, every tool you need",
-    "subtitle": "From launching your website to managing your customers — Avia covers the full journey.",
+    "subtitle": "From launching your website to managing your customers — Aevia covers the full journey.",
     "stats_templates": "Templates",
     "stats_products": "Products",
     "stats_languages": "Languages",
@@ -42,7 +42,7 @@
     "github": "View GitHub"
   },
   "footer": {
-    "copyright": "© 2026 Valentin Milliand · Avia Ecosystem"
+    "copyright": "© 2026 Valentin Milliand · Aevia Ecosystem"
   },
   "skills": {
     "title": "Tech stack"

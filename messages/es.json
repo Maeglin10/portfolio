@@ -11,14 +11,14 @@
     "role": "Ingeniero Full Stack",
     "subtitle": "& Creador de IA",
     "description": "Construyo productos IA listos para producción — bandejas de entrada multicanal, plataformas de creadores, SaaS de seguridad y herramientas para desarrolladores.",
-    "cta_primary": "Explorar Avia",
+    "cta_primary": "Explorar Aevia",
     "cta_contact": "Contáctame",
     "cta_github": "GitHub"
   },
   "ecosystem": {
-    "badge": "Ecosistema Avia",
+    "badge": "Ecosistema Aevia",
     "title": "Un ecosistema, todas las herramientas",
-    "subtitle": "Desde el lanzamiento de tu sitio hasta la gestión de clientes — Avia cubre todo el recorrido.",
+    "subtitle": "Desde el lanzamiento de tu sitio hasta la gestión de clientes — Aevia cubre todo el recorrido.",
     "stats_templates": "Plantillas",
     "stats_products": "Productos",
     "stats_languages": "Idiomas",
@@ -42,7 +42,7 @@
     "github": "Ver GitHub"
   },
   "footer": {
-    "copyright": "© 2026 Valentin Milliand · Ecosistema Avia"
+    "copyright": "© 2026 Valentin Milliand · Ecosistema Aevia"
   },
   "skills": {
     "title": "Stack técnico"

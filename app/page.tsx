@@ -39,9 +39,9 @@ const categoryColor: Record<string, string> = {
   devops: "bg-zinc-500/10 text-zinc-300 ring-zinc-500/20",
 };
 
-// ─── Avia Products ───────────────────────────────────────────────────────────
+// ─── Aevia Products ───────────────────────────────────────────────────────────
 
-interface AviaProduct {
+interface AeviaProduct {
   slug: string;
   name: string;
   tagline: string;
@@ -56,7 +56,7 @@ interface AviaProduct {
   cta: string;
 }
 
-const aviaProducts: AviaProduct[] = [
+const aeviaProducts: AeviaProduct[] = [
   {
     slug: "launch",
     name: "AeviaLaunch",
@@ -306,7 +306,7 @@ const showcaseProjects = [
 
 // ─── Components ──────────────────────────────────────────────────────────────
 
-function ProductCard({ product, index }: { product: AviaProduct; index: number }) {
+function ProductCard({ product, index }: { product: AeviaProduct; index: number }) {
   const isLive = product.status === "live";
   const Wrapper = isLive ? "a" : "div";
   const wrapperProps = isLive
@@ -500,7 +500,7 @@ export default function Home() {
                 href="#ecosystem"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
               >
-                Explore Avia
+                Explore Aevia
                 <ArrowRight className="w-4 h-4" />
               </a>
               <Link
@@ -549,7 +549,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Avia Ecosystem ───────────────────────────────────────────────── */}
+      {/* ── Aevia Ecosystem ───────────────────────────────────────────────── */}
       <section id="ecosystem" className="relative px-6 py-24 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-zinc-950/70" />
@@ -574,19 +574,19 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium mb-4">
               <Sparkles className="w-3 h-3" />
-              Avia Ecosystem
+              Aevia Ecosystem
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 tracking-tight">
               One ecosystem, every tool you need
             </h2>
             <p className="text-zinc-400 text-lg max-w-xl">
-              From launching your website to managing your customers — Avia covers the full journey.
+              From launching your website to managing your customers — Aevia covers the full journey.
             </p>
           </motion.div>
 
           {/* Product cards grid — 2 cols */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
-            {aviaProducts.map((product, i) => (
+            {aeviaProducts.map((product, i) => (
               <ProductCard key={product.slug} product={product} index={i} />
             ))}
           </div>
@@ -855,7 +855,7 @@ export default function Home() {
       {/* ── Footer ───────────────────────────────────────────────────────── */}
       <footer className="border-t border-zinc-800 px-6 py-8">
         <div className="mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
-          <span>© 2026 Valentin Milliand · Avia Ecosystem</span>
+          <span>© 2026 Valentin Milliand · Aevia Ecosystem</span>
           <div className="flex items-center gap-6">
             <Link href="/projects" className="hover:text-zinc-300 transition-colors">Projects</Link>
             <Link href="/contact" className="hover:text-zinc-300 transition-colors">Contact</Link>
