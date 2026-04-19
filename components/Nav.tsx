@@ -10,6 +10,8 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+// navLinks kept minimal — Landing/Ecom/Vitrine live inside /templates showcase
+
 const products = [
   {
     name: "AeviaLaunch",

@@ -3,388 +3,278 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Monitor, ShoppingBag, Globe, Sparkles, MessageSquare } from "lucide-react";
-
-// ─── Template Data ────────────────────────────────────────────────────────────
+import { ArrowRight, ExternalLink, Monitor, ShoppingBag, Globe, Sparkles, Lock } from "lucide-react";
 
 const templates = [
   {
     id: "landing",
     name: "Landing Page",
-    tagline: "Convert visitors into customers",
-    description:
-      "High-converting landing page with animated hero, feature sections, testimonials, pricing table, and contact form. Fully responsive and optimized for SEO.",
-    url: "https://aevia-landing.vercel.app",
+    tagline: "Convertir des visiteurs en clients",
+    description: "Hero animé, section features, témoignages, pricing et formulaire de contact. Optimisée conversion et SEO.",
+    url: "https://aevia-launch.vercel.app/demo/landing",
     accentFrom: "from-violet-500",
     accentTo: "to-fuchsia-500",
-    glowColor: "shadow-violet-500/20",
-    borderHover: "hover:border-violet-500/40",
     icon: <Sparkles className="w-5 h-5" />,
-    features: [
-      "Animated hero section",
-      "Features & benefits",
-      "Testimonials carousel",
-      "Pricing table",
-      "Contact form",
-      "SEO optimized",
-    ],
-    useCases: ["SaaS product", "Agency", "Startup", "App launch"],
+    dot: "bg-violet-400",
+    features: ["Hero section animé", "Features & bénéfices", "Témoignages", "Tableau de prix", "Formulaire contact"],
+    useCases: ["SaaS", "Agence", "Startup", "App"],
   },
   {
     id: "ecommerce",
     name: "E-Commerce",
-    tagline: "Sell products, grow revenue",
-    description:
-      "Full-featured online store with product catalog, cart, checkout flow, order confirmation, and an elegant product detail page. Ready to connect to any payment provider.",
-    url: "https://aevia-ecommerce.vercel.app",
+    tagline: "Vendre des produits en ligne",
+    description: "Boutique complète avec catalogue produits, panier, checkout et confirmation de commande. Prêt pour Stripe.",
+    url: "https://aevia-launch.vercel.app/demo/ecommerce",
     accentFrom: "from-amber-500",
     accentTo: "to-orange-500",
-    glowColor: "shadow-amber-500/20",
-    borderHover: "hover:border-amber-500/40",
     icon: <ShoppingBag className="w-5 h-5" />,
-    features: [
-      "Product catalog & filters",
-      "Cart & checkout flow",
-      "Order confirmation",
-      "Product detail page",
-      "Mobile-first design",
-      "Stripe-ready",
-    ],
-    useCases: ["Boutique", "Fashion", "Physical goods", "Digital products"],
+    dot: "bg-amber-400",
+    features: ["Catalogue & filtres", "Panier & checkout", "Confirmation commande", "Page produit détaillée", "Stripe-ready"],
+    useCases: ["Boutique", "Mode", "Produits physiques", "Digital"],
   },
   {
     id: "website",
-    name: "Vitrine",
-    tagline: "Professional presence, zero friction",
-    description:
-      "Clean corporate website for service-based businesses. Homepage, about, services, blog, and contact page. Perfect for consultants, agencies, and local businesses.",
-    url: "https://aevia-website.vercel.app",
+    name: "Site Vitrine",
+    tagline: "Une présence pro sans friction",
+    description: "Site corporate clean pour les entreprises de service. Accueil, à propos, services, blog et contact.",
+    url: "https://aevia-launch.vercel.app/demo/vitrine",
     accentFrom: "from-emerald-500",
     accentTo: "to-teal-500",
-    glowColor: "shadow-emerald-500/20",
-    borderHover: "hover:border-emerald-500/40",
     icon: <Globe className="w-5 h-5" />,
-    features: [
-      "Homepage + About",
-      "Services page",
-      "Blog / News",
-      "Contact & booking",
-      "Map integration",
-      "Multi-language ready",
-    ],
-    useCases: ["Consultant", "Agency", "Restaurant", "Local business"],
+    dot: "bg-emerald-400",
+    features: ["Accueil + À propos", "Page services", "Blog / Actualités", "Contact & réservation", "Multi-langue"],
+    useCases: ["Consultant", "Agence", "Restaurant", "Commerce local"],
   },
 ];
 
-// ─── Template Card + Preview ──────────────────────────────────────────────────
+const PREVIEW_THEMES = [
+  { id: "landing",     label: "Landing Page",       category: "Marketing",   icon: "🚀", premium: false },
+  { id: "saas",        label: "SaaS Product",        category: "Tech",        icon: "⚡", premium: false },
+  { id: "agency",      label: "Creative Agency",     category: "Agency",      icon: "🎨", premium: false },
+  { id: "ecommerce",   label: "E-commerce Store",    category: "Commerce",    icon: "🛍️", premium: false },
+  { id: "restaurant",  label: "Restaurant & Food",   category: "Hospitality", icon: "🍽️", premium: false },
+  { id: "portfolio",   label: "Portfolio",            category: "Personal",    icon: "💼", premium: false },
+  { id: "luxury",      label: "Luxury & Couture",    category: "Premium",     icon: "💎", premium: true },
+  { id: "brutalist",   label: "Brutalist Editorial", category: "Premium",     icon: "◼", premium: true },
+  { id: "aurora",      label: "Aurora & Wellness",   category: "Premium",     icon: "✦", premium: true },
+  { id: "3d-tech",     label: "3D Tech & Web3",      category: "Premium",     icon: "⬡", premium: true },
+  { id: "magazine",    label: "Magazine & Editorial",category: "Premium",     icon: "📰", premium: true },
+  { id: "minimal-pro", label: "Minimal Pro",         category: "Premium",     icon: "—", premium: true },
+];
 
-function TemplateShowcase({ template, index }: { template: typeof templates[number]; index: number }) {
-  const [previewActive, setPreviewActive] = useState(false);
+const CATEGORY_ACCENT: Record<string, string> = {
+  Marketing: "#7c3aed", Tech: "#2563eb", Agency: "#d97706", Commerce: "#dc2626",
+  Hospitality: "#d97706", Personal: "#0891b2", Premium: "#c9a96e",
+};
 
+function TemplatePanel({ template, isActive }: { template: typeof templates[number]; isActive: boolean }) {
+  const [iframeLoaded, setIframeLoaded] = useState(false);
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay: index * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"
-    >
-      {/* Info panel */}
-      <div className={`order-2 ${index % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}>
-        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${template.accentFrom}/10 ${template.accentTo}/10 ring-1 ring-white/10 mb-5`}>
-          <span className={`text-transparent bg-clip-text bg-gradient-to-r ${template.accentFrom} ${template.accentTo}`}>
-            {template.icon}
-          </span>
-          <span className={`text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r ${template.accentFrom} ${template.accentTo}`}>
-            {template.name}
-          </span>
-        </div>
-
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 tracking-tight">
-          {template.tagline}
-        </h2>
-        <p className="text-zinc-400 text-base leading-relaxed mb-6">
-          {template.description}
-        </p>
-
-        {/* Features */}
-        <div className="mb-6">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">
-            Inclus
-          </h3>
-          <div className="grid grid-cols-2 gap-y-2 gap-x-4">
-            {template.features.map((f) => (
-              <div key={f} className="flex items-center gap-2 text-sm text-zinc-300">
-                <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${template.accentFrom} ${template.accentTo} shrink-0`} />
-                {f}
-              </div>
+    <div className={`transition-all duration-500 ${isActive ? "opacity-100" : "opacity-0 pointer-events-none absolute inset-0"}`}>
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+        <div className="lg:col-span-2 flex flex-col">
+          <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${template.accentFrom}/10 ${template.accentTo}/10 ring-1 ring-white/10 mb-5 w-fit`}>
+            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${template.accentFrom} ${template.accentTo}`}>{template.icon}</span>
+            <span className={`text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r ${template.accentFrom} ${template.accentTo}`}>{template.name}</span>
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">{template.tagline}</h2>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-5">{template.description}</p>
+          <div className="mb-5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">Inclus</p>
+            <div className="space-y-2">
+              {template.features.map((f) => (
+                <div key={f} className="flex items-center gap-2 text-sm text-zinc-300">
+                  <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${template.accentFrom} ${template.accentTo} shrink-0`} />
+                  {f}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2 mb-7">
+            {template.useCases.map((u) => (
+              <span key={u} className="text-xs px-2.5 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700/50">{u}</span>
             ))}
           </div>
-        </div>
-
-        {/* Use cases */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {template.useCases.map((u) => (
-            <span key={u} className="text-xs px-2.5 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700/50">
-              {u}
-            </span>
-          ))}
-        </div>
-
-        {/* CTAs */}
-        <div className="flex flex-wrap items-center gap-3">
-          <Link
-            href="/contact"
-            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r ${template.accentFrom} ${template.accentTo} text-white text-sm font-semibold hover:opacity-90 transition-opacity`}
-          >
-            Je veux ce site
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <a
-            href={template.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors"
-          >
-            <ExternalLink className="w-4 h-4" />
-            Ouvrir en plein écran
-          </a>
-        </div>
-      </div>
-
-      {/* Preview panel */}
-      <div className={`order-1 ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}>
-        <div
-          className={`relative rounded-2xl border border-zinc-800 ${template.borderHover} transition-all duration-300 overflow-hidden bg-zinc-950 group`}
-          style={{ aspectRatio: "16/10" }}
-        >
-          {/* Preview header bar */}
-          <div className="flex items-center gap-1.5 px-3 h-8 bg-zinc-900 border-b border-zinc-800">
-            <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-            <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-            <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
-            <div className="flex-1 mx-3 h-4 bg-zinc-800 rounded-full text-[10px] text-zinc-500 flex items-center justify-center font-mono overflow-hidden">
-              {template.url}
-            </div>
-            <Monitor className="w-3.5 h-3.5 text-zinc-600" />
+          <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+            <Link href="/contact" className={`inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r ${template.accentFrom} ${template.accentTo} text-white text-sm font-semibold hover:opacity-90 transition-opacity`}>
+              Je veux ce site <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a href={template.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors">
+              <ExternalLink className="w-4 h-4" /> Plein écran
+            </a>
           </div>
+        </div>
 
-          {/* iframe or click-to-load */}
-          {previewActive ? (
-            <iframe
-              src={template.url}
-              className="w-full h-full border-0"
-              style={{ height: "calc(100% - 32px)" }}
-              title={`${template.name} preview`}
-              loading="lazy"
-            />
-          ) : (
-            <button
-              onClick={() => setPreviewActive(true)}
-              className="absolute inset-0 top-8 flex flex-col items-center justify-center gap-3 bg-zinc-950 hover:bg-zinc-900 transition-colors cursor-pointer w-full"
-            >
-              <div className={`p-3 rounded-xl bg-gradient-to-br ${template.accentFrom}/20 ${template.accentTo}/10 border border-white/5 text-white`}>
-                {template.icon}
+        <div className="lg:col-span-3">
+          <div className="rounded-2xl border border-zinc-800 overflow-hidden bg-zinc-950" style={{ aspectRatio: "16/10" }}>
+            <div className="flex items-center gap-1.5 px-3 h-8 bg-zinc-900 border-b border-zinc-800 shrink-0">
+              <div className="w-2.5 h-2.5 rounded-full bg-zinc-700" /><div className="w-2.5 h-2.5 rounded-full bg-zinc-700" /><div className="w-2.5 h-2.5 rounded-full bg-zinc-700" />
+              <div className="flex-1 mx-3 h-5 bg-zinc-800 rounded-full flex items-center justify-center">
+                <span className="text-[10px] text-zinc-500 font-mono truncate px-2">{template.url}</span>
               </div>
-              <div className="text-center">
-                <p className="text-white text-sm font-semibold mb-1">Charger la démo</p>
-                <p className="text-zinc-500 text-xs">Cliquez pour prévisualiser le site</p>
-              </div>
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${template.accentFrom} ${template.accentTo} text-white text-xs font-semibold`}>
-                Voir la démo
-                <ArrowRight className="w-3 h-3" />
-              </div>
-            </button>
-          )}
+              <Monitor className="w-3.5 h-3.5 text-zinc-600" />
+            </div>
+            <div className="relative" style={{ height: "calc(100% - 32px)" }}>
+              {!iframeLoaded && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-zinc-950 z-10">
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${template.accentFrom}/20 ${template.accentTo}/10 border border-white/5 text-white`}>{template.icon}</div>
+                  <p className="text-white text-sm font-semibold">Chargement de la démo...</p>
+                </div>
+              )}
+              <iframe src={template.url} className="w-full h-full border-0" title={`${template.name} preview`} onLoad={() => setIframeLoaded(true)} />
+            </div>
+          </div>
         </div>
       </div>
-    </motion.section>
+    </div>
   );
 }
 
-// ─── Page ────────────────────────────────────────────────────────────────────
-
 export default function TemplatesPage() {
+  const [active, setActive] = useState(0);
+
   return (
-    <div className="min-h-screen" id="main-content">
+    <div className="min-h-screen bg-[#09090b] pt-20">
 
-      {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full bg-violet-600/8 blur-[120px]" />
-          <div className="absolute top-60 -left-40 w-[500px] h-[500px] rounded-full bg-fuchsia-600/6 blur-[100px]" />
+      {/* Hero */}
+      <section className="relative pt-16 pb-10 px-6 overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-violet-600/8 blur-[100px]" />
+          <div className="absolute top-40 -left-40 w-[400px] h-[400px] rounded-full bg-fuchsia-600/6 blur-[100px]" />
         </div>
-
-        <div className="mx-auto max-w-5xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium mb-8">
+        <div className="mx-auto max-w-6xl text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium mb-6">
               <Sparkles className="w-3 h-3" />
-              Sites web professionnels
+              Sites web sur mesure — livraison 7 jours
             </div>
-
-            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6">
-              Votre site web,{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
-                livré en 7 jours
-              </span>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight mb-4">
+              De quel type de site<br />avez-vous besoin ?
             </h1>
-
-            <p className="text-zinc-300 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-              3 templates production-ready — landing page, e-commerce, vitrine. Customisés à votre image et déployés clé en main.
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
-              >
-                Démarrer mon projet
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="#templates"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors"
-              >
-                Voir les démos
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── What's included ──────────────────────────────────────────────── */}
-      <section className="px-6 pb-16">
-        <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-4"
-          >
-            {[
-              { value: "7 jours", label: "Délai de livraison" },
-              { value: "3", label: "Templates disponibles" },
-              { value: "100%", label: "Mobile-first" },
-              { value: "∞", label: "Révisions incluses" },
-            ].map(({ value, label }) => (
-              <div key={label} className="text-center p-4 rounded-xl border border-zinc-800/60 bg-zinc-900/30">
-                <div className="text-2xl font-bold text-white mb-1">{value}</div>
-                <div className="text-xs text-zinc-500 font-medium">{label}</div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── Templates ────────────────────────────────────────────────────── */}
-      <section id="templates" className="px-6 py-16">
-        <div className="mx-auto max-w-5xl space-y-24">
-          {templates.map((t, i) => (
-            <TemplateShowcase key={t.id} template={t} index={i} />
-          ))}
-        </div>
-      </section>
-
-      {/* ── Process ──────────────────────────────────────────────────────── */}
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">
-              Comment ça marche
-            </h2>
-            <p className="text-zinc-400 max-w-lg mx-auto">
-              De la demande à la mise en ligne, un processus simple et rapide.
+            <p className="text-zinc-400 text-lg max-w-xl mx-auto">
+              Choisissez votre template, visualisez la démo live, et démarrez votre projet en quelques clics.
             </p>
           </motion.div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              {
-                step: "01",
-                title: "On discute",
-                desc: "Vous me partagez votre activité, vos couleurs, vos textes. 30 minutes suffisent.",
-                color: "from-violet-500/20 to-fuchsia-500/10",
-              },
-              {
-                step: "02",
-                title: "Je développe",
-                desc: "Je customise le template à votre image, j'intègre votre contenu et optimise tout.",
-                color: "from-amber-500/20 to-orange-500/10",
-              },
-              {
-                step: "03",
-                title: "Vous validez",
-                desc: "Vous recevez votre site prêt à lancer. Je déploie et vous remets toutes les clés.",
-                color: "from-emerald-500/20 to-teal-500/10",
-              },
-            ].map((s, i) => (
-              <motion.div
-                key={s.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`p-6 rounded-2xl border border-zinc-800 bg-gradient-to-br ${s.color}`}
+      {/* Tab switcher */}
+      <section className="px-6 pb-4">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex gap-2 p-1.5 bg-zinc-900 rounded-2xl border border-zinc-800 w-fit mx-auto">
+            {templates.map((t, i) => (
+              <button key={t.id} onClick={() => setActive(i)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer ${active === i ? "bg-zinc-800 text-white shadow-lg" : "text-zinc-500 hover:text-zinc-300"}`}
               >
-                <div className="text-xs font-bold text-zinc-500 mb-3 font-mono">{s.step}</div>
-                <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">{s.desc}</p>
-              </motion.div>
+                <span className={`w-2 h-2 rounded-full ${t.dot} ${active === i ? "opacity-100" : "opacity-40"}`} />
+                {t.name}
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────────────────────── */}
-      <section className="px-6 py-16 pb-24">
-        <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-900/50 p-10 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 rounded-2xl" />
-              <div className="relative z-10">
-                <h2 className="text-2xl font-bold text-white mb-3">
-                  Prêt à lancer votre site ?
-                </h2>
-                <p className="text-zinc-400 max-w-md mx-auto mb-8">
-                  Choisissez le template qui vous correspond et dites-moi en quoi consiste votre activité. Je m&apos;occupe du reste.
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
-                  >
-                    Démarrer maintenant
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    href="/"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors"
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                    Voir tous les services
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+      {/* Template panels */}
+      <section className="px-6 py-8 pb-16">
+        <div className="mx-auto max-w-6xl relative">
+          {templates.map((t, i) => <TemplatePanel key={t.id} template={t} isActive={active === i} />)}
         </div>
       </section>
 
+      {/* Themes section */}
+      <section className="px-6 pb-10 border-t border-zinc-800/60 pt-14">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 ring-1 ring-amber-500/20 text-amber-300 text-xs font-medium mb-4">
+                <Sparkles className="w-3 h-3" />
+                21 thèmes — gratuits &amp; premium
+              </div>
+              <h2 className="text-3xl font-bold text-white tracking-tight">Explorez nos thèmes</h2>
+              <p className="text-zinc-400 text-sm mt-1">Chaque thème est un design system complet, personnalisé avec votre contenu IA.</p>
+            </div>
+            <a href="https://aevia-launch.vercel.app/themes" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500/10 ring-1 ring-amber-500/30 text-amber-300 hover:bg-amber-500/20 text-sm font-semibold transition-colors whitespace-nowrap shrink-0"
+            >
+              <Sparkles className="w-4 h-4" /> Voir les 21 thèmes <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">Gratuit</span>
+              <div className="h-px flex-1 bg-zinc-800" />
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {PREVIEW_THEMES.filter(t => !t.premium).map((theme) => {
+                const accent = CATEGORY_ACCENT[theme.category] ?? "#7c3aed";
+                return (
+                  <a key={theme.id} href={`https://aevia-launch.vercel.app/themes/${theme.id}`} target="_blank" rel="noopener noreferrer"
+                    className="group relative rounded-xl border border-zinc-800 hover:border-zinc-600 transition-all duration-200 hover:-translate-y-0.5 overflow-hidden cursor-pointer"
+                    style={{ background: "linear-gradient(135deg,#0f0f11,#13131a)" }}
+                  >
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: `radial-gradient(ellipse at 50% 0%, ${accent}20 0%, transparent 70%)` }} />
+                    <div className="p-4 flex flex-col gap-2 relative">
+                      <span className="text-2xl">{theme.icon}</span>
+                      <div>
+                        <p className="text-white text-xs font-semibold leading-tight">{theme.label}</p>
+                        <p className="text-[10px] mt-0.5 font-medium" style={{ color: accent }}>{theme.category}</p>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#c9a96e" }}>Premium</span>
+              <div className="h-px flex-1 bg-zinc-800" />
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {PREVIEW_THEMES.filter(t => t.premium).map((theme) => (
+                <a key={theme.id} href={`https://aevia-launch.vercel.app/themes/${theme.id}`} target="_blank" rel="noopener noreferrer"
+                  className="group relative rounded-xl border border-zinc-800 hover:border-amber-500/30 transition-all duration-200 hover:-translate-y-0.5 overflow-hidden cursor-pointer"
+                  style={{ background: "linear-gradient(135deg,#0f0f0f,#1a1208)" }}
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: "radial-gradient(ellipse at 50% 0%, #c9a96e18 0%, transparent 70%)" }} />
+                  <div className="absolute top-2 right-2"><Lock className="w-3 h-3" style={{ color: "#c9a96e" }} /></div>
+                  <div className="p-4 flex flex-col gap-2 relative">
+                    <span className="text-2xl">{theme.icon}</span>
+                    <div>
+                      <p className="text-white text-xs font-semibold leading-tight">{theme.label}</p>
+                      <p className="text-[10px] mt-0.5 font-medium" style={{ color: "#c9a96e" }}>Premium</p>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-violet-900/20 to-fuchsia-900/10 p-10 text-center">
+            <h3 className="text-white font-bold text-2xl mb-3">Prêt à lancer votre site ?</h3>
+            <p className="text-zinc-400 mb-8 max-w-lg mx-auto">Notre équipe livre votre site en 7 jours. Contenu IA inclus.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white font-semibold transition-colors">
+                Démarrer mon projet <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a href="https://aevia-launch.vercel.app/themes" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full border border-zinc-700 text-zinc-300 hover:text-white hover:border-zinc-500 font-semibold transition-colors"
+              >
+                <Sparkles className="w-4 h-4" /> Explorer les thèmes
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
