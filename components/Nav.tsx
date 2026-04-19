@@ -13,7 +13,7 @@ const navLinks = [
 const products = [
   {
     name: "AeviaLaunch",
-    href: "https://skylaunch-xi.vercel.app",
+    href: "https://aevia-launch.vercel.app",
     internal: "/templates",
     description: "Site web en 7 jours — 3 templates pro",
     icon: Sparkles,
