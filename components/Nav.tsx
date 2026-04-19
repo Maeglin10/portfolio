@@ -92,12 +92,12 @@ function LangSwitcher() {
               key={l.code}
               onClick={() => switchLocale(l.code)}
               className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors hover:bg-zinc-800 ${
-                l.code === locale ? "text-white font-semibold" : "text-zinc-400"
+                l.code === detectedCode ? "text-white font-semibold" : "text-zinc-400"
               }`}
             >
               <span>{l.flag}</span>
               <span>{l.label}</span>
-              {l.code === locale && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-violet-400" />}
+              {l.code === detectedCode && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-violet-400" />}
             </button>
           ))}
         </div>
