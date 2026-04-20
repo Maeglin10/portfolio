@@ -155,10 +155,10 @@ Les headers HTTP sont des instructions que votre serveur envoie aux navigateurs 
 
 Les headers critiques :
 
-- `Content-Security-Policy` — définit les sources autorisées pour les scripts, images, styles
-- `X-Frame-Options` — empêche votre site d'être chargé dans une iframe (clickjacking)
-- `Strict-Transport-Security` — force le HTTPS même si quelqu'un tape "http://"
-- `X-Content-Type-Options` — empêche les navigateurs de deviner le type de contenu
+- \`Content-Security-Policy\` — définit les sources autorisées pour les scripts, images, styles
+- \`X-Frame-Options\` — empêche votre site d'être chargé dans une iframe (clickjacking)
+- \`Strict-Transport-Security\` — force le HTTPS même si quelqu'un tape "http://"
+- \`X-Content-Type-Options\` — empêche les navigateurs de deviner le type de contenu
 
 ### La sécurité DNS
 
