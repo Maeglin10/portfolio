@@ -5,8 +5,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Menu, X, Sparkles, Shield, MessageSquare, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import { AeviaLogo } from "@/components/AeviaLogo";
+
+// navLinks are locale-agnostic paths — locale prefix is prepended in the component
 const navLinks = [
   { href: "/templates", label: "Sites web" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -111,11 +114,20 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  // Detect locale from pathname (e.g. /fr/blog → "fr")
+  const segments = pathname.split("/");
+  const locale = LOCALES.some((l) => l.code === segments[1]) ? segments[1] : "fr";
+
+  // Build a locale-prefixed href for internal links
+  function localePath(path: string) {
+    return `/${locale}${path}`;
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/60 bg-[#09090b]/80 backdrop-blur-md">
       <div className="mx-auto max-w-5xl px-6 h-14 flex items-center justify-between">
 
-        <Link href="/" className="hover:opacity-80 transition-opacity">
+        <Link href={`/${locale}`} className="hover:opacity-80 transition-opacity">
           <AeviaLogo />
         </Link>
 
@@ -136,7 +148,7 @@ export function Nav() {
                   {products.map((p) => {
                     const Icon = p.icon;
                     const isLive = p.status === "live";
-                    const href = p.internal ?? (isLive ? p.href : "#");
+                    const href = p.internal ? localePath(p.internal) : (isLive ? p.href : "#");
                     const isExternal = p.external && isLive;
 
                     const content = (
@@ -159,7 +171,7 @@ export function Nav() {
                       </div>
                     );
 
-                    if (p.internal) return <Link key={p.name} href={p.internal}>{content}</Link>;
+                    if (p.internal) return <Link key={p.name} href={href}>{content}</Link>;
                     if (isExternal) return <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer">{content}</a>;
                     return <div key={p.name} className="opacity-60 cursor-not-allowed">{content}</div>;
                   })}
@@ -168,17 +180,20 @@ export function Nav() {
             )}
           </div>
 
-          {navLinks.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={`px-3 py-1.5 rounded-md text-sm transition-colors ${
-                pathname === l.href ? "text-white bg-zinc-800" : "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
-              }`}
-            >
-              {l.label}
-            </Link>
-          ))}
+          {navLinks.map((l) => {
+            const fullHref = localePath(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={fullHref}
+                className={`px-3 py-1.5 rounded-md text-sm transition-colors ${
+                  pathname === fullHref ? "text-white bg-zinc-800" : "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
+                }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
 
           <LangSwitcher />
 
@@ -203,24 +218,27 @@ export function Nav() {
 
       {mobileOpen && (
         <div className="sm:hidden border-t border-zinc-800 bg-[#09090b] px-6 py-4 flex flex-col gap-1">
-          {navLinks.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setMobileOpen(false)}
-              className={`px-3 py-2.5 rounded-md text-sm transition-colors ${
-                pathname === l.href ? "text-white bg-zinc-800" : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              {l.label}
-            </Link>
-          ))}
+          {navLinks.map((l) => {
+            const fullHref = localePath(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={fullHref}
+                onClick={() => setMobileOpen(false)}
+                className={`px-3 py-2.5 rounded-md text-sm transition-colors ${
+                  pathname === fullHref ? "text-white bg-zinc-800" : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
 
           <div className="mt-2 pt-2 border-t border-zinc-800 flex flex-col gap-1">
             <p className="text-xs text-zinc-600 px-3 py-1 uppercase tracking-wider font-medium">Produits</p>
             {products.map((p) => {
               const isLive = p.status === "live";
-              const href = p.internal ?? (p.external && isLive ? p.href : "#");
+              const href = p.internal ? localePath(p.internal) : (p.external && isLive ? p.href : "#");
               const Tag = p.internal ? Link : "a";
               const extraProps = p.external && isLive && !p.internal ? { target: "_blank", rel: "noopener noreferrer" } : {};
               return (
