@@ -1,50 +1,96 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Acerca de",
+    "about": "Sobre mí",
     "projects": "Proyectos",
     "contact": "Contacto",
     "ecosystem": "Ecosistema"
   },
   "hero": {
-    "badge": "Disponible para proyectos freelance",
-    "role": "Ingeniero Full Stack",
-    "subtitle": "& Creador de IA",
-    "description": "Construyo productos IA listos para producción — bandejas de entrada multicanal, plataformas de creadores, SaaS de seguridad y herramientas para desarrolladores.",
-    "cta_primary": "Explorar Aevia",
-    "cta_contact": "Contáctame",
-    "cta_github": "GitHub"
+    "badge": "Ecosistema Aevia — Herramientas digitales para empresas",
+    "title1": "Todo lo que tu",
+    "title2": "negocio necesita",
+    "title3": "en línea",
+    "description": "Sitio web, seguridad, gestión de clientes — tres herramientas pensadas para pymes que quieren una presencia digital seria sin complicaciones.",
+    "cta_primary": "Iniciar un proyecto",
+    "cta_secondary": "Descubrir los servicios"
   },
-  "ecosystem": {
-    "badge": "Ecosistema Aevia",
-    "title": "Un ecosistema, todas las herramientas",
-    "subtitle": "Desde el lanzamiento de tu sitio hasta la gestión de clientes — Aevia cubre todo el recorrido.",
-    "stats_templates": "Plantillas",
-    "stats_products": "Productos",
-    "stats_languages": "Idiomas",
-    "stats_possibilities": "Posibilidades"
+  "stats": {
+    "delivery_value": "7 días",
+    "delivery_label": "Entrega del sitio",
+    "audit_value": "60s",
+    "audit_label": "Auditoría de seguridad",
+    "channels_value": "3",
+    "channels_label": "Canales unificados",
+    "ai_value": "24/7",
+    "ai_label": "IA que responde"
   },
-  "themes": {
-    "badge": "Plantillas AeviaLaunch",
-    "title": "21 temas premium",
-    "description": "Cada tema es completamente personalizable y generado con contenido IA — listo para desplegar en 60 segundos.",
-    "browse": "Ver todos los temas"
+  "products": {
+    "section_title": "Tres herramientas, una sola marca",
+    "section_sub": "Cada producto Aevia responde a una necesidad concreta. Independientes o combinados, cubren tu presencia digital de A a Z.",
+    "available": "Disponible",
+    "coming_soon": "Próximamente",
+    "notify": "Avisarme en el lanzamiento",
+    "launch_tagline": "Tu sitio web en 7 días",
+    "launch_desc": "Elige entre 3 plantillas profesionales — landing page, e-commerce o vitrina. Personalizamos, desplegamos. O usa el builder IA para generar tu contenido en 60 segundos.",
+    "launch_cta": "Ver plantillas",
+    "launch_cta2": "Builder IA",
+    "launch_f1": "Sitio vitrina profesional",
+    "launch_f2": "Tienda e-commerce",
+    "launch_f3": "Landing page de conversión",
+    "launch_f4": "Builder IA — 21 plantillas",
+    "security_tagline": "Auditoría de seguridad en 60 segundos",
+    "security_desc": "¿Tu sitio es vulnerable? Obtén un informe PDF puntuado con todas las vulnerabilidades y recomendaciones accionables. Sin instalación.",
+    "security_cta": "Auditar mi sitio",
+    "security_f1": "Puntuación de seguridad 0–100",
+    "security_f2": "Informe PDF detallado",
+    "security_f3": "Recomendaciones IA",
+    "security_f4": "Rendimiento & SEO incluidos",
+    "inbox_tagline": "Todos tus clientes, una sola interfaz",
+    "inbox_desc": "WhatsApp, Instagram, email — centralizados. La IA responde por ti, califica tus leads y te alerta sobre prospectos calientes. CRM completo para pymes.",
+    "inbox_cta": "Unirse a la lista de espera",
+    "inbox_f1": "WhatsApp + Instagram + Email",
+    "inbox_f2": "Respuestas IA automáticas",
+    "inbox_f3": "Puntuación de leads",
+    "inbox_f4": "Dashboard de analíticas"
   },
-  "projects": {
-    "title": "Lo que he construido",
-    "subtitle": "Productos listos para producción desarrollados en solitario. Full-stack, propulsados por IA, desplegados.",
-    "view_all": "Ver todos los proyectos"
+  "templates_section": {
+    "badge": "AeviaLaunch — Sitios web",
+    "title": "3 tipos de sitios, entregados llave en mano",
+    "desc": "Personalizo la plantilla de tu elección con tu contenido, colores e identidad — y la despliego en 7 días.",
+    "cta1": "Ver demos en vivo",
+    "cta2": "Iniciar mi proyecto",
+    "demo": "Ver demo",
+    "custom_q": "¿Tienes una idea diferente?",
+    "custom_link": "Builder IA — 21 plantillas",
+    "landing_desc": "Conversión & adquisición",
+    "ecom_desc": "Tienda online",
+    "vitrine_desc": "Presencia profesional"
+  },
+  "why": {
+    "title": "¿Por qué Aevia?",
+    "fast_title": "Rápido",
+    "fast_desc": "Sitio entregado en 7 días, auditoría en 60 segundos. Sin reuniones interminables, sin agencias lentas.",
+    "reliable_title": "Fiable",
+    "reliable_desc": "Stack listo para producción — Next.js, NestJS, PostgreSQL. Las mismas tecnologías que las startups que levantan millones.",
+    "simple_title": "Simple",
+    "simple_desc": "No necesitas entender la técnica. Describes, construimos. Resultado garantizado."
   },
   "cta": {
-    "title": "Construyamos algo juntos",
-    "description": "¿Buscas un ingeniero full-stack para lanzar tu producto IA? Estoy disponible para proyectos freelance.",
-    "start": "Iniciar conversación",
-    "github": "Ver GitHub"
+    "title": "¿Listo para digitalizar tu negocio?",
+    "desc": "Un sitio web, una auditoría de seguridad, o una demo del Inbox — hablemos en 30 minutos.",
+    "contact": "Contactar",
+    "audit": "Auditar mi sitio gratis"
   },
   "footer": {
-    "copyright": "© 2026 Valentin Milliand · Ecosistema Aevia"
+    "tagline": "Herramientas digitales para empresas",
+    "templates": "Plantillas",
+    "security": "Seguridad",
+    "contact": "Contacto",
+    "copyright": "© 2026 Aevia · Todos los derechos reservados · Valentin Milliand",
+    "privacy": "Política de privacidad",
+    "terms": "Términos",
+    "cookies": "Cookies"
   },
-  "skills": {
-    "title": "Stack técnico"
-  }
+  "skills": { "title": "Stack técnico" }
 }

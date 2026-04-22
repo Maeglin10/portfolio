@@ -7,44 +7,90 @@
     "ecosystem": "Ökosystem"
   },
   "hero": {
-    "badge": "Verfügbar für Freelance-Projekte",
-    "role": "Full Stack Engineer",
-    "subtitle": "& AI Builder",
-    "description": "Ich entwickle produktionsreife KI-Produkte — Multi-Channel-Posteingänge, Creator-Plattformen, Security-SaaS und Entwickler-Tools.",
-    "cta_primary": "Aevia entdecken",
-    "cta_contact": "Kontakt aufnehmen",
-    "cta_github": "GitHub"
+    "badge": "Aevia Ökosystem — Digitale Werkzeuge für Unternehmen",
+    "title1": "Alles, was dein",
+    "title2": "Business braucht",
+    "title3": "online",
+    "description": "Website, Sicherheit, Kundenverwaltung — drei Tools für KMU, die eine seriöse digitale Präsenz ohne Kopfschmerzen wollen.",
+    "cta_primary": "Projekt starten",
+    "cta_secondary": "Dienste entdecken"
   },
-  "ecosystem": {
-    "badge": "Aevia Ökosystem",
-    "title": "Ein Ökosystem, alle notwendigen Tools",
-    "subtitle": "Vom Website-Launch bis zur Kundenverwaltung — Aevia deckt den gesamten Weg ab.",
-    "stats_templates": "Vorlagen",
-    "stats_products": "Produkte",
-    "stats_languages": "Sprachen",
-    "stats_possibilities": "Möglichkeiten"
+  "stats": {
+    "delivery_value": "7 Tage",
+    "delivery_label": "Website-Lieferung",
+    "audit_value": "60s",
+    "audit_label": "Sicherheitsaudit",
+    "channels_value": "3",
+    "channels_label": "Vereinte Kanäle",
+    "ai_value": "24/7",
+    "ai_label": "KI die antwortet"
   },
-  "themes": {
-    "badge": "AeviaLaunch Vorlagen",
-    "title": "21 Premium-Themes",
-    "description": "Jedes Theme ist vollständig anpassbar und wird mit KI-Inhalten generiert — in 60 Sekunden einsatzbereit.",
-    "browse": "Alle Themes ansehen"
+  "products": {
+    "section_title": "Drei Tools, eine Marke",
+    "section_sub": "Jedes Aevia-Produkt beantwortet einen spezifischen Bedarf. Unabhängig oder kombiniert decken sie Ihre digitale Präsenz von A bis Z ab.",
+    "available": "Verfügbar",
+    "coming_soon": "Demnächst",
+    "notify": "Bei Start benachrichtigen",
+    "launch_tagline": "Ihre Website in 7 Tagen",
+    "launch_desc": "Wählen Sie aus 3 professionellen Templates — Landing Page, E-Commerce oder Vitrine. Wir personalisieren, wir deployen. Oder nutzen Sie den KI-Builder für Ihren Content in 60 Sekunden.",
+    "launch_cta": "Templates ansehen",
+    "launch_cta2": "KI-Builder",
+    "launch_f1": "Professionelle Showcase-Website",
+    "launch_f2": "E-Commerce-Shop",
+    "launch_f3": "Conversion-Landing-Page",
+    "launch_f4": "KI-Builder — 21 Templates",
+    "security_tagline": "Sicherheitsaudit in 60 Sekunden",
+    "security_desc": "Ist Ihre Website anfällig? Erhalten Sie einen bewerteten PDF-Bericht mit allen Sicherheitslücken und umsetzbaren Empfehlungen. Keine Installation erforderlich.",
+    "security_cta": "Meine Website prüfen",
+    "security_f1": "Sicherheitsscore 0–100",
+    "security_f2": "Detaillierter PDF-Bericht",
+    "security_f3": "KI-Empfehlungen",
+    "security_f4": "Performance & SEO inklusive",
+    "inbox_tagline": "Alle Kunden, eine Oberfläche",
+    "inbox_desc": "WhatsApp, Instagram, E-Mail — zentralisiert. Die KI antwortet für Sie, qualifiziert Ihre Leads und warnt Sie bei heißen Interessenten. Vollständiges CRM für KMU.",
+    "inbox_cta": "Warteliste beitreten",
+    "inbox_f1": "WhatsApp + Instagram + E-Mail",
+    "inbox_f2": "Automatische KI-Antworten",
+    "inbox_f3": "Lead-Scoring",
+    "inbox_f4": "Analytics-Dashboard"
   },
-  "projects": {
-    "title": "Was ich gebaut habe",
-    "subtitle": "Produktionsreife Produkte, solo entwickelt. Full-Stack, KI-gestützt, deployed.",
-    "view_all": "Alle Projekte ansehen"
+  "templates_section": {
+    "badge": "AeviaLaunch — Websites",
+    "title": "3 Website-Typen, schlüsselfertig geliefert",
+    "desc": "Ich passe das Template Ihrer Wahl mit Ihrem Inhalt, Farben und Identität an — und deploye es in 7 Tagen.",
+    "cta1": "Live-Demos ansehen",
+    "cta2": "Mein Projekt starten",
+    "demo": "Demo ansehen",
+    "custom_q": "Haben Sie eine andere Idee?",
+    "custom_link": "KI-Builder — 21 Templates",
+    "landing_desc": "Conversion & Akquise",
+    "ecom_desc": "Online-Shop",
+    "vitrine_desc": "Professionelle Präsenz"
+  },
+  "why": {
+    "title": "Warum Aevia?",
+    "fast_title": "Schnell",
+    "fast_desc": "Website in 7 Tagen, Audit in 60 Sekunden. Keine endlosen Meetings, keine schleppende Agentur.",
+    "reliable_title": "Zuverlässig",
+    "reliable_desc": "Produktionsreifer Stack — Next.js, NestJS, PostgreSQL. Die gleiche Technologie wie Startups die Millionen einsammeln.",
+    "simple_title": "Einfach",
+    "simple_desc": "Sie müssen die Technik nicht verstehen. Sie beschreiben, wir bauen. Garantiertes Ergebnis."
   },
   "cta": {
-    "title": "Lassen Sie uns etwas gemeinsam bauen",
-    "description": "Suchen Sie einen Full-Stack-Engineer für Ihr KI-Produkt? Ich bin für Freelance-Projekte verfügbar.",
-    "start": "Gespräch beginnen",
-    "github": "GitHub ansehen"
+    "title": "Bereit, Ihr Business zu digitalisieren?",
+    "desc": "Eine Website, ein Sicherheitsaudit oder eine Inbox-Demo — sprechen wir in 30 Minuten.",
+    "contact": "Kontakt aufnehmen",
+    "audit": "Meine Website kostenlos prüfen"
   },
   "footer": {
-    "copyright": "© 2026 Valentin Milliand · Aevia Ökosystem"
+    "tagline": "Digitale Werkzeuge für Unternehmen",
+    "templates": "Templates",
+    "security": "Sicherheit",
+    "contact": "Kontakt",
+    "copyright": "© 2026 Aevia · Alle Rechte vorbehalten · Valentin Milliand",
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "AGB",
+    "cookies": "Cookies"
   },
-  "skills": {
-    "title": "Tech-Stack"
-  }
+  "skills": { "title": "Technischer Stack" }
 }

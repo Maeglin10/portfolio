@@ -7,44 +7,90 @@
     "ecosystem": "Ecosystem"
   },
   "hero": {
-    "badge": "Available for freelance projects",
-    "role": "Full Stack Engineer",
-    "subtitle": "& AI Builder",
-    "description": "I build production-ready AI products — multi-channel inboxes, creator platforms, security SaaS, and developer tools.",
-    "cta_primary": "Explore Aevia",
-    "cta_contact": "Get in touch",
-    "cta_github": "GitHub"
+    "badge": "Aevia Ecosystem — Digital tools for businesses",
+    "title1": "Everything your",
+    "title2": "business needs",
+    "title3": "online",
+    "description": "Website, security, customer management — three tools designed for SMBs that want a serious digital presence without the headaches.",
+    "cta_primary": "Start a project",
+    "cta_secondary": "Discover our services"
   },
-  "ecosystem": {
-    "badge": "Aevia Ecosystem",
-    "title": "One ecosystem, every tool you need",
-    "subtitle": "From launching your website to managing your customers — Aevia covers the full journey.",
-    "stats_templates": "Templates",
-    "stats_products": "Products",
-    "stats_languages": "Languages",
-    "stats_possibilities": "Possibilities"
+  "stats": {
+    "delivery_value": "7 days",
+    "delivery_label": "Website delivery",
+    "audit_value": "60s",
+    "audit_label": "Security audit",
+    "channels_value": "3",
+    "channels_label": "Unified inbox channels",
+    "ai_value": "24/7",
+    "ai_label": "AI that responds"
   },
-  "themes": {
-    "badge": "AeviaLaunch Templates",
-    "title": "21 premium themes",
-    "description": "Every theme is fully customizable and generated with AI content — ready to deploy in 60 seconds.",
-    "browse": "Browse all themes"
+  "products": {
+    "section_title": "Three tools, one brand",
+    "section_sub": "Each Aevia product answers a specific need. Independent or combined, they cover your digital presence from A to Z.",
+    "available": "Available",
+    "coming_soon": "Coming soon",
+    "notify": "Notify me at launch",
+    "launch_tagline": "Your website in 7 days",
+    "launch_desc": "Choose from 3 professional templates — landing page, e-commerce or showcase. We customize, we deploy. Or use the AI builder to generate your content in 60 seconds.",
+    "launch_cta": "See templates",
+    "launch_cta2": "AI Builder",
+    "launch_f1": "Professional showcase site",
+    "launch_f2": "E-commerce store",
+    "launch_f3": "Conversion landing page",
+    "launch_f4": "AI Builder — 21 templates",
+    "security_tagline": "Security audit in 60 seconds",
+    "security_desc": "Is your site vulnerable? Get a scored PDF report with all security flaws and actionable recommendations. No installation required.",
+    "security_cta": "Audit my site",
+    "security_f1": "Security score 0–100",
+    "security_f2": "Detailed PDF report",
+    "security_f3": "AI recommendations",
+    "security_f4": "Performance & SEO included",
+    "inbox_tagline": "All your customers, one interface",
+    "inbox_desc": "WhatsApp, Instagram, email — centralized. AI responds for you, qualifies your leads and alerts you on hot prospects. Full CRM for SMBs.",
+    "inbox_cta": "Join waiting list",
+    "inbox_f1": "WhatsApp + Instagram + Email",
+    "inbox_f2": "Automatic AI responses",
+    "inbox_f3": "Lead scoring",
+    "inbox_f4": "Analytics dashboard"
   },
-  "projects": {
-    "title": "What I've Built",
-    "subtitle": "Production-ready products shipped solo. Full-stack, AI-powered, deployed.",
-    "view_all": "View all projects"
+  "templates_section": {
+    "badge": "AeviaLaunch — Websites",
+    "title": "3 types of sites, delivered turnkey",
+    "desc": "I customize the template of your choice with your content, colors, identity — and deploy it in 7 days.",
+    "cta1": "See live demos",
+    "cta2": "Start my project",
+    "demo": "See demo",
+    "custom_q": "Have a different idea?",
+    "custom_link": "AI Builder — 21 templates",
+    "landing_desc": "Conversion & acquisition",
+    "ecom_desc": "Online store",
+    "vitrine_desc": "Professional presence"
+  },
+  "why": {
+    "title": "Why Aevia?",
+    "fast_title": "Fast",
+    "fast_desc": "Site delivered in 7 days, audit in 60 seconds. No endless meetings, no agency dragging.",
+    "reliable_title": "Reliable",
+    "reliable_desc": "Production-ready stack — Next.js, NestJS, PostgreSQL. The same tech as startups raising millions.",
+    "simple_title": "Simple",
+    "simple_desc": "You don't need to understand the tech. You describe, we build. Guaranteed result."
   },
   "cta": {
-    "title": "Let's build something together",
-    "description": "Looking for a full-stack engineer to ship your AI product? I'm available for freelance projects.",
-    "start": "Start a conversation",
-    "github": "View GitHub"
+    "title": "Ready to digitalize your business?",
+    "desc": "A website, a security audit, or an Inbox demo — let's talk in 30 minutes.",
+    "contact": "Get in touch",
+    "audit": "Audit my site for free"
   },
   "footer": {
-    "copyright": "© 2026 Valentin Milliand · Aevia Ecosystem"
+    "tagline": "Digital tools for businesses",
+    "templates": "Templates",
+    "security": "Security",
+    "contact": "Contact",
+    "copyright": "© 2026 Aevia · All rights reserved · Valentin Milliand",
+    "privacy": "Privacy Policy",
+    "terms": "Terms",
+    "cookies": "Cookies"
   },
-  "skills": {
-    "title": "Tech stack"
-  }
+  "skills": { "title": "Tech stack" }
 }

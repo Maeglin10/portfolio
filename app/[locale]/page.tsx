@@ -3,194 +3,94 @@
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Sparkles, Shield, MessageSquare, Globe, ShoppingBag, Zap, CheckCircle2, Layout, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { LinkedinIcon } from "@/components/LinkedinIcon";
 import { GithubIcon } from "@/components/GithubIcon";
 
-// ─── Produits Aevia ───────────────────────────────────────────────────────────
-
-const products = [
-  {
-    name: "AeviaLaunch",
-    tagline: "Votre site web en 7 jours",
-    description:
-      "Choisissez parmi 3 templates professionnels — landing page, e-commerce ou vitrine. On personnalise, on déploie. Ou utilisez le builder IA pour générer votre contenu en 60 secondes.",
-    href: "https://aevia-launch.vercel.app",
-    status: "live" as const,
-    icon: <Sparkles className="w-6 h-6" />,
-    accentFrom: "from-violet-500",
-    accentTo: "to-fuchsia-500",
-    glow: "group-hover:shadow-violet-500/25",
-    features: [
-      { icon: <Globe className="w-4 h-4" />, label: "Site vitrine professionnel" },
-      { icon: <ShoppingBag className="w-4 h-4" />, label: "Boutique e-commerce" },
-      { icon: <Layout className="w-4 h-4" />, label: "Landing page conversion" },
-      { icon: <Zap className="w-4 h-4" />, label: "Builder IA — 21 templates" },
-    ],
-    cta: "Voir les templates",
-    ctaSecondary: "Builder IA",
-    ctaSecondaryHref: "https://aevia-launch.vercel.app",
-  },
-  {
-    name: "AeviaSecurity",
-    tagline: "Audit sécurité en 60 secondes",
-    description:
-      "Votre site est-il vulnérable ? Obtenez un rapport PDF scoré avec toutes les failles de sécurité et recommandations actionnables. Aucune installation requise.",
-    href: "https://aevia-security.vercel.app",
-    status: "live" as const,
-    icon: <Shield className="w-6 h-6" />,
-    accentFrom: "from-emerald-500",
-    accentTo: "to-teal-500",
-    glow: "group-hover:shadow-emerald-500/25",
-    features: [
-      { icon: <CheckCircle2 className="w-4 h-4" />, label: "Score sécurité 0–100" },
-      { icon: <CheckCircle2 className="w-4 h-4" />, label: "Rapport PDF détaillé" },
-      { icon: <CheckCircle2 className="w-4 h-4" />, label: "Recommandations IA" },
-      { icon: <CheckCircle2 className="w-4 h-4" />, label: "Performance & SEO inclus" },
-    ],
-    cta: "Auditer mon site",
-    ctaSecondary: null,
-    ctaSecondaryHref: null,
-  },
-  {
-    name: "AeviaInbox",
-    tagline: "Tous vos clients, une seule interface",
-    description:
-      "WhatsApp, Instagram, email — centralisés. L'IA répond à votre place, qualifie vos leads et vous alerte sur les prospects chauds. CRM complet pour TPE/PME.",
-    href: "#",
-    status: "soon" as const,
-    icon: <MessageSquare className="w-6 h-6" />,
-    accentFrom: "from-cyan-500",
-    accentTo: "to-blue-500",
-    glow: "group-hover:shadow-cyan-500/25",
-    features: [
-      { icon: <CheckCircle2 className="w-4 h-4" />, label: "WhatsApp + Instagram + Email" },
-      { icon: <CheckCircle2 className="w-4 h-4" />, label: "Réponses IA automatiques" },
-      { icon: <CheckCircle2 className="w-4 h-4" />, label: "Scoring des leads" },
-      { icon: <CheckCircle2 className="w-4 h-4" />, label: "Dashboard analytics" },
-    ],
-    cta: "Rejoindre la liste d'attente",
-    ctaSecondary: null,
-    ctaSecondaryHref: null,
-  },
-];
-
-// ─── Templates preview ────────────────────────────────────────────────────────
-
-const templates = [
-  { label: "Landing Page", href: "https://aevia-landing.vercel.app", color: "from-violet-500/20 to-fuchsia-500/10", dot: "bg-violet-400", desc: "Conversion & acquisition" },
-  { label: "E-Commerce", href: "https://aevia-ecommerce.vercel.app", color: "from-amber-500/20 to-orange-500/10", dot: "bg-amber-400", desc: "Boutique en ligne" },
-  { label: "Site Vitrine", href: "https://aevia-launch.vercel.app", color: "from-emerald-500/20 to-teal-500/10", dot: "bg-emerald-400", desc: "Présence professionnelle" },
-];
-
-// ─── Composants ───────────────────────────────────────────────────────────────
-
-function ProductCard({ product, index }: { product: typeof products[number]; index: number }) {
-  const isLive = product.status === "live";
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`group relative flex flex-col h-full p-7 rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm overflow-hidden transition-all duration-300
-        ${isLive ? `hover:border-zinc-600 hover:-translate-y-1.5 hover:shadow-2xl ${product.glow}` : "opacity-80"}`}
-    >
-      <div className={`absolute inset-0 opacity-0 ${isLive ? "group-hover:opacity-100" : ""} transition-opacity duration-300 bg-gradient-to-br ${product.accentFrom}/5 ${product.accentTo}/5 pointer-events-none`} />
-
-      {/* Header */}
-      <div className="flex items-start justify-between mb-6 relative z-10">
-        <div className={`p-3 rounded-xl bg-gradient-to-br ${product.accentFrom}/20 ${product.accentTo}/10 border border-white/5 text-white`}>
-          {product.icon}
-        </div>
-        {isLive ? (
-          <span className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 ring-1 ring-emerald-500/20 px-2.5 py-1 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Disponible
-          </span>
-        ) : (
-          <span className="text-[11px] font-semibold text-amber-300 bg-amber-500/10 ring-1 ring-amber-500/20 px-2.5 py-1 rounded-full">
-            Bientôt
-          </span>
-        )}
-      </div>
-
-      {/* Name + tagline */}
-      <div className="mb-4 relative z-10">
-        <h3 className="text-white font-bold text-xl mb-1">{product.name}</h3>
-        <p className={`text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r ${product.accentFrom} ${product.accentTo}`}>
-          {product.tagline}
-        </p>
-      </div>
-
-      {/* Description */}
-      <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-1 relative z-10">
-        {product.description}
-      </p>
-
-      {/* Features */}
-      <ul className="space-y-2 mb-7 relative z-10">
-        {product.features.map((f) => (
-          <li key={f.label} className="flex items-center gap-2.5 text-zinc-300 text-sm">
-            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${product.accentFrom} ${product.accentTo} shrink-0`}>
-              {f.icon}
-            </span>
-            {f.label}
-          </li>
-        ))}
-      </ul>
-
-      {/* CTAs */}
-      <div className="flex flex-wrap gap-2.5 relative z-10">
-        {isLive ? (
-          <>
-            {product.name === "AeviaLaunch" ? (
-              <Link
-                href="/templates"
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${product.accentFrom} ${product.accentTo} text-white text-sm font-semibold hover:opacity-90 transition-opacity`}
-              >
-                {product.cta}
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            ) : (
-              <a
-                href={product.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${product.accentFrom} ${product.accentTo} text-white text-sm font-semibold hover:opacity-90 transition-opacity`}
-              >
-                {product.cta}
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            )}
-            {product.ctaSecondary && product.ctaSecondaryHref && (
-              <a
-                href={product.ctaSecondaryHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-zinc-700 text-zinc-300 text-sm font-medium hover:border-zinc-500 hover:text-white transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                {product.ctaSecondary}
-              </a>
-            )}
-          </>
-        ) : (
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-700 text-zinc-400 text-sm font-medium hover:border-zinc-500 hover:text-white transition-colors"
-          >
-            Me prévenir au lancement
-          </Link>
-        )}
-      </div>
-    </motion.div>
-  );
-}
-
-// ─── Page ────────────────────────────────────────────────────────────────────
-
 export default function Home() {
+  const h = useTranslations("hero");
+  const st = useTranslations("stats");
+  const p = useTranslations("products");
+  const ts = useTranslations("templates_section");
+  const w = useTranslations("why");
+  const c = useTranslations("cta");
+  const f = useTranslations("footer");
+
+  const products = [
+    {
+      name: "AeviaLaunch",
+      tagline: p("launch_tagline"),
+      description: p("launch_desc"),
+      href: "https://aevia-launch.vercel.app",
+      status: "live" as const,
+      icon: <Sparkles className="w-6 h-6" />,
+      accentFrom: "from-violet-500",
+      accentTo: "to-fuchsia-500",
+      glow: "group-hover:shadow-violet-500/25",
+      features: [
+        { icon: <Globe className="w-4 h-4" />, label: p("launch_f1") },
+        { icon: <ShoppingBag className="w-4 h-4" />, label: p("launch_f2") },
+        { icon: <Layout className="w-4 h-4" />, label: p("launch_f3") },
+        { icon: <Zap className="w-4 h-4" />, label: p("launch_f4") },
+      ],
+      cta: p("launch_cta"),
+      ctaSecondary: p("launch_cta2"),
+      ctaSecondaryHref: "https://aevia-launch.vercel.app",
+    },
+    {
+      name: "AeviaSecurity",
+      tagline: p("security_tagline"),
+      description: p("security_desc"),
+      href: "https://aevia-security.vercel.app",
+      status: "live" as const,
+      icon: <Shield className="w-6 h-6" />,
+      accentFrom: "from-emerald-500",
+      accentTo: "to-teal-500",
+      glow: "group-hover:shadow-emerald-500/25",
+      features: [
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: p("security_f1") },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: p("security_f2") },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: p("security_f3") },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: p("security_f4") },
+      ],
+      cta: p("security_cta"),
+      ctaSecondary: null,
+      ctaSecondaryHref: null,
+    },
+    {
+      name: "AeviaInbox",
+      tagline: p("inbox_tagline"),
+      description: p("inbox_desc"),
+      href: "#",
+      status: "soon" as const,
+      icon: <MessageSquare className="w-6 h-6" />,
+      accentFrom: "from-cyan-500",
+      accentTo: "to-blue-500",
+      glow: "group-hover:shadow-cyan-500/25",
+      features: [
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: p("inbox_f1") },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: p("inbox_f2") },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: p("inbox_f3") },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: p("inbox_f4") },
+      ],
+      cta: p("inbox_cta"),
+      ctaSecondary: null,
+      ctaSecondaryHref: null,
+    },
+  ];
+
+  const templates = [
+    { label: "Landing Page", href: "https://aevia-landing.vercel.app", color: "from-violet-500/20 to-fuchsia-500/10", dot: "bg-violet-400", desc: ts("landing_desc") },
+    { label: "E-Commerce", href: "https://aevia-ecommerce.vercel.app", color: "from-amber-500/20 to-orange-500/10", dot: "bg-amber-400", desc: ts("ecom_desc") },
+    { label: "Site Vitrine", href: "https://aevia-launch.vercel.app", color: "from-emerald-500/20 to-teal-500/10", dot: "bg-emerald-400", desc: ts("vitrine_desc") },
+  ];
+
+  const whyItems = [
+    { icon: <Zap className="w-5 h-5" />, title: w("fast_title"), desc: w("fast_desc"), color: "from-amber-500/20 to-orange-500/10", textColor: "text-amber-400" },
+    { icon: <Code2 className="w-5 h-5" />, title: w("reliable_title"), desc: w("reliable_desc"), color: "from-violet-500/20 to-fuchsia-500/10", textColor: "text-violet-400" },
+    { icon: <CheckCircle2 className="w-5 h-5" />, title: w("simple_title"), desc: w("simple_desc"), color: "from-emerald-500/20 to-teal-500/10", textColor: "text-emerald-400" },
+  ];
+
   return (
     <div className="min-h-screen" id="main-content">
 
@@ -207,19 +107,19 @@ export default function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500" />
               </span>
-              Écosystème Aevia — Outils digitaux pour entreprises
+              {h("badge")}
             </div>
 
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6">
-              Tout ce dont votre{" "}
+              {h("title1")}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
-                business a besoin
+                {h("title2")}
               </span>
-              <br />en ligne
+              <br />{h("title3")}
             </h1>
 
             <p className="text-zinc-300 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-              Site web, sécurité, gestion client — trois outils pensés pour les TPE et PME qui veulent une présence digitale sérieuse sans s'y perdre.
+              {h("description")}
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -227,21 +127,21 @@ export default function Home() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
               >
-                Démarrer un projet
+                {h("cta_primary")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="#produits"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors"
               >
-                Découvrir les services
+                {h("cta_secondary")}
               </a>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ── Chiffres ─────────────────────────────────────────────────────── */}
+      {/* ── Stats ────────────────────────────────────────────────────────── */}
       <section className="px-6 pb-16">
         <div className="mx-auto max-w-5xl">
           <motion.div
@@ -251,10 +151,10 @@ export default function Home() {
             className="grid grid-cols-2 sm:grid-cols-4 gap-4"
           >
             {[
-              { value: "7 jours", label: "Délai livraison site" },
-              { value: "60s", label: "Audit sécurité" },
-              { value: "3", label: "Canaux unifiés inbox" },
-              { value: "24/7", label: "IA qui répond" },
+              { value: st("delivery_value"), label: st("delivery_label") },
+              { value: st("audit_value"), label: st("audit_label") },
+              { value: st("channels_value"), label: st("channels_label") },
+              { value: st("ai_value"), label: st("ai_label") },
             ].map(({ value, label }) => (
               <div key={label} className="text-center p-4 rounded-xl border border-zinc-800/60 bg-zinc-900/30">
                 <div className="text-2xl font-bold text-white mb-1">{value}</div>
@@ -281,17 +181,88 @@ export default function Home() {
             className="text-center mb-14"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 tracking-tight">
-              Trois outils, une seule marque
+              {p("section_title")}
             </h2>
             <p className="text-zinc-400 text-lg max-w-xl mx-auto">
-              Chaque produit Aevia répond à un besoin précis. Indépendants ou combinés, ils couvrent votre présence digitale de A à Z.
+              {p("section_sub")}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {products.map((product, i) => (
-              <ProductCard key={product.name} product={product} index={i} />
-            ))}
+            {products.map((product, i) => {
+              const isLive = product.status === "live";
+              return (
+                <motion.div
+                  key={product.name}
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className={`group relative flex flex-col h-full p-7 rounded-2xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm overflow-hidden transition-all duration-300
+                    ${isLive ? `hover:border-zinc-600 hover:-translate-y-1.5 hover:shadow-2xl ${product.glow}` : "opacity-80"}`}
+                >
+                  <div className={`absolute inset-0 opacity-0 ${isLive ? "group-hover:opacity-100" : ""} transition-opacity duration-300 bg-gradient-to-br ${product.accentFrom}/5 ${product.accentTo}/5 pointer-events-none`} />
+                  <div className="flex items-start justify-between mb-6 relative z-10">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${product.accentFrom}/20 ${product.accentTo}/10 border border-white/5 text-white`}>
+                      {product.icon}
+                    </div>
+                    {isLive ? (
+                      <span className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 ring-1 ring-emerald-500/20 px-2.5 py-1 rounded-full">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        {p("available")}
+                      </span>
+                    ) : (
+                      <span className="text-[11px] font-semibold text-amber-300 bg-amber-500/10 ring-1 ring-amber-500/20 px-2.5 py-1 rounded-full">
+                        {p("coming_soon")}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mb-4 relative z-10">
+                    <h3 className="text-white font-bold text-xl mb-1">{product.name}</h3>
+                    <p className={`text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r ${product.accentFrom} ${product.accentTo}`}>
+                      {product.tagline}
+                    </p>
+                  </div>
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-1 relative z-10">
+                    {product.description}
+                  </p>
+                  <ul className="space-y-2 mb-7 relative z-10">
+                    {product.features.map((feat) => (
+                      <li key={feat.label} className="flex items-center gap-2.5 text-zinc-300 text-sm">
+                        <span className={`text-transparent bg-clip-text bg-gradient-to-r ${product.accentFrom} ${product.accentTo} shrink-0`}>
+                          {feat.icon}
+                        </span>
+                        {feat.label}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-2.5 relative z-10">
+                    {isLive ? (
+                      <>
+                        {product.name === "AeviaLaunch" ? (
+                          <Link href="/templates" className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${product.accentFrom} ${product.accentTo} text-white text-sm font-semibold hover:opacity-90 transition-opacity`}>
+                            {product.cta} <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
+                        ) : (
+                          <a href={product.href} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${product.accentFrom} ${product.accentTo} text-white text-sm font-semibold hover:opacity-90 transition-opacity`}>
+                            {product.cta} <ArrowRight className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+                        {product.ctaSecondary && product.ctaSecondaryHref && (
+                          <a href={product.ctaSecondaryHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-zinc-700 text-zinc-300 text-sm font-medium hover:border-zinc-500 hover:text-white transition-colors">
+                            <ExternalLink className="w-3.5 h-3.5" /> {product.ctaSecondary}
+                          </a>
+                        )}
+                      </>
+                    ) : (
+                      <Link href="/contact" className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-700 text-zinc-400 text-sm font-medium hover:border-zinc-500 hover:text-white transition-colors">
+                        {p("notify")}
+                      </Link>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -301,43 +272,29 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              {/* Left */}
               <div className="p-8 sm:p-10 flex flex-col justify-center">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fuchsia-500/10 ring-1 ring-fuchsia-500/20 text-fuchsia-300 text-xs font-medium mb-5 w-fit">
                   <Layout className="w-3 h-3" />
-                  AeviaLaunch — Sites web
+                  {ts("badge")}
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
-                  3 types de sites, livrés clé en main
+                  {ts("title")}
                 </h2>
                 <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                  Je customise le template de votre choix avec votre contenu, vos couleurs, votre identité — et je le déploie en 7 jours.
+                  {ts("desc")}
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <Link
-                    href="/templates"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 text-white text-sm font-semibold transition-opacity"
-                  >
-                    Voir les démos live
-                    <ArrowRight className="w-4 h-4" />
+                  <Link href="/templates" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-90 text-white text-sm font-semibold transition-opacity">
+                    {ts("cta1")} <ArrowRight className="w-4 h-4" />
                   </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors"
-                  >
-                    Démarrer mon projet
+                  <Link href="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors">
+                    {ts("cta2")}
                   </Link>
                 </div>
               </div>
-
-              {/* Right */}
               <div className="p-6 flex flex-col gap-3 bg-zinc-950/40 border-l border-zinc-800">
                 {templates.map((t) => (
-                  <a
-                    key={t.label}
-                    href={t.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <a key={t.label} href={t.href} target="_blank" rel="noopener noreferrer"
                     className={`group flex items-center justify-between p-4 rounded-xl border border-zinc-800 bg-gradient-to-r ${t.color} hover:border-zinc-600 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer`}
                   >
                     <div className="flex items-center gap-3">
@@ -348,19 +305,15 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex items-center gap-1 text-zinc-500 group-hover:text-zinc-300 transition-colors text-xs">
-                      Voir la démo <ExternalLink className="w-3 h-3" />
+                      {ts("demo")} <ExternalLink className="w-3 h-3" />
                     </div>
                   </a>
                 ))}
                 <div className="mt-1 p-4 rounded-xl border border-dashed border-zinc-700 text-center">
-                  <p className="text-zinc-500 text-xs mb-1.5">Vous avez une idée différente ?</p>
-                  <a
-                    href="https://aevia-launch.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300 transition-colors"
-                  >
-                    Builder IA — 21 templates <ArrowRight className="w-3 h-3" />
+                  <p className="text-zinc-500 text-xs mb-1.5">{ts("custom_q")}</p>
+                  <a href="https://aevia-launch.vercel.app" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-violet-400 hover:text-violet-300 transition-colors">
+                    {ts("custom_link")} <ArrowRight className="w-3 h-3" />
                   </a>
                 </div>
               </div>
@@ -380,15 +333,11 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">
-              Pourquoi Aevia ?
+              {w("title")}
             </h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {[
-              { icon: <Zap className="w-5 h-5" />, title: "Rapide", desc: "Site livré en 7 jours, audit en 60 secondes. Pas de réunions interminables, pas d'agence qui traîne.", color: "from-amber-500/20 to-orange-500/10", textColor: "text-amber-400" },
-              { icon: <Code2 className="w-5 h-5" />, title: "Fiable", desc: "Stack production-ready — Next.js, NestJS, PostgreSQL. Les mêmes technos que les startups qui lèvent des millions.", color: "from-violet-500/20 to-fuchsia-500/10", textColor: "text-violet-400" },
-              { icon: <CheckCircle2 className="w-5 h-5" />, title: "Simple", desc: "Vous n'avez pas besoin de comprendre la technique. Vous décrivez, on construit. Résultat garanti.", color: "from-emerald-500/20 to-teal-500/10", textColor: "text-emerald-400" },
-            ].map((item, i) => (
+            {whyItems.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -418,28 +367,15 @@ export default function Home() {
             <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-900/50 p-10 text-center relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 rounded-2xl" />
               <div className="relative z-10">
-                <h2 className="text-2xl font-bold text-white mb-3">
-                  Prêt à digitaliser votre business ?
-                </h2>
-                <p className="text-zinc-400 max-w-md mx-auto mb-8">
-                  Un site web, un audit sécurité, ou une démo de l'Inbox — on en parle en 30 minutes.
-                </p>
+                <h2 className="text-2xl font-bold text-white mb-3">{c("title")}</h2>
+                <p className="text-zinc-400 max-w-md mx-auto mb-8">{c("desc")}</p>
                 <div className="flex flex-wrap items-center justify-center gap-4">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
-                  >
-                    Prendre contact
-                    <ArrowRight className="w-4 h-4" />
+                  <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors">
+                    {c("contact")} <ArrowRight className="w-4 h-4" />
                   </Link>
-                  <a
-                    href="https://aevia-security.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors"
-                  >
-                    <Shield className="w-4 h-4" />
-                    Auditer mon site gratuitement
+                  <a href="https://aevia-security.vercel.app" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-700 text-zinc-300 text-sm font-semibold hover:border-zinc-500 hover:text-white transition-colors">
+                    <Shield className="w-4 h-4" /> {c("audit")}
                   </a>
                 </div>
               </div>
@@ -454,12 +390,12 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
             <div className="flex items-center gap-2">
               <span className="font-semibold text-white">Aevia</span>
-              <span>· Outils digitaux pour entreprises</span>
+              <span>· {f("tagline")}</span>
             </div>
             <div className="flex items-center gap-6">
-              <Link href="/templates" className="hover:text-zinc-300 transition-colors">Templates</Link>
-              <a href="https://aevia-security.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">Security</a>
-              <Link href="/contact" className="hover:text-zinc-300 transition-colors">Contact</Link>
+              <Link href="/templates" className="hover:text-zinc-300 transition-colors">{f("templates")}</Link>
+              <a href="https://aevia-security.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">{f("security")}</a>
+              <Link href="/contact" className="hover:text-zinc-300 transition-colors">{f("contact")}</Link>
               <a href="https://linkedin.com/in/valentin-milliand" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <LinkedinIcon className="w-4 h-4 hover:text-zinc-300 transition-colors" />
               </a>
@@ -469,11 +405,11 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-zinc-800/60 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
-            <span>© 2026 Aevia · Tous droits réservés · Valentin Milliand</span>
+            <span>{f("copyright")}</span>
             <div className="flex items-center gap-4">
-              <Link href="/legal/privacy" className="hover:text-zinc-400 transition-colors">Politique de confidentialité</Link>
-              <Link href="/legal/terms" className="hover:text-zinc-400 transition-colors">CGU</Link>
-              <Link href="/legal/cookies" className="hover:text-zinc-400 transition-colors">Cookies</Link>
+              <Link href="/legal/privacy" className="hover:text-zinc-400 transition-colors">{f("privacy")}</Link>
+              <Link href="/legal/terms" className="hover:text-zinc-400 transition-colors">{f("terms")}</Link>
+              <Link href="/legal/cookies" className="hover:text-zinc-400 transition-colors">{f("cookies")}</Link>
             </div>
           </div>
         </div>
