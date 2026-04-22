@@ -121,9 +121,9 @@ export default function RootLayout({
         {/* Aevia Inbox webchat widget — production test */}
         <script
           async
-          src="https://skybot-inbox.onrender.com/webchat/widget.js"
+          src="https://skybot-inbox-ui.onrender.com/webchat/widget.js"
           data-widget-id="wid_ce9571d1dd824e3704a48013699b3e91"
-          data-api-url="https://skybot-inbox.onrender.com"
+          data-api-url="https://skybot-inbox.onrender.com/api"
         />
       </body>
     </html>
