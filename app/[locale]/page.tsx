@@ -449,22 +449,32 @@ export default function Home() {
       </section>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
-      <footer className="border-t border-zinc-800 px-6 py-8">
-        <div className="mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-white">Aevia</span>
-            <span>· Outils digitaux pour entreprises</span>
+      <footer className="border-t border-zinc-800 px-6 py-10">
+        <div className="mx-auto max-w-5xl space-y-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-white">Aevia</span>
+              <span>· Outils digitaux pour entreprises</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <Link href="/templates" className="hover:text-zinc-300 transition-colors">Templates</Link>
+              <a href="https://aevia-security.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">Security</a>
+              <Link href="/contact" className="hover:text-zinc-300 transition-colors">Contact</Link>
+              <a href="https://linkedin.com/in/valentin-milliand" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <LinkedinIcon className="w-4 h-4 hover:text-zinc-300 transition-colors" />
+              </a>
+              <a href="https://github.com/Maeglin10" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <GithubIcon className="w-4 h-4 hover:text-zinc-300 transition-colors" />
+              </a>
+            </div>
           </div>
-          <div className="flex items-center gap-6">
-            <Link href="/templates" className="hover:text-zinc-300 transition-colors">Templates</Link>
-            <a href="https://aevia-security.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">Security</a>
-            <Link href="/contact" className="hover:text-zinc-300 transition-colors">Contact</Link>
-            <a href="https://linkedin.com/in/valentin-milliand" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <LinkedinIcon className="w-4 h-4 hover:text-zinc-300 transition-colors" />
-            </a>
-            <a href="https://github.com/Maeglin10" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <GithubIcon className="w-4 h-4 hover:text-zinc-300 transition-colors" />
-            </a>
+          <div className="border-t border-zinc-800/60 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
+            <span>© 2026 Aevia · Tous droits réservés · Valentin Milliand</span>
+            <div className="flex items-center gap-4">
+              <Link href="/legal/privacy" className="hover:text-zinc-400 transition-colors">Politique de confidentialité</Link>
+              <Link href="/legal/terms" className="hover:text-zinc-400 transition-colors">CGU</Link>
+              <Link href="/legal/cookies" className="hover:text-zinc-400 transition-colors">Cookies</Link>
+            </div>
           </div>
         </div>
       </footer>
