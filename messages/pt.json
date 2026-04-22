@@ -92,5 +92,12 @@
     "terms": "Termos",
     "cookies": "Cookies"
   },
-  "skills": { "title": "Stack técnico" }
+  "skills": { "title": "Stack técnico" },
+  "cookie_banner": {
+    "aria_label": "Banner de consentimento de cookies",
+    "text": "Usamos cookies para melhorar sua experiência e medir a audiência. Você pode aceitar ou recusar cookies não essenciais.",
+    "learn_more": "Saber mais",
+    "accept": "Aceitar tudo",
+    "reject": "Recusar"
+  }
 }

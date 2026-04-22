@@ -92,5 +92,12 @@
     "terms": "CGU",
     "cookies": "Cookies"
   },
-  "skills": { "title": "Stack technique" }
+  "skills": { "title": "Stack technique" },
+  "cookie_banner": {
+    "aria_label": "Bandeau de consentement aux cookies",
+    "text": "Nous utilisons des cookies pour améliorer votre expérience et mesurer l'audience. Vous pouvez accepter ou refuser les cookies non essentiels.",
+    "learn_more": "En savoir plus",
+    "accept": "Tout accepter",
+    "reject": "Refuser"
+  }
 }

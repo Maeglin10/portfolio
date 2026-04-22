@@ -92,5 +92,12 @@
     "terms": "Terms",
     "cookies": "Cookies"
   },
-  "skills": { "title": "Tech stack" }
+  "skills": { "title": "Tech stack" },
+  "cookie_banner": {
+    "aria_label": "Cookie consent banner",
+    "text": "We use cookies to improve your experience and measure audience. You can accept or decline non-essential cookies.",
+    "learn_more": "Learn more",
+    "accept": "Accept all",
+    "reject": "Decline"
+  }
 }

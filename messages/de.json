@@ -92,5 +92,12 @@
     "terms": "AGB",
     "cookies": "Cookies"
   },
-  "skills": { "title": "Technischer Stack" }
+  "skills": { "title": "Technischer Stack" },
+  "cookie_banner": {
+    "aria_label": "Cookie-Einwilligungsbanner",
+    "text": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und die Reichweite zu messen. Sie können nicht wesentliche Cookies akzeptieren oder ablehnen.",
+    "learn_more": "Mehr erfahren",
+    "accept": "Alle akzeptieren",
+    "reject": "Ablehnen"
+  }
 }
