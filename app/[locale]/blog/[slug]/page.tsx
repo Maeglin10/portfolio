@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, Clock, Tag, Calendar, ArrowRight } from "lucide-react";
-import { BLOG_POSTS, getBlogPost, formatDate } from "@/lib/blog-posts";
+import { getBlogPosts, getBlogPost, formatDate, type BlogLocale as ArticleLocale } from "@/lib/blog-posts";
 import { notFound } from "next/navigation";
 
-type ArticleLocale = "fr" | "en" | "es" | "de" | "pt";
+// ArticleLocale is imported from lib/blog-posts as BlogLocale
 
 const ARTICLE_T: Record<ArticleLocale, {
   back: string; reading_time: string; continue_reading: string;
@@ -47,6 +47,7 @@ const ARTICLE_T: Record<ArticleLocale, {
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; ring: string }> = {
   "Web & Marketing": { bg: "bg-violet-500/10", text: "text-violet-300", ring: "ring-violet-500/20" },
   "Cybersécurité": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
+  "Cybersecurity": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
   "CRM & Support": { bg: "bg-cyan-500/10", text: "text-cyan-300", ring: "ring-cyan-500/20" },
 };
 
@@ -136,12 +137,12 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
   const pathname = usePathname();
   const locale = (params.locale ?? pathname.split("/")[1] ?? "fr") as ArticleLocale;
   const t = ARTICLE_T[locale] ?? ARTICLE_T.fr;
-  const post = getBlogPost(params.slug);
+  const post = getBlogPost(params.slug, locale);
 
   if (!post) notFound();
 
   const style = getCategoryStyle(post.category);
-  const relatedPosts = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 2);
+  const relatedPosts = getBlogPosts(locale).filter((p) => p.slug !== post.slug).slice(0, 2);
 
   return (
     <div className="min-h-screen">
@@ -167,7 +168,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
             </span>
             <span className="flex items-center gap-1.5 text-xs text-zinc-500">
               <Calendar size={11} />
-              {formatDate(post.date)}
+              {formatDate(post.date, locale)}
             </span>
             <span className="flex items-center gap-1.5 text-xs text-zinc-500">
               <Clock size={11} />

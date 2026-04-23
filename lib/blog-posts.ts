@@ -1,14 +1,29 @@
+export type BlogLocale = "fr" | "en" | "es" | "de" | "pt";
+
+export interface BlogPostTranslation {
+  title: string;
+  excerpt: string;
+  content: string;
+  /** Optional: translated category label. Falls back to base category. */
+  category?: string;
+}
+
 export interface BlogPost {
   slug: string;
+  /** French title — used as fallback when no translation is available */
   title: string;
   excerpt: string;
   date: string;
   readingTime: string;
+  /** French category key */
   category: string;
   content: string;
+  translations?: Partial<Record<BlogLocale, BlogPostTranslation>>;
 }
 
-export const BLOG_POSTS: BlogPost[] = [
+// ─── Raw post data ──────────────────────────────────────────────────────────
+
+const RAW_POSTS: BlogPost[] = [
   {
     slug: "optimiser-presence-en-ligne",
     title: "5 façons d'optimiser votre présence en ligne en 2026",
@@ -108,6 +123,105 @@ Si vous deviez ne choisir qu'une priorité, commencez par votre site web et votr
 Ensuite, mesurez. Google Analytics 4 est gratuit et vous dira exactement d'où viennent vos visiteurs, quelles pages ils regardent, et où ils décrochent.
 
 La présence en ligne n'est pas une case à cocher — c'est un actif qui se construit dans le temps. Plus tôt vous commencez, plus l'avance est grande.`,
+    translations: {
+      en: {
+        title: "5 Ways to Strengthen Your Online Presence in 2026",
+        excerpt:
+          "A website alone is no longer enough. Discover the 5 levers that actually make the difference between being found online — and being chosen.",
+        category: "Web & Marketing",
+        content: `## Why your online presence is your best salesperson
+
+In 2026, the first thing a potential customer does before calling you or walking through your door is search for you on Google. In under ten seconds they assess your credibility, form a judgment, and decide whether to reach out or move on to a competitor.
+
+The good news? Most small and mid-sized businesses still underestimate this reality. Which means that if you act now, you have a genuine window of opportunity.
+
+Here are the 5 levers that truly change the game.
+
+---
+
+## 1. A professional website — not just "a website"
+
+The difference between a site that converts and one that drives visitors away often comes down to a few details: an outdated design, vague copy, no clear call to action, low-quality photos.
+
+A strong website in 2026 means:
+
+- **A crystal-clear main message** from the very first second — what you do, who it's for, and why choose you
+- **A clear visual hierarchy** — visitors know exactly where to click
+- **A contact form or call-to-action button visible on every page**
+- **A mobile-first design** — more than 65% of visits come from smartphones
+
+Solutions like AeviaLaunch let you get a professional, fully custom site live in 7 days — without trading quality for speed.
+
+---
+
+## 2. Local SEO — being found by people nearby
+
+If your customers are local, local SEO is your top priority. It means optimising your presence so that Google surfaces you when someone searches "plumber Brooklyn" or "vegan restaurant downtown Chicago".
+
+Concrete actions:
+
+- **Weave your city and neighbourhood** naturally into your copy, title tags, and meta descriptions
+- **Create dedicated pages** for each geographic area you serve
+- **Earn Google reviews** — they directly influence your ranking in local results
+- **Build local backlinks** — professional directories, local press, partnerships
+
+---
+
+## 3. Google Business Profile — your most powerful free showcase
+
+Many business owners set up their Google Business Profile once, then forget about it. That's a mistake.
+
+A well-maintained GBP listing appears in the "Local Pack" — the three map-based results that appear at the top of Google search. It's massive, free visibility.
+
+What to do regularly:
+
+- **Keep your hours up to date** — especially on public holidays
+- **Publish posts** (offers, events, news) — at least twice a month
+- **Respond to every review**, positive and negative — it signals that you're active and professional
+- **Add photos** of your team, premises, and products — listings with photos receive 42% more direction requests
+
+---
+
+## 4. Social media — choose rather than do everything
+
+The classic mistake: trying to be everywhere at once. The result is abandoned accounts that project a negative image.
+
+The effective strategy: **pick one or two networks** where your customers actually spend time, and show up consistently with relevant content.
+
+- **Instagram and TikTok** for retail, beauty, food, crafts — anything visual
+- **LinkedIn** for B2B services, consulting, professional services
+- **Facebook** remains useful for local community groups and events
+
+What works in 2026: authentic, genuinely useful content. Not disguised advertising — practical tips, behind-the-scenes glimpses, customer success stories.
+
+---
+
+## 5. Loading speed — the invisible cost
+
+Here is a sobering stat: if your site takes more than 3 seconds to load, 53% of mobile visitors leave before seeing a single page.
+
+Speed affects your bounce rate, your conversion rate, and your position in Google results (Core Web Vitals).
+
+The basics:
+
+- **Compress your images** — use modern formats like WebP
+- **Choose a reliable host** — a budget host at €2/month won't deliver the same response times as cloud hosting
+- **Enable caching** at both server and browser level
+- **Minimise third-party scripts** — every plugin, widget, or tracker adds weight
+
+Not sure how fast your site is? Tools like AeviaSecurity give you a performance score and concrete remediation steps in seconds.
+
+---
+
+## Where to start?
+
+If you had to pick just one priority, start with your website and your Google Business Profile. These are the two touchpoints your potential customers scrutinise most.
+
+Then measure. Google Analytics 4 is free and will tell you exactly where your visitors come from, which pages they read, and where they drop off.
+
+Your online presence isn't a box to tick — it's an asset built over time. The sooner you start, the greater the lead you build.`,
+      },
+    },
   },
   {
     slug: "audit-securite-site-web",
@@ -205,6 +319,102 @@ Si vous n'avez jamais fait d'audit de sécurité, commencez par vérifier deux c
 2. Votre certificat SSL est-il valide et à jour ? (cliquez sur le cadenas dans la barre d'adresse)
 
 Ensuite, lancez un audit gratuit pour avoir le tableau complet. Il vaut mieux découvrir une vulnérabilité vous-même que laisser un bot ou un attaquant la découvrir à votre place.`,
+    translations: {
+      en: {
+        title: "Why You Should Audit Your Website Security (And How to Do It)",
+        excerpt:
+          "Is your website actually secure? SSL, HTTP headers, OWASP vulnerabilities, DNS — here's what you need to check and why it can't wait.",
+        category: "Cybersecurity",
+        content: `## Web security isn't just for big companies
+
+"I'm only a small business — who would bother hacking my site?"
+
+This is the most dangerous line of thinking there is. The reality: 43% of cyberattacks target small organisations — not because they are inherently interesting targets, but because they are easy ones.
+
+The bots that crawl the internet looking for vulnerabilities don't distinguish between a multinational corporation and a local bakery's website. They probe the same weaknesses everywhere, automatically, around the clock.
+
+A compromised site means damaged reputation, exposed customer data, and often weeks of remediation work — not to mention potential GDPR penalties.
+
+---
+
+## What attackers are actually looking for
+
+Understanding common attack vectors means understanding what to protect. Here are the most frequent ones on small business sites.
+
+### SSL/HTTPS — the non-negotiable foundation
+
+A site running plain HTTP (without the "S") transmits all data in clear text across the network. Login credentials, contact forms, payment information — everything is interceptable.
+
+Today, browsers explicitly flag HTTP sites as "Not Secure", sending visitors away before they've read a single line of your content.
+
+Also worth checking: an SSL certificate that is misconfigured, expired, or has an incomplete chain can be just as problematic as having no SSL at all.
+
+### The OWASP Top 10 vulnerabilities
+
+The OWASP (Open Web Application Security Project) publishes an annual ranking of the most exploited web vulnerabilities. The most common on CMS platforms like WordPress or PrestaShop:
+
+- **SQL injection** — an unprotected form field can hand over your entire database
+- **Cross-Site Scripting (XSS)** — malicious code injected into your pages and executed in your visitors' browsers
+- **Outdated components** — a plugin or theme left unpatched with a known, publicly disclosed vulnerability
+
+### HTTP security headers
+
+HTTP headers are instructions your server sends to browsers telling them how to behave. Many sites ignore them entirely.
+
+The critical ones:
+
+- \`Content-Security-Policy\` — defines allowed sources for scripts, images, and stylesheets
+- \`X-Frame-Options\` — prevents your site from being loaded inside an iframe (clickjacking)
+- \`Strict-Transport-Security\` — enforces HTTPS even if someone types "http://"
+- \`X-Content-Type-Options\` — stops browsers from guessing content types
+
+### DNS security
+
+Less well known, but critical. Misconfigured DNS records can allow attackers to spoof your domain and send phishing emails on your behalf.
+
+The protocols to check: **SPF**, **DKIM**, and **DMARC** to protect your email reputation, and DNS zone validation to prevent DNS hijacking.
+
+---
+
+## How to audit your site without being a developer
+
+The good news: you don't need to be a security expert to get a clear picture of your site's health.
+
+Tools like **AeviaSecurity** let you scan your domain in under 60 seconds and receive:
+
+- An overall security score out of 100
+- A breakdown of identified issues, ranked by severity
+- Concrete recommendations for each vulnerability
+
+It's a solid starting point before going deeper.
+
+For more detailed analysis, tools like **Mozilla Observatory**, **Security Headers**, and **Qualys SSL Labs** let you examine specific aspects in depth.
+
+---
+
+## Continuous monitoring — because a new vulnerability can appear at any time
+
+An audit is a snapshot in time. Threats evolve. A plugin update can introduce a new vulnerability. An SSL certificate can expire without warning.
+
+Good ongoing practices:
+
+- **Update your CMS and plugins** as soon as security updates are released
+- **Set expiry alerts** for your SSL certificates — think 30 days ahead
+- **Run a quarterly audit** at minimum — or monthly if your site handles sensitive data
+- **Enable a WAF** (Web Application Firewall) if your hosting provider offers one
+
+---
+
+## Where to start?
+
+If you've never done a security audit, start by checking two things tonight:
+
+1. Is your site running on HTTPS? (check the URL bar in your browser)
+2. Is your SSL certificate valid and current? (click the padlock in the address bar)
+
+Then run a free audit to get the full picture. It's far better to discover a vulnerability yourself than to let a bot or an attacker find it first.`,
+      },
+    },
   },
   {
     slug: "gestion-messages-clients-multicanal",
@@ -304,15 +514,156 @@ Même avec le meilleur outil du monde, gérer les attentes clients est important
 Au-delà des bénéfices commerciaux, centraliser vos communications clients change votre rapport au travail. Finies les micro-interruptions pour vérifier chaque app. Finie l'anxiété de "peut-être qu'un client m'a écrit quelque part et j'ai pas vu".
 
 En 2026, les outils pour y arriver sont accessibles, même pour les petites structures. C'est souvent l'une des améliorations opérationnelles avec le meilleur retour sur investissement — en temps comme en résultats.`,
+    translations: {
+      en: {
+        title: "How to Centralise All Your Customer Messages in One Place",
+        excerpt:
+          "WhatsApp, Instagram, email, Messenger — your customers write to you everywhere. Here's why juggling platforms is costing you sales, and how to fix it.",
+        category: "CRM & Support",
+        content: `## The problem nobody actually measures
+
+Your phone gets a WhatsApp at 9:07am. You open Instagram at 10:30 and find a DM from yesterday. A customer email is buried in your inbox between a supplier invoice and a newsletter. Your site's contact form captured a request on Friday evening — you see it Monday morning.
+
+Meanwhile, that customer may have already moved on.
+
+This is daily life for most freelancers and small businesses. And the cost is real: lost leads, frustrated customers, and a constant mental load from juggling multiple platforms.
+
+---
+
+## Why customers use so many different channels
+
+The fragmentation of communication channels isn't a temporary problem. It's a structural shift.
+
+In 2026, **WhatsApp Business** is the preferred channel for quick, informal exchanges — especially in sectors where the relationship matters (retail, personal services, trades). **Instagram Direct** is indispensable if your audience lives on Instagram. **Messenger** remains active for Facebook page followers. And **email** is still the standard for quotes, invoices, and formal communications.
+
+Your customers aren't going to change their habits. It's on you to adapt — but intelligently, without multiplying open tabs.
+
+---
+
+## The real consequences of a scattered inbox
+
+### Response times spiral out of control
+
+Research shows: 90% of customers expect a reply within an hour on instant messaging. When you're manually managing 4 or 5 separate channels, meeting that standard becomes physically impossible.
+
+### Messages get lost or forgotten
+
+When a message arrives on a channel you haven't opened in two days, it's often too late. The customer has moved on or switched to frustration mode.
+
+### Your professional image takes a hit
+
+Replying late, losing the thread of a conversation, asking for information already provided — all of this erodes the perception of reliability you project.
+
+---
+
+## The solution: a unified inbox
+
+A unified inbox consolidates all your channels into a single interface. One place to read, reply, and track — whether it's a WhatsApp, an Instagram DM, or an email.
+
+The concrete benefits:
+
+- **No message falls through the cracks** — everything is centralised and visible
+- **Each customer's full history is one click away** — no more digging through 4 apps to find last week's conversation
+- **Your team can collaborate** — if you have staff or partners, everyone sees the same conversations and can step in
+
+---
+
+## AI as your messaging assistant
+
+The next step is intelligent automation. Not to replace the human relationship — but to handle what can be handled without you.
+
+Tools like **Aevia Inbox** combine the unified inbox with AI agents capable of:
+
+- **Automatically answering frequent questions** — opening hours, pricing, availability — outside your working hours
+- **Qualifying incoming leads** — identifying whether it's a genuine enquiry, a casual question, or spam
+- **Alerting you to hot prospects** — those showing purchase intent signals that need your immediate attention
+- **Keeping each contact's history updated** in an integrated CRM
+
+The idea isn't for AI to answer everything. It's for AI to handle the routine so you can focus on what matters.
+
+---
+
+## How to structure your transition
+
+If you're starting from scratch (or close to it), here's a pragmatic approach:
+
+### Step 1 — Map your current channels
+
+List every place customers can send you a message. Include even the ones you rarely check — that's often where requests disappear.
+
+### Step 2 — Choose your centralisation tool
+
+For a small organisation, SaaS solutions built for SMEs are the most accessible. Avoid enterprise tools that are complex to configure and expensive to maintain.
+
+### Step 3 — Document your standard responses
+
+Before activating any automation, list the 10–15 questions you receive most often along with the ideal answers. This is the foundation of any effective AI assistant.
+
+### Step 4 — Communicate your response times
+
+Even with the best tool in the world, managing customer expectations matters. Clearly display your availability hours and average response time on your website and social profiles.
+
+---
+
+## The real gain: your time and your peace of mind
+
+Beyond the business benefits, centralising your customer communications changes your relationship with work. No more micro-interruptions to check each app. No more anxiety about "maybe a customer messaged me somewhere and I missed it".
+
+In 2026, the tools to make this happen are accessible even for small organisations. It's often one of the operational improvements with the best return on investment — in time saved as much as in results.`,
+      },
+    },
   },
 ];
 
-export function getBlogPost(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((p) => p.slug === slug);
+// ─── Public exports ──────────────────────────────────────────────────────────
+
+/** All posts with fields resolved for the given locale (falls back to French). */
+export function getBlogPosts(locale: BlogLocale = "fr"): BlogPost[] {
+  return RAW_POSTS.map((post) => resolveLocale(post, locale));
 }
 
-export function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("fr-FR", {
+/**
+ * Find a single post by slug, with all fields resolved for the given locale.
+ * Returns undefined if the slug does not exist.
+ */
+export function getBlogPost(slug: string, locale: BlogLocale = "fr"): BlogPost | undefined {
+  const post = RAW_POSTS.find((p) => p.slug === slug);
+  if (!post) return undefined;
+  return resolveLocale(post, locale);
+}
+
+/**
+ * Merge a post's translation for the given locale onto its base fields.
+ * Any field missing from the translation falls back to the French original.
+ */
+function resolveLocale(post: BlogPost, locale: BlogLocale): BlogPost {
+  const translation = post.translations?.[locale];
+  if (!translation) return post;
+  return {
+    ...post,
+    title: translation.title ?? post.title,
+    excerpt: translation.excerpt ?? post.excerpt,
+    content: translation.content ?? post.content,
+    category: translation.category ?? post.category,
+  };
+}
+
+/**
+ * BLOG_POSTS is kept as a named export for backwards compatibility.
+ * It always returns French (the base language). Prefer getBlogPosts(locale)
+ * in locale-aware contexts.
+ */
+export const BLOG_POSTS: BlogPost[] = RAW_POSTS;
+
+export function formatDate(dateStr: string, locale: BlogLocale = "fr"): string {
+  const localeMap: Record<BlogLocale, string> = {
+    fr: "fr-FR",
+    en: "en-GB",
+    es: "es-ES",
+    de: "de-DE",
+    pt: "pt-BR",
+  };
+  return new Date(dateStr).toLocaleDateString(localeMap[locale], {
     year: "numeric",
     month: "long",
     day: "numeric",

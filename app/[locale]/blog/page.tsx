@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Clock, Tag, BookOpen } from "lucide-react";
-import { BLOG_POSTS, formatDate } from "@/lib/blog-posts";
+import { getBlogPosts, formatDate, type BlogLocale } from "@/lib/blog-posts";
 
-type BlogLocale = "fr" | "en" | "es" | "de" | "pt";
+// BlogLocale is imported from lib/blog-posts
 
 const BLOG_T: Record<BlogLocale, {
   badge: string; h1_1: string; h1_2: string; subtitle: string;
@@ -57,6 +57,7 @@ const BLOG_T: Record<BlogLocale, {
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; ring: string }> = {
   "Web & Marketing": { bg: "bg-violet-500/10", text: "text-violet-300", ring: "ring-violet-500/20" },
   "Cybersécurité": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
+  "Cybersecurity": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
   "CRM & Support": { bg: "bg-cyan-500/10", text: "text-cyan-300", ring: "ring-cyan-500/20" },
 };
 
@@ -74,6 +75,7 @@ export default function BlogPage() {
   const pathname = usePathname();
   const locale = (pathname.split("/")[1] ?? "fr") as BlogLocale;
   const t = BLOG_T[locale] ?? BLOG_T.fr;
+  const posts = getBlogPosts(locale);
 
   return (
     <div className="min-h-screen">
@@ -106,9 +108,9 @@ export default function BlogPage() {
       <section className="px-6 pb-24">
         <div className="mx-auto max-w-5xl">
           {/* Featured — first post */}
-          {BLOG_POSTS.length > 0 && (
+          {posts.length > 0 && (
             <Link
-              href={`/${locale}/blog/${BLOG_POSTS[0].slug}`}
+              href={`/${locale}/blog/${posts[0].slug}`}
               className="group block mb-6"
             >
               <article className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 sm:p-10 hover:border-zinc-600 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/10 transition-all duration-300">
@@ -117,18 +119,18 @@ export default function BlogPage() {
                 <div className="relative z-10">
                   <div className="flex flex-wrap items-center gap-3 mb-5">
                     {(() => {
-                      const style = getCategoryStyle(BLOG_POSTS[0].category);
+                      const style = getCategoryStyle(posts[0].category);
                       return (
                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ring-1 ${style.bg} ${style.text} ${style.ring}`}>
                           <Tag size={10} />
-                          {BLOG_POSTS[0].category}
+                          {posts[0].category}
                         </span>
                       );
                     })()}
-                    <span className="text-xs text-zinc-500">{formatDate(BLOG_POSTS[0].date)}</span>
+                    <span className="text-xs text-zinc-500">{formatDate(posts[0].date, locale)}</span>
                     <span className="flex items-center gap-1 text-xs text-zinc-500">
                       <Clock size={11} />
-                      {BLOG_POSTS[0].readingTime} {t.reading_time}
+                      {posts[0].readingTime} {t.reading_time}
                     </span>
                     <span className="ml-auto hidden sm:inline-flex items-center gap-1 text-xs font-medium text-violet-400 bg-violet-500/10 ring-1 ring-violet-500/20 px-2.5 py-1 rounded-full">
                       {t.featured}
@@ -136,10 +138,10 @@ export default function BlogPage() {
                   </div>
 
                   <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-violet-100 transition-colors leading-tight">
-                    {BLOG_POSTS[0].title}
+                    {posts[0].title}
                   </h2>
                   <p className="text-zinc-400 leading-relaxed mb-6 max-w-2xl">
-                    {BLOG_POSTS[0].excerpt}
+                    {posts[0].excerpt}
                   </p>
                   <div className="inline-flex items-center gap-2 text-sm font-semibold text-violet-400 group-hover:text-violet-300 transition-colors">
                     {t.read_article}
@@ -151,9 +153,9 @@ export default function BlogPage() {
           )}
 
           {/* Rest of posts */}
-          {BLOG_POSTS.length > 1 && (
+          {posts.length > 1 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {BLOG_POSTS.slice(1).map((post) => {
+              {posts.slice(1).map((post) => {
                 const style = getCategoryStyle(post.category);
                 return (
                   <Link
@@ -181,7 +183,7 @@ export default function BlogPage() {
 
                         <div className="flex items-center justify-between mt-auto pt-4 border-t border-zinc-800/60">
                           <div className="flex items-center gap-3 text-xs text-zinc-500">
-                            <span>{formatDate(post.date)}</span>
+                            <span>{formatDate(post.date, locale)}</span>
                             <span className="flex items-center gap-1">
                               <Clock size={10} />
                               {post.readingTime}
