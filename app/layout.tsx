@@ -16,54 +16,53 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://valentin-milliand.vercel.app"),
+  metadataBase: new URL("https://aevia.vercel.app"),
   title: {
-    default: "Valentin Milliand — Full Stack Engineer & AI Builder",
-    template: "%s | Valentin Milliand",
+    default: "Aevia — Digital tools for businesses",
+    template: "%s | Aevia",
   },
   description:
-    "Full Stack Engineer & AI Builder specializing in NestJS, Next.js, and Anthropic Claude. Building production-ready AI products: multi-channel inboxes, creator platforms, security SaaS, and developer tools.",
+    "Aevia offers 3 digital products for SMBs: AeviaLaunch (website in 7 days), AeviaSecurity (security audit in 60s), and AeviaInbox (multichannel CRM with AI).",
   keywords: [
-    "Valentin Milliand",
-    "Full Stack Engineer",
-    "AI Builder",
-    "NestJS",
-    "Next.js",
-    "TypeScript",
-    "Anthropic Claude",
-    "SaaS",
-    "freelance developer",
-    "AI products",
+    "Aevia",
+    "website in 7 days",
+    "security audit",
+    "multichannel CRM",
+    "AeviaLaunch",
+    "AeviaSecurity",
+    "AeviaInbox",
+    "digital agency",
+    "SMB tools",
   ],
-  authors: [{ name: "Valentin Milliand", url: "https://valentin-milliand.vercel.app" }],
-  creator: "Valentin Milliand",
+  authors: [{ name: "Aevia", url: "https://aevia.vercel.app" }],
+  creator: "Aevia",
   icons: {
     icon: "/favicon.svg",
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://valentin-milliand.vercel.app",
-    siteName: "Valentin Milliand",
-    title: "Valentin Milliand — Full Stack Engineer & AI Builder",
+    locale: "fr_FR",
+    url: "https://aevia.vercel.app",
+    siteName: "Aevia",
+    title: "Aevia — Digital tools for businesses",
     description:
-      "Full Stack Engineer & AI Builder specializing in NestJS, Next.js, and Anthropic Claude. Building production-ready AI products.",
+      "Website in 7 days, security audit in 60s, multichannel CRM with AI. Three tools built for SMBs.",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Valentin Milliand — Full Stack Engineer & AI Builder",
+        alt: "Aevia — Digital tools for businesses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Valentin Milliand — Full Stack Engineer & AI Builder",
+    title: "Aevia — Digital tools for businesses",
     description:
-      "Full Stack Engineer & AI Builder specializing in NestJS, Next.js, and Anthropic Claude. Building production-ready AI products.",
+      "Website in 7 days, security audit in 60s, multichannel CRM with AI.",
     images: ["/og.png"],
-    creator: "@valentinmilliand",
+    creator: "@aevia_io",
   },
   robots: {
     index: true,
@@ -71,30 +70,20 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: "https://valentin-milliand.vercel.app",
+    canonical: "https://aevia.vercel.app",
   },
 };
 
-const personSchema = {
+const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Valentin Milliand',
-  url: 'https://valentin-milliand.vercel.app',
-  jobTitle: 'Full Stack Engineer & AI Builder',
-  description:
-    'Full Stack Engineer specializing in NestJS, Next.js, TypeScript, and Anthropic Claude. Building production-ready AI products.',
+  '@type': 'Organization',
+  name: 'Aevia',
+  url: 'https://aevia.vercel.app',
+  description: 'Digital agency offering websites, security audits and multichannel CRM for SMBs.',
+  founder: { '@type': 'Person', name: 'Valentin Milliand' },
   sameAs: [
     'https://github.com/Maeglin10',
     'https://linkedin.com/in/valentin-milliand',
-  ],
-  knowsAbout: [
-    'NestJS',
-    'Next.js',
-    'TypeScript',
-    'PostgreSQL',
-    'Anthropic Claude',
-    'AI product development',
-    'SaaS',
   ],
 }
 
@@ -111,7 +100,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#09090b] text-white">

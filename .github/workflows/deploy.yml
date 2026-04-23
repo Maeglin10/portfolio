@@ -1,0 +1,29 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel@latest
+          vercel deploy --prod --force --token="${{ secrets.VERCEL_TOKEN }}" --yes
+        env:
+          VERCEL_ORG_ID: team_IAhDhsMNFPHNmYUhBJCeXPf9
+          VERCEL_PROJECT_ID: prj_l0Nuokxgag6b4asiwkhmZZY4VLNI
+
+      - name: Re-alias aevia.vercel.app
+        run: |
+          DEPLOY_UID=$(curl -s "https://api.vercel.com/v6/deployments?projectId=prj_l0Nuokxgag6b4asiwkhmZZY4VLNI&limit=1" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" | python3 -c "import sys,json; print(json.load(sys.stdin)['deployments'][0]['uid'])")
+          curl -s -X POST "https://api.vercel.com/v2/deployments/$DEPLOY_UID/aliases" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"alias":"aevia.vercel.app"}'
+          echo "✅ aevia.vercel.app aliased to $DEPLOY_UID"

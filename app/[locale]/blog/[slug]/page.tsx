@@ -6,6 +6,44 @@ import { ArrowLeft, Clock, Tag, Calendar, ArrowRight } from "lucide-react";
 import { BLOG_POSTS, getBlogPost, formatDate } from "@/lib/blog-posts";
 import { notFound } from "next/navigation";
 
+type ArticleLocale = "fr" | "en" | "es" | "de" | "pt";
+
+const ARTICLE_T: Record<ArticleLocale, {
+  back: string; reading_time: string; continue_reading: string;
+  cta_title: string; cta_sub: string; contact_btn: string; all_articles: string;
+}> = {
+  fr: {
+    back: "Retour au blog", reading_time: "de lecture", continue_reading: "Continuer à lire",
+    cta_title: "Prêt à passer à l'action ?",
+    cta_sub: "Site web, audit sécurité ou gestion client — parlons de votre projet en 30 minutes.",
+    contact_btn: "Prendre contact", all_articles: "Voir tous les articles",
+  },
+  en: {
+    back: "Back to blog", reading_time: "read", continue_reading: "Keep reading",
+    cta_title: "Ready to take action?",
+    cta_sub: "Website, security audit or customer management — let's discuss your project in 30 minutes.",
+    contact_btn: "Get in touch", all_articles: "All articles",
+  },
+  es: {
+    back: "Volver al blog", reading_time: "de lectura", continue_reading: "Seguir leyendo",
+    cta_title: "¿Listo para actuar?",
+    cta_sub: "Sitio web, auditoría de seguridad o gestión de clientes — hablemos de tu proyecto en 30 minutos.",
+    contact_btn: "Contactar", all_articles: "Todos los artículos",
+  },
+  de: {
+    back: "Zurück zum Blog", reading_time: "Lesezeit", continue_reading: "Weiterlesen",
+    cta_title: "Bereit, aktiv zu werden?",
+    cta_sub: "Website, Sicherheitsaudit oder Kundenverwaltung — sprechen wir 30 Minuten über Ihr Projekt.",
+    contact_btn: "Kontakt aufnehmen", all_articles: "Alle Artikel",
+  },
+  pt: {
+    back: "Voltar ao blog", reading_time: "de leitura", continue_reading: "Continuar lendo",
+    cta_title: "Pronto para agir?",
+    cta_sub: "Site web, auditoria de segurança ou gestão de clientes — vamos falar sobre seu projeto em 30 minutos.",
+    contact_btn: "Entrar em contato", all_articles: "Todos os artigos",
+  },
+};
+
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; ring: string }> = {
   "Web & Marketing": { bg: "bg-violet-500/10", text: "text-violet-300", ring: "ring-violet-500/20" },
   "Cybersécurité": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
@@ -96,7 +134,8 @@ function renderContent(content: string) {
 
 export default function ArticlePage({ params }: { params: { slug: string; locale: string } }) {
   const pathname = usePathname();
-  const locale = params.locale ?? pathname.split("/")[1] ?? "fr";
+  const locale = (params.locale ?? pathname.split("/")[1] ?? "fr") as ArticleLocale;
+  const t = ARTICLE_T[locale] ?? ARTICLE_T.fr;
   const post = getBlogPost(params.slug);
 
   if (!post) notFound();
@@ -117,7 +156,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
             className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-300 transition-colors mb-8 group"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
-            Retour au blog
+            {t.back}
           </Link>
 
           {/* Meta */}
@@ -132,7 +171,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
             </span>
             <span className="flex items-center gap-1.5 text-xs text-zinc-500">
               <Clock size={11} />
-              {post.readingTime} de lecture
+              {post.readingTime} {t.reading_time}
             </span>
           </div>
 
@@ -164,7 +203,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
         <section className="px-6 pb-16">
           <div className="mx-auto max-w-3xl">
             <div className="border-t border-zinc-800/60 pt-12">
-              <h2 className="text-lg font-bold text-white mb-6">Continuer à lire</h2>
+              <h2 className="text-lg font-bold text-white mb-6">{t.continue_reading}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {relatedPosts.map((related) => {
                   const rs = getCategoryStyle(related.category);
@@ -204,25 +243,21 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
           <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-900/50 p-8 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 rounded-2xl" />
             <div className="relative z-10">
-              <h2 className="text-xl font-bold text-white mb-2">
-                Prêt à passer à l'action ?
-              </h2>
-              <p className="text-zinc-400 text-sm max-w-md mx-auto mb-6">
-                Site web, audit sécurité ou gestion client — parlons de votre projet en 30 minutes.
-              </p>
+              <h2 className="text-xl font-bold text-white mb-2">{t.cta_title}</h2>
+              <p className="text-zinc-400 text-sm max-w-md mx-auto mb-6">{t.cta_sub}</p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href={`/${locale}/contact`}
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
                 >
-                  Prendre contact
+                  {t.contact_btn}
                   <ArrowRight size={16} />
                 </Link>
                 <Link
                   href={`/${locale}/blog`}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-700 text-zinc-400 text-sm font-medium hover:border-zinc-500 hover:text-white transition-colors"
                 >
-                  Voir tous les articles
+                  {t.all_articles}
                 </Link>
               </div>
             </div>
