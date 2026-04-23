@@ -5,6 +5,55 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, Clock, Tag, BookOpen } from "lucide-react";
 import { BLOG_POSTS, formatDate } from "@/lib/blog-posts";
 
+type BlogLocale = "fr" | "en" | "es" | "de" | "pt";
+
+const BLOG_T: Record<BlogLocale, {
+  badge: string; h1_1: string; h1_2: string; subtitle: string;
+  reading_time: string; featured: string; read_article: string;
+  cta_title: string; cta_sub: string; cta_btn: string;
+}> = {
+  fr: {
+    badge: "Blog Aevia", h1_1: "Conseils &", h1_2: "ressources",
+    subtitle: "Web, sécurité, CRM — des articles pratiques pour aider votre business à grandir sur internet.",
+    reading_time: "de lecture", featured: "Article à la une", read_article: "Lire l'article",
+    cta_title: "Besoin d'un coup de main pour votre présence digitale ?",
+    cta_sub: "Site web, sécurité, gestion client — on peut en parler en 30 minutes.",
+    cta_btn: "Prendre contact",
+  },
+  en: {
+    badge: "Aevia Blog", h1_1: "Tips &", h1_2: "resources",
+    subtitle: "Web, security, CRM — practical articles to help your business grow online.",
+    reading_time: "read", featured: "Featured article", read_article: "Read article",
+    cta_title: "Need help with your digital presence?",
+    cta_sub: "Website, security, customer management — let's talk for 30 minutes.",
+    cta_btn: "Get in touch",
+  },
+  es: {
+    badge: "Blog Aevia", h1_1: "Consejos &", h1_2: "recursos",
+    subtitle: "Web, seguridad, CRM — artículos prácticos para ayudar a tu negocio a crecer en internet.",
+    reading_time: "de lectura", featured: "Artículo destacado", read_article: "Leer el artículo",
+    cta_title: "¿Necesitas ayuda con tu presencia digital?",
+    cta_sub: "Sitio web, seguridad, gestión de clientes — podemos hablarlo en 30 minutos.",
+    cta_btn: "Contactar",
+  },
+  de: {
+    badge: "Aevia Blog", h1_1: "Tipps &", h1_2: "Ressourcen",
+    subtitle: "Web, Sicherheit, CRM — praktische Artikel, die Ihrem Business helfen, online zu wachsen.",
+    reading_time: "Lesezeit", featured: "Featured Artikel", read_article: "Artikel lesen",
+    cta_title: "Benötigen Sie Hilfe bei Ihrer digitalen Präsenz?",
+    cta_sub: "Website, Sicherheit, Kundenverwaltung — sprechen wir 30 Minuten darüber.",
+    cta_btn: "Kontakt aufnehmen",
+  },
+  pt: {
+    badge: "Blog Aevia", h1_1: "Dicas &", h1_2: "recursos",
+    subtitle: "Web, segurança, CRM — artigos práticos para ajudar seu negócio a crescer na internet.",
+    reading_time: "de leitura", featured: "Artigo em destaque", read_article: "Ler o artigo",
+    cta_title: "Precisa de ajuda com sua presença digital?",
+    cta_sub: "Site web, segurança, gestão de clientes — podemos conversar em 30 minutos.",
+    cta_btn: "Entrar em contato",
+  },
+};
+
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; ring: string }> = {
   "Web & Marketing": { bg: "bg-violet-500/10", text: "text-violet-300", ring: "ring-violet-500/20" },
   "Cybersécurité": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
@@ -23,7 +72,8 @@ function getCategoryStyle(category: string) {
 
 export default function BlogPage() {
   const pathname = usePathname();
-  const locale = pathname.split("/")[1] ?? "fr";
+  const locale = (pathname.split("/")[1] ?? "fr") as BlogLocale;
+  const t = BLOG_T[locale] ?? BLOG_T.fr;
 
   return (
     <div className="min-h-screen">
@@ -37,17 +87,17 @@ export default function BlogPage() {
           <div className="flex items-center gap-2 mb-6">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium">
               <BookOpen size={12} />
-              Blog Aevia
+              {t.badge}
             </div>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-[1.1] mb-4">
-            Conseils &{" "}
+            {t.h1_1}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
-              ressources
+              {t.h1_2}
             </span>
           </h1>
           <p className="text-zinc-400 text-lg max-w-xl leading-relaxed">
-            Web, sécurité, CRM — des articles pratiques pour aider votre business à grandir sur internet.
+            {t.subtitle}
           </p>
         </div>
       </section>
@@ -78,10 +128,10 @@ export default function BlogPage() {
                     <span className="text-xs text-zinc-500">{formatDate(BLOG_POSTS[0].date)}</span>
                     <span className="flex items-center gap-1 text-xs text-zinc-500">
                       <Clock size={11} />
-                      {BLOG_POSTS[0].readingTime} de lecture
+                      {BLOG_POSTS[0].readingTime} {t.reading_time}
                     </span>
                     <span className="ml-auto hidden sm:inline-flex items-center gap-1 text-xs font-medium text-violet-400 bg-violet-500/10 ring-1 ring-violet-500/20 px-2.5 py-1 rounded-full">
-                      Article à la une
+                      {t.featured}
                     </span>
                   </div>
 
@@ -92,7 +142,7 @@ export default function BlogPage() {
                     {BLOG_POSTS[0].excerpt}
                   </p>
                   <div className="inline-flex items-center gap-2 text-sm font-semibold text-violet-400 group-hover:text-violet-300 transition-colors">
-                    Lire l'article
+                    {t.read_article}
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -156,16 +206,16 @@ export default function BlogPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 rounded-2xl" />
             <div className="relative z-10">
               <h2 className="text-xl font-bold text-white mb-2">
-                Besoin d'un coup de main pour votre présence digitale ?
+                {t.cta_title}
               </h2>
               <p className="text-zinc-400 text-sm max-w-md mx-auto mb-6">
-                Site web, sécurité, gestion client — on peut en parler en 30 minutes.
+                {t.cta_sub}
               </p>
               <Link
                 href={`/${locale}/contact`}
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
               >
-                Prendre contact
+                {t.cta_btn}
                 <ArrowRight size={16} />
               </Link>
             </div>

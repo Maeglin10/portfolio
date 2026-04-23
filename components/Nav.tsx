@@ -6,44 +6,49 @@ import { useState, useTransition } from "react";
 import { Menu, X, Sparkles, Shield, MessageSquare, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import { AeviaLogo } from "@/components/AeviaLogo";
 
-// navLinks are locale-agnostic paths — locale prefix is prepended in the component
-const navLinks = [
-  { href: "/templates", label: "Sites web" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+type NavLocale = "fr" | "en" | "es" | "de" | "pt";
 
-// navLinks kept minimal — Landing/Ecom/Vitrine live inside /templates showcase
-
-const products = [
-  {
-    name: "AeviaLaunch",
-    href: "https://aevia-launch.vercel.app",
-    internal: "/templates",
-    description: "Site web en 7 jours — 3 templates pro",
-    icon: Sparkles,
-    status: "live" as const,
-    external: false,
+const NAV_T: Record<NavLocale, {
+  websites: string; blog: string; contact: string;
+  products: string; soon: string; free_audit: string;
+  desc_launch: string; desc_security: string; desc_inbox: string;
+}> = {
+  fr: {
+    websites: "Sites web", blog: "Blog", contact: "Contact",
+    products: "Produits", soon: "Bientôt", free_audit: "Audit gratuit",
+    desc_launch: "Site web en 7 jours — 3 templates pro",
+    desc_security: "Audit sécurité & performance en 60s",
+    desc_inbox: "CRM multi-canal — WhatsApp, Instagram, Email",
   },
-  {
-    name: "AeviaSecurity",
-    href: "https://web-bx4tjhk2h-valentins-projects-7cad2c95.vercel.app",
-    internal: null,
-    description: "Audit sécurité & performance en 60s",
-    icon: Shield,
-    status: "live" as const,
-    external: true,
+  en: {
+    websites: "Websites", blog: "Blog", contact: "Contact",
+    products: "Products", soon: "Coming soon", free_audit: "Free audit",
+    desc_launch: "Website in 7 days — 3 pro templates",
+    desc_security: "Security & performance audit in 60s",
+    desc_inbox: "Multi-channel CRM — WhatsApp, Instagram, Email",
   },
-  {
-    name: "AeviaInbox",
-    href: "#",
-    internal: null,
-    description: "CRM multi-canal — WhatsApp, Instagram, Email",
-    icon: MessageSquare,
-    status: "soon" as const,
-    external: false,
+  es: {
+    websites: "Sitios web", blog: "Blog", contact: "Contacto",
+    products: "Productos", soon: "Próximamente", free_audit: "Auditoría gratuita",
+    desc_launch: "Sitio web en 7 días — 3 plantillas pro",
+    desc_security: "Auditoría de seguridad & rendimiento en 60s",
+    desc_inbox: "CRM multicanal — WhatsApp, Instagram, Email",
   },
-];
+  de: {
+    websites: "Webseiten", blog: "Blog", contact: "Kontakt",
+    products: "Produkte", soon: "Demnächst", free_audit: "Kostenloser Audit",
+    desc_launch: "Website in 7 Tagen — 3 Pro-Templates",
+    desc_security: "Sicherheits- & Performance-Audit in 60s",
+    desc_inbox: "Multikanal-CRM — WhatsApp, Instagram, E-Mail",
+  },
+  pt: {
+    websites: "Sites web", blog: "Blog", contact: "Contato",
+    products: "Produtos", soon: "Em breve", free_audit: "Auditoria gratuita",
+    desc_launch: "Site web em 7 dias — 3 templates pro",
+    desc_security: "Auditoria de segurança & performance em 60s",
+    desc_inbox: "CRM multicanal — WhatsApp, Instagram, Email",
+  },
+};
 
 const LOCALES = [
   { code: "fr", label: "Français", flag: "🇫🇷" },
@@ -114,14 +119,49 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // Detect locale from pathname (e.g. /fr/blog → "fr")
   const segments = pathname.split("/");
-  const locale = LOCALES.some((l) => l.code === segments[1]) ? segments[1] : "fr";
+  const locale = (LOCALES.some((l) => l.code === segments[1]) ? segments[1] : "fr") as NavLocale;
+  const t = NAV_T[locale] ?? NAV_T.fr;
 
-  // Build a locale-prefixed href for internal links
   function localePath(path: string) {
     return `/${locale}${path}`;
   }
+
+  const navLinks = [
+    { href: "/templates", label: t.websites },
+    { href: "/blog", label: t.blog },
+    { href: "/contact", label: t.contact },
+  ];
+
+  const products = [
+    {
+      name: "AeviaLaunch",
+      href: "https://aevia-launch.vercel.app",
+      internal: "/templates",
+      description: t.desc_launch,
+      icon: Sparkles,
+      status: "live" as const,
+      external: false,
+    },
+    {
+      name: "AeviaSecurity",
+      href: "https://web-bx4tjhk2h-valentins-projects-7cad2c95.vercel.app",
+      internal: null,
+      description: t.desc_security,
+      icon: Shield,
+      status: "live" as const,
+      external: true,
+    },
+    {
+      name: "AeviaInbox",
+      href: "#",
+      internal: null,
+      description: t.desc_inbox,
+      icon: MessageSquare,
+      status: "soon" as const,
+      external: false,
+    },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800/60 bg-[#09090b]/80 backdrop-blur-md">
@@ -138,7 +178,7 @@ export function Nav() {
             onMouseLeave={() => setDropdownOpen(false)}
           >
             <button className="px-3 py-1.5 rounded-md text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors flex items-center gap-1">
-              Produits
+              {t.products}
               <ChevronDown size={14} className={`transition-transform ${dropdownOpen ? "rotate-180" : ""}`} />
             </button>
 
@@ -160,7 +200,7 @@ export function Nav() {
                               {p.name}
                             </span>
                             {p.status === "soon" ? (
-                              <span className="bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.5 rounded-full font-medium">Bientôt</span>
+                              <span className="bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.5 rounded-full font-medium">{t.soon}</span>
                             ) : (
                               <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded-full font-medium">Live</span>
                             )}
@@ -203,7 +243,7 @@ export function Nav() {
             rel="noopener noreferrer"
             className="ml-2 px-4 py-1.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
           >
-            Audit gratuit
+            {t.free_audit}
           </a>
         </nav>
 
@@ -235,7 +275,7 @@ export function Nav() {
           })}
 
           <div className="mt-2 pt-2 border-t border-zinc-800 flex flex-col gap-1">
-            <p className="text-xs text-zinc-600 px-3 py-1 uppercase tracking-wider font-medium">Produits</p>
+            <p className="text-xs text-zinc-600 px-3 py-1 uppercase tracking-wider font-medium">{t.products}</p>
             {products.map((p) => {
               const isLive = p.status === "live";
               const href = p.internal ? localePath(p.internal) : (p.external && isLive ? p.href : "#");
@@ -251,7 +291,7 @@ export function Nav() {
                 >
                   <span>{p.name}</span>
                   {p.status === "soon" ? (
-                    <span className="bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.5 rounded-full">Bientôt</span>
+                    <span className="bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.5 rounded-full">{t.soon}</span>
                   ) : (
                     <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded-full">Live</span>
                   )}
@@ -261,7 +301,7 @@ export function Nav() {
           </div>
 
           <div className="mt-2 pt-2 border-t border-zinc-800">
-            <p className="text-xs text-zinc-600 px-3 py-1 uppercase tracking-wider font-medium mb-1">Langue</p>
+            <p className="text-xs text-zinc-600 px-3 py-1 uppercase tracking-wider font-medium mb-1">{locale === "de" ? "Sprache" : locale === "es" ? "Idioma" : locale === "pt" ? "Idioma" : locale === "en" ? "Language" : "Langue"}</p>
             <LangSwitcher />
           </div>
 
@@ -272,7 +312,7 @@ export function Nav() {
               rel="noopener noreferrer"
               className="block w-full text-center px-4 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
             >
-              Audit gratuit
+              {t.free_audit}
             </a>
           </div>
         </div>
