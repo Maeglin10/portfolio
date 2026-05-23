@@ -165,7 +165,7 @@ export function Nav() {
     },
     {
       name: "AeviaInbox",
-      href: "https://skybot-inbox-ui.vercel.app",
+      href: "https://aevia-inbox.vercel.app",
       internal: "/products/inbox",
       description: t.desc_inbox,
       icon: MessageSquare,
