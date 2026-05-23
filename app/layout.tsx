@@ -50,7 +50,7 @@ export const metadata: Metadata = {
       "Website in 7 days, security audit in 60s, multichannel CRM with AI. Three tools built for SMBs.",
     images: [
       {
-        url: "/og.png",
+        url: "/api/og",
         width: 1200,
         height: 630,
         alt: "Aevia — Digital tools for businesses",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     title: "Aevia — Digital tools for businesses",
     description:
       "Website in 7 days, security audit in 60s, multichannel CRM with AI.",
-    images: ["/og.png"],
+    images: ["/api/og"],
     creator: "@aevia_io",
   },
   robots: {
