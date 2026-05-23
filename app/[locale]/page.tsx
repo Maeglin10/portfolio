@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { ArrowRight, ExternalLink, Sparkles, Shield, MessageSquare, Globe, ShoppingBag, Zap, CheckCircle2, Layout, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -8,6 +9,8 @@ import { LinkedinIcon } from "@/components/LinkedinIcon";
 import { GithubIcon } from "@/components/GithubIcon";
 
 export default function Home() {
+  const params = useParams();
+  const locale = (params?.locale as string) ?? "fr";
   const h = useTranslations("hero");
   const st = useTranslations("stats");
   const p = useTranslations("products");
@@ -22,6 +25,7 @@ export default function Home() {
       tagline: p("launch_tagline"),
       description: p("launch_desc"),
       href: "https://aevia-launch.vercel.app",
+      productPath: `/${locale}/products/launch`,
       status: "live" as const,
       icon: <Sparkles className="w-6 h-6" />,
       accentFrom: "from-violet-500",
@@ -42,6 +46,7 @@ export default function Home() {
       tagline: p("security_tagline"),
       description: p("security_desc"),
       href: "https://aevia-security.vercel.app",
+      productPath: `/${locale}/products/security`,
       status: "live" as const,
       icon: <Shield className="w-6 h-6" />,
       accentFrom: "from-emerald-500",
@@ -62,6 +67,7 @@ export default function Home() {
       tagline: p("inbox_tagline"),
       description: p("inbox_desc"),
       href: "#",
+      productPath: `/${locale}/products/inbox`,
       status: "soon" as const,
       icon: <MessageSquare className="w-6 h-6" />,
       accentFrom: "from-cyan-500",
@@ -260,6 +266,12 @@ export default function Home() {
                       </Link>
                     )}
                   </div>
+                  <Link
+                    href={product.productPath}
+                    className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-zinc-500 hover:text-zinc-300 transition-colors relative z-10"
+                  >
+                    En savoir plus <ArrowRight className="w-3 h-3" />
+                  </Link>
                 </motion.div>
               );
             })}
@@ -392,9 +404,11 @@ export default function Home() {
               <span className="font-semibold text-white">Aevia</span>
               <span>· {f("tagline")}</span>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 flex-wrap justify-center">
+              <Link href={`/${locale}/products/launch`} className="hover:text-zinc-300 transition-colors">Launch</Link>
+              <Link href={`/${locale}/products/inbox`} className="hover:text-zinc-300 transition-colors">Inbox</Link>
+              <Link href={`/${locale}/products/security`} className="hover:text-zinc-300 transition-colors">Security</Link>
               <Link href="/templates" className="hover:text-zinc-300 transition-colors">{f("templates")}</Link>
-              <a href="https://aevia-security.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-300 transition-colors">{f("security")}</a>
               <Link href="/contact" className="hover:text-zinc-300 transition-colors">{f("contact")}</Link>
               <a href="https://linkedin.com/in/valentin-milliand" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <LinkedinIcon className="w-4 h-4 hover:text-zinc-300 transition-colors" />
