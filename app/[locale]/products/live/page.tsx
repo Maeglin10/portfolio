@@ -118,7 +118,7 @@ export default function LiveProductPage() {
       sub: "Pour les pros",
       features: [
         "Tout Partenaire +",
-        "Commission tips 5%",
+        "Commission tips 3%",
         "Multi-stream (Twitch / YT)",
         "Analytics avancés + API",
       ],
@@ -129,7 +129,7 @@ export default function LiveProductPage() {
   const faqs = [
     {
       q: "Quel pourcentage Aevia Live prend sur les tips ?",
-      a: "Entre 5 et 10% selon votre plan. Vous touchez le reste, payé chaque lundi par virement Stripe Connect. Aucun abonnement obligatoire — vous pouvez démarrer gratuitement.",
+      a: "Entre 3 et 10% selon votre plan (3% en Affilié, le plus bas du marché). Vous touchez le reste, payé chaque lundi par virement Stripe Connect. Aucun abonnement obligatoire — vous pouvez démarrer gratuitement.",
     },
     {
       q: "Quel équipement faut-il pour streamer ?",
