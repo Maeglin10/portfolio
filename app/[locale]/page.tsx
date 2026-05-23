@@ -66,9 +66,9 @@ export default function Home() {
       name: "AeviaInbox",
       tagline: p("inbox_tagline"),
       description: p("inbox_desc"),
-      href: "#",
+      href: "https://skybot-inbox-ui.vercel.app",
       productPath: `/${locale}/products/inbox`,
-      status: "soon" as const,
+      status: "live" as const,
       icon: <MessageSquare className="w-6 h-6" />,
       accentFrom: "from-cyan-500",
       accentTo: "to-blue-500",
@@ -80,6 +80,48 @@ export default function Home() {
         { icon: <CheckCircle2 className="w-4 h-4" />, label: p("inbox_f4") },
       ],
       cta: p("inbox_cta"),
+      ctaSecondary: null,
+      ctaSecondaryHref: null,
+    },
+    {
+      name: "AeviaMarket",
+      tagline: "Marketplace freelance",
+      description: "Vendez vos services en ligne sans intermédiaire. Stripe Connect intégré, gestion des litiges, payouts hebdo.",
+      href: "https://aevia-market.vercel.app",
+      productPath: `/${locale}/products/market`,
+      status: "live" as const,
+      icon: <ShoppingBag className="w-6 h-6" />,
+      accentFrom: "from-emerald-500",
+      accentTo: "to-teal-500",
+      glow: "group-hover:shadow-emerald-500/25",
+      features: [
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: "Stripe Connect intégré" },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: "Commission dès 4%" },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: "Gestion des litiges" },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: "Payouts hebdomadaires" },
+      ],
+      cta: "Découvrir la marketplace",
+      ctaSecondary: null,
+      ctaSecondaryHref: null,
+    },
+    {
+      name: "AeviaLive",
+      tagline: "Streaming live",
+      description: "Diffusion live HLS basse latence + tips en temps réel. Pour créateurs qui veulent monétiser leur communauté.",
+      href: "https://aevia-live.vercel.app",
+      productPath: `/${locale}/products/live`,
+      status: "live" as const,
+      icon: <Zap className="w-6 h-6" />,
+      accentFrom: "from-rose-500",
+      accentTo: "to-pink-500",
+      glow: "group-hover:shadow-rose-500/25",
+      features: [
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: "Stream HD basse latence" },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: "Tips Stripe Connect" },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: "Chat modéré IA" },
+        { icon: <CheckCircle2 className="w-4 h-4" />, label: "Payouts hebdo" },
+      ],
+      cta: "Découvrir AeviaLive",
       ctaSecondary: null,
       ctaSecondaryHref: null,
     },
@@ -408,6 +450,8 @@ export default function Home() {
               <Link href={`/${locale}/products/launch`} className="hover:text-zinc-300 transition-colors">Launch</Link>
               <Link href={`/${locale}/products/inbox`} className="hover:text-zinc-300 transition-colors">Inbox</Link>
               <Link href={`/${locale}/products/security`} className="hover:text-zinc-300 transition-colors">Security</Link>
+              <Link href={`/${locale}/products/market`} className="hover:text-zinc-300 transition-colors">Market</Link>
+              <Link href={`/${locale}/products/live`} className="hover:text-zinc-300 transition-colors">Live</Link>
               <Link href="/templates" className="hover:text-zinc-300 transition-colors">{f("templates")}</Link>
               <Link href="/contact" className="hover:text-zinc-300 transition-colors">{f("contact")}</Link>
               <a href="https://linkedin.com/in/valentin-milliand" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">

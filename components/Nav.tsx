@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { Menu, X, Sparkles, Shield, MessageSquare, ChevronDown, ExternalLink, Globe } from "lucide-react";
+import { Menu, X, Sparkles, Shield, MessageSquare, Store, Radio, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import { AeviaLogo } from "@/components/AeviaLogo";
 
 type NavLocale = "fr" | "en" | "es" | "de" | "pt";
@@ -12,6 +12,7 @@ const NAV_T: Record<NavLocale, {
   websites: string; blog: string; contact: string;
   products: string; soon: string; free_audit: string;
   desc_launch: string; desc_security: string; desc_inbox: string;
+  desc_market: string; desc_live: string;
 }> = {
   fr: {
     websites: "Sites web", blog: "Blog", contact: "Contact",
@@ -19,6 +20,8 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Site web en 7 jours — 3 templates pro",
     desc_security: "Audit sécurité & performance en 60s",
     desc_inbox: "CRM multi-canal — WhatsApp, Instagram, Email",
+    desc_market: "Marketplace de services freelance — Stripe Connect",
+    desc_live: "Streaming live avec tips temps réel",
   },
   en: {
     websites: "Websites", blog: "Blog", contact: "Contact",
@@ -26,6 +29,8 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Website in 7 days — 3 pro templates",
     desc_security: "Security & performance audit in 60s",
     desc_inbox: "Multi-channel CRM — WhatsApp, Instagram, Email",
+    desc_market: "Freelance services marketplace — Stripe Connect",
+    desc_live: "Live streaming with real-time tips",
   },
   es: {
     websites: "Sitios web", blog: "Blog", contact: "Contacto",
@@ -33,6 +38,8 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Sitio web en 7 días — 3 plantillas pro",
     desc_security: "Auditoría de seguridad & rendimiento en 60s",
     desc_inbox: "CRM multicanal — WhatsApp, Instagram, Email",
+    desc_market: "Marketplace de servicios freelance — Stripe Connect",
+    desc_live: "Streaming en vivo con propinas en tiempo real",
   },
   de: {
     websites: "Webseiten", blog: "Blog", contact: "Kontakt",
@@ -40,6 +47,8 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Website in 7 Tagen — 3 Pro-Templates",
     desc_security: "Sicherheits- & Performance-Audit in 60s",
     desc_inbox: "Multikanal-CRM — WhatsApp, Instagram, E-Mail",
+    desc_market: "Freelance-Dienste-Marketplace — Stripe Connect",
+    desc_live: "Live-Streaming mit Echtzeit-Tips",
   },
   pt: {
     websites: "Sites web", blog: "Blog", contact: "Contato",
@@ -47,6 +56,8 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Site web em 7 dias — 3 templates pro",
     desc_security: "Auditoria de segurança & performance em 60s",
     desc_inbox: "CRM multicanal — WhatsApp, Instagram, Email",
+    desc_market: "Marketplace de serviços freelance — Stripe Connect",
+    desc_live: "Streaming ao vivo com tips em tempo real",
   },
 };
 
@@ -154,11 +165,29 @@ export function Nav() {
     },
     {
       name: "AeviaInbox",
-      href: "#",
+      href: "https://skybot-inbox-ui.vercel.app",
       internal: "/products/inbox",
       description: t.desc_inbox,
       icon: MessageSquare,
-      status: "soon" as const,
+      status: "live" as const,
+      external: false,
+    },
+    {
+      name: "AeviaMarket",
+      href: "https://aevia-market.vercel.app",
+      internal: "/products/market",
+      description: t.desc_market,
+      icon: Store,
+      status: "live" as const,
+      external: false,
+    },
+    {
+      name: "AeviaLive",
+      href: "https://aevia-live.vercel.app",
+      internal: "/products/live",
+      description: t.desc_live,
+      icon: Radio,
+      status: "live" as const,
       external: false,
     },
   ];
@@ -199,11 +228,7 @@ export function Nav() {
                             <span className="font-semibold text-white text-sm group-hover:text-violet-300 transition-colors">
                               {p.name}
                             </span>
-                            {p.status === "soon" ? (
-                              <span className="bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.5 rounded-full font-medium">{t.soon}</span>
-                            ) : (
-                              <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded-full font-medium">Live</span>
-                            )}
+                            <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded-full font-medium">Live</span>
                             {isExternal && <ExternalLink className="w-3 h-3 text-zinc-600 group-hover:text-zinc-400 transition-colors" />}
                           </div>
                           <p className="text-xs text-zinc-500">{p.description}</p>
@@ -290,11 +315,7 @@ export function Nav() {
                   className="flex items-center justify-between px-3 py-2.5 rounded-md text-sm text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors"
                 >
                   <span>{p.name}</span>
-                  {p.status === "soon" ? (
-                    <span className="bg-amber-500/20 text-amber-300 text-[10px] px-1.5 py-0.5 rounded-full">{t.soon}</span>
-                  ) : (
-                    <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded-full">Live</span>
-                  )}
+                  <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded-full">Live</span>
                 </Tag>
               );
             })}
