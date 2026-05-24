@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { Menu, X, Sparkles, Shield, MessageSquare, Store, Radio, ChevronDown, ExternalLink, Globe } from "lucide-react";
+import { Menu, X, Sparkles, Shield, MessageSquare, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import { AeviaLogo } from "@/components/AeviaLogo";
 
 type NavLocale = "fr" | "en" | "es" | "de" | "pt";
@@ -12,7 +12,6 @@ const NAV_T: Record<NavLocale, {
   websites: string; blog: string; contact: string;
   products: string; soon: string; free_audit: string;
   desc_launch: string; desc_security: string; desc_inbox: string;
-  desc_market: string; desc_live: string;
 }> = {
   fr: {
     websites: "Sites web", blog: "Blog", contact: "Contact",
@@ -20,8 +19,6 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Site web en 7 jours — 3 templates pro",
     desc_security: "Audit sécurité & performance en 60s",
     desc_inbox: "CRM multi-canal — WhatsApp, Instagram, Email",
-    desc_market: "Marketplace de services freelance — Stripe Connect",
-    desc_live: "Streaming live avec tips temps réel",
   },
   en: {
     websites: "Websites", blog: "Blog", contact: "Contact",
@@ -29,8 +26,6 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Website in 7 days — 3 pro templates",
     desc_security: "Security & performance audit in 60s",
     desc_inbox: "Multi-channel CRM — WhatsApp, Instagram, Email",
-    desc_market: "Freelance services marketplace — Stripe Connect",
-    desc_live: "Live streaming with real-time tips",
   },
   es: {
     websites: "Sitios web", blog: "Blog", contact: "Contacto",
@@ -38,8 +33,6 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Sitio web en 7 días — 3 plantillas pro",
     desc_security: "Auditoría de seguridad & rendimiento en 60s",
     desc_inbox: "CRM multicanal — WhatsApp, Instagram, Email",
-    desc_market: "Marketplace de servicios freelance — Stripe Connect",
-    desc_live: "Streaming en vivo con propinas en tiempo real",
   },
   de: {
     websites: "Webseiten", blog: "Blog", contact: "Kontakt",
@@ -47,8 +40,6 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Website in 7 Tagen — 3 Pro-Templates",
     desc_security: "Sicherheits- & Performance-Audit in 60s",
     desc_inbox: "Multikanal-CRM — WhatsApp, Instagram, E-Mail",
-    desc_market: "Freelance-Dienste-Marketplace — Stripe Connect",
-    desc_live: "Live-Streaming mit Echtzeit-Tips",
   },
   pt: {
     websites: "Sites web", blog: "Blog", contact: "Contato",
@@ -56,8 +47,6 @@ const NAV_T: Record<NavLocale, {
     desc_launch: "Site web em 7 dias — 3 templates pro",
     desc_security: "Auditoria de segurança & performance em 60s",
     desc_inbox: "CRM multicanal — WhatsApp, Instagram, Email",
-    desc_market: "Marketplace de serviços freelance — Stripe Connect",
-    desc_live: "Streaming ao vivo com tips em tempo real",
   },
 };
 
@@ -116,7 +105,7 @@ function LangSwitcher() {
             >
               <span>{l.flag}</span>
               <span>{l.label}</span>
-              {l.code === detectedCode && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-violet-400" />}
+              {l.code === detectedCode && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-red-400" />}
             </button>
           ))}
         </div>
@@ -172,24 +161,6 @@ export function Nav() {
       status: "live" as const,
       external: false,
     },
-    {
-      name: "AeviaMarket",
-      href: "https://aevia-market.vercel.app",
-      internal: "/products/market",
-      description: t.desc_market,
-      icon: Store,
-      status: "live" as const,
-      external: false,
-    },
-    {
-      name: "AeviaLive",
-      href: "https://aevia-live.vercel.app",
-      internal: "/products/live",
-      description: t.desc_live,
-      icon: Radio,
-      status: "live" as const,
-      external: false,
-    },
   ];
 
   return (
@@ -222,10 +193,10 @@ export function Nav() {
 
                     const content = (
                       <div className="flex gap-3 items-start p-2.5 rounded-lg hover:bg-zinc-800/60 transition-colors cursor-pointer group">
-                        <Icon className="w-5 h-5 text-violet-400 shrink-0 mt-0.5" />
+                        <Icon className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-0.5">
-                            <span className="font-semibold text-white text-sm group-hover:text-violet-300 transition-colors">
+                            <span className="font-semibold text-white text-sm group-hover:text-red-300 transition-colors">
                               {p.name}
                             </span>
                             <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-1.5 py-0.5 rounded-full font-medium">Live</span>
@@ -266,7 +237,7 @@ export function Nav() {
             href="https://web-bx4tjhk2h-valentins-projects-7cad2c95.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 px-4 py-1.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
+            className="ml-2 px-4 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-sm font-semibold transition-colors"
           >
             {t.free_audit}
           </a>
@@ -331,7 +302,7 @@ export function Nav() {
               href="https://web-bx4tjhk2h-valentins-projects-7cad2c95.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center px-4 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
+              className="block w-full text-center px-4 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-sm font-semibold transition-colors"
             >
               {t.free_audit}
             </a>
