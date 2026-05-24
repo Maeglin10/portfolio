@@ -25,5 +25,7 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|_vercel|.*\\..*).*)']
+  // Exclude Next.js internals, Vercel internals, static files, AND /api routes
+  // (the API routes must not go through next-intl locale redirect)
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };

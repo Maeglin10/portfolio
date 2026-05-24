@@ -4,12 +4,12 @@ export const runtime = "edge";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const title = searchParams.get("title") ?? "5 SaaS pour entrepreneurs";
+  const title = searchParams.get("title") ?? "3 SaaS pour entrepreneurs";
   const subtitle =
     searchParams.get("subtitle") ??
-    "Launch, Inbox, Security, Market, Live — la suite Aevia pour PME et createurs.";
+    "Launch, Inbox, Security — la suite Aevia pour PME et createurs.";
 
-  const accent = "#a78bfa";
+  const accent = "#ef4444";
 
   return new ImageResponse(
     (
@@ -22,7 +22,7 @@ export async function GET(req: Request) {
           justifyContent: "center",
           padding: "80px",
           background:
-            "linear-gradient(135deg, #09090b 0%, #1a1033 50%, #1a1e4d 100%)",
+            "linear-gradient(135deg, #09090b 0%, #2a0a0a 50%, #3b0a0a 100%)",
           color: "white",
           fontFamily: "system-ui, sans-serif",
           position: "relative",
@@ -37,7 +37,7 @@ export async function GET(req: Request) {
             height: "600px",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(167,139,250,0.30) 0%, rgba(167,139,250,0) 70%)",
+              "radial-gradient(circle, rgba(239,68,68,0.32) 0%, rgba(239,68,68,0) 70%)",
             display: "flex",
           }}
         />
@@ -50,7 +50,7 @@ export async function GET(req: Request) {
             height: "500px",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(34,211,238,0.20) 0%, rgba(34,211,238,0) 70%)",
+              "radial-gradient(circle, rgba(220,38,38,0.22) 0%, rgba(220,38,38,0) 70%)",
             display: "flex",
           }}
         />
@@ -93,7 +93,7 @@ export async function GET(req: Request) {
         <div
           style={{
             fontSize: "30px",
-            color: "#c4b5fd",
+            color: "#fca5a5",
             lineHeight: 1.4,
             maxWidth: "950px",
             fontWeight: 400,
