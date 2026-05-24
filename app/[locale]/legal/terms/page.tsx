@@ -27,13 +27,13 @@ export default function TermsPage() {
           <p><span className="text-zinc-400">Statut :</span> Auto-entrepreneur, soumis au régime micro-entreprise</p>
           <p>
             <span className="text-zinc-400">Contact commercial :</span>{" "}
-            <a href="mailto:hello@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="mailto:hello@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
               hello@aevia.io
             </a>
           </p>
           <p>
             <span className="text-zinc-400">Site principal :</span>{" "}
-            <a href="https://aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="https://aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
               aevia.io
             </a>
           </p>
@@ -301,7 +301,7 @@ export default function TermsPage() {
         </p>
         <p className="text-sm leading-relaxed text-zinc-400 mb-3">
           Pour exercer ce droit, contactez-nous à{" "}
-          <a href="mailto:hello@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+          <a href="mailto:hello@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
             hello@aevia.io
           </a>{" "}
           avec l'objet &laquo; Exercice du droit de rétractation &raquo; en précisant votre
@@ -563,7 +563,7 @@ export default function TermsPage() {
         <p className="text-sm leading-relaxed text-zinc-400 mb-3">
           Le Client peut résilier son abonnement à tout moment depuis son espace de gestion
           ou en contactant{" "}
-          <a href="mailto:hello@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+          <a href="mailto:hello@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
             hello@aevia.io
           </a>.
           La résiliation prend effet à la fin de la période de facturation mensuelle en cours.
@@ -573,7 +573,7 @@ export default function TermsPage() {
           Après résiliation, les données du compte sont conservées pendant 6 mois pour
           permettre une éventuelle réactivation, puis définitivement supprimées. Le Client peut
           demander la suppression immédiate en contactant{" "}
-          <a href="mailto:privacy@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+          <a href="mailto:privacy@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
             privacy@aevia.io
           </a>.
         </p>
@@ -652,7 +652,7 @@ export default function TermsPage() {
           Pour les litiges avec des consommateurs (personnes physiques non professionnelles),
           et conformément à l'article L.612-1 du Code de la consommation, vous pouvez
           recourir gratuitement à un médiateur de la consommation. Nous contacter à{" "}
-          <a href="mailto:hello@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+          <a href="mailto:hello@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
             hello@aevia.io
           </a>{" "}
           pour toute demande de médiation.
@@ -668,7 +668,7 @@ export default function TermsPage() {
           <p className="text-zinc-300 font-semibold mb-2">Pour toute question relative aux présentes conditions :</p>
           <p className="text-zinc-400">
             <span className="text-zinc-300">Email :</span>{" "}
-            <a href="mailto:hello@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="mailto:hello@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
               hello@aevia.io
             </a>
           </p>
@@ -677,13 +677,13 @@ export default function TermsPage() {
           </p>
           <p className="text-zinc-400">
             <span className="text-zinc-300">Politique de confidentialité :</span>{" "}
-            <a href="/fr/legal/privacy" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="/fr/legal/privacy" className="text-red-400 hover:text-red-300 transition-colors">
               aevia.io/legal/privacy
             </a>
           </p>
           <p className="text-zinc-400">
             <span className="text-zinc-300">Politique de cookies :</span>{" "}
-            <a href="/fr/legal/cookies" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="/fr/legal/cookies" className="text-red-400 hover:text-red-300 transition-colors">
               aevia.io/legal/cookies
             </a>
           </p>

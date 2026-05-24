@@ -36,7 +36,7 @@ export default function PrivacyPage() {
             <span className="text-zinc-400">DPO / Contact :</span>{' '}
             <a
               href="mailto:v.milliand@gmail.com"
-              className="text-violet-400 hover:text-violet-300 transition-colors"
+              className="text-red-400 hover:text-red-300 transition-colors"
             >
               v.milliand@gmail.com
             </a>
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
           Pour exercer ces droits, contactez :{' '}
           <a
             href="mailto:v.milliand@gmail.com"
-            className="text-violet-400 hover:text-violet-300 transition-colors"
+            className="text-red-400 hover:text-red-300 transition-colors"
           >
             v.milliand@gmail.com
           </a>
@@ -113,7 +113,7 @@ export default function PrivacyPage() {
             href="https://www.cnil.fr"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-violet-400 hover:text-violet-300 transition-colors"
+            className="text-red-400 hover:text-red-300 transition-colors"
           >
             CNIL
           </a>
@@ -134,13 +134,13 @@ export default function PrivacyPage() {
       <div className="mt-12 flex gap-4 text-sm">
         <Link
           href="/legal"
-          className="text-violet-400 hover:text-violet-300 transition-colors"
+          className="text-red-400 hover:text-red-300 transition-colors"
         >
           Mentions légales
         </Link>
         <Link
           href="/terms"
-          className="text-violet-400 hover:text-violet-300 transition-colors"
+          className="text-red-400 hover:text-red-300 transition-colors"
         >
           CGV / CGU
         </Link>

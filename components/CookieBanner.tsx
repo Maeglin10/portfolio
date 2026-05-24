@@ -101,7 +101,7 @@ export function CookieBanner() {
             {t.text}{' '}
             <Link
               href={legalHref}
-              className="text-violet-400 hover:text-violet-300 underline underline-offset-2 transition-colors"
+              className="text-red-400 hover:text-red-300 underline underline-offset-2 transition-colors"
             >
               {t.learn_more}
             </Link>
@@ -116,7 +116,7 @@ export function CookieBanner() {
           </button>
           <button
             onClick={() => dismiss(true)}
-            className="px-5 py-2 rounded-xl text-sm font-semibold bg-violet-600 hover:bg-violet-500 text-white transition-colors"
+            className="px-5 py-2 rounded-xl text-sm font-semibold bg-red-600 hover:bg-red-500 text-white transition-colors"
           >
             {t.accept}
           </button>

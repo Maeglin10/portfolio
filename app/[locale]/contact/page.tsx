@@ -86,20 +86,16 @@ export default function ContactPage() {
     }
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-white placeholder:text-zinc-600 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/50 transition-colors text-sm";
+  const inputClass = "w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-white placeholder:text-zinc-600 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500/50 transition-colors text-sm";
 
   return (
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-violet-600/8 blur-[120px]" />
+          <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-red-600/8 blur-[120px]" />
         </div>
         <div className="mx-auto max-w-5xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium mb-6">
-            <MessageSquare size={12} />
-            {t.badge}
-          </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-[1.1] mb-4">
             {t.h1}
           </h1>
@@ -114,22 +110,22 @@ export default function ContactPage() {
             {/* Info cards */}
             <div className="flex flex-col gap-4">
               <div className="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
-                <div className="w-9 h-9 rounded-xl bg-violet-500/10 flex items-center justify-center mb-3">
-                  <Mail size={16} className="text-violet-400" />
+                <div className="w-9 h-9 rounded-xl bg-red-500/10 flex items-center justify-center mb-3">
+                  <Mail size={16} className="text-red-400" />
                 </div>
                 <p className="text-sm font-semibold text-white mb-1">{t.card1_title}</p>
                 <p className="text-xs text-zinc-500">{t.card1_sub}</p>
               </div>
               <div className="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
-                <div className="w-9 h-9 rounded-xl bg-fuchsia-500/10 flex items-center justify-center mb-3">
-                  <MessageSquare size={16} className="text-fuchsia-400" />
+                <div className="w-9 h-9 rounded-xl bg-red-500/10 flex items-center justify-center mb-3">
+                  <MessageSquare size={16} className="text-red-400" />
                 </div>
                 <p className="text-sm font-semibold text-white mb-1">{t.card2_title}</p>
                 <p className="text-xs text-zinc-500">{t.card2_sub}</p>
               </div>
               <div className="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
                 <p className="text-xs text-zinc-500 mb-1">Email direct</p>
-                <a href="mailto:v.milliand@gmail.com" className="text-sm text-violet-400 hover:text-violet-300 transition-colors break-all">
+                <a href="mailto:v.milliand@gmail.com" className="text-sm text-red-400 hover:text-red-300 transition-colors break-all">
                   v.milliand@gmail.com
                 </a>
               </div>
@@ -139,7 +135,7 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               {state === "sent" ? (
                 <div className="h-full flex flex-col items-center justify-center text-center p-10 rounded-2xl border border-zinc-800 bg-zinc-900/40">
-                  <CheckCircle2 size={40} className="text-violet-400 mb-4" />
+                  <CheckCircle2 size={40} className="text-red-400 mb-4" />
                   <h2 className="text-xl font-bold text-white mb-2">{t.sent_title}</h2>
                   <p className="text-zinc-400 text-sm">{t.sent_sub}</p>
                 </div>
@@ -147,7 +143,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/40 flex flex-col gap-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-medium text-zinc-400 mb-1.5">{t.name} <span className="text-violet-400">*</span></label>
+                      <label className="block text-xs font-medium text-zinc-400 mb-1.5">{t.name} <span className="text-red-400">*</span></label>
                       <input
                         className={inputClass}
                         placeholder={t.name_ph}
@@ -157,7 +153,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-zinc-400 mb-1.5">{t.email} <span className="text-violet-400">*</span></label>
+                      <label className="block text-xs font-medium text-zinc-400 mb-1.5">{t.email} <span className="text-red-400">*</span></label>
                       <input
                         type="email"
                         className={inputClass}
@@ -178,7 +174,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-zinc-400 mb-1.5">{t.message} <span className="text-violet-400">*</span></label>
+                    <label className="block text-xs font-medium text-zinc-400 mb-1.5">{t.message} <span className="text-red-400">*</span></label>
                     <textarea
                       className={`${inputClass} resize-none`}
                       rows={6}
@@ -194,7 +190,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={state === "sending"}
-                    className="self-end inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold transition-colors"
+                    className="self-end inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold transition-colors"
                   >
                     {state === "sending" ? t.sending : t.send}
                     <ArrowRight size={16} />

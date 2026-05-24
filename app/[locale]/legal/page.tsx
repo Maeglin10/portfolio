@@ -361,7 +361,7 @@ export default async function LegalPage({
           <a
             key={anchor}
             href={`#${anchor}`}
-            className="px-3 py-1.5 rounded-lg text-sm border border-zinc-700 text-zinc-400 hover:border-violet-500 hover:text-violet-300 transition-colors"
+            className="px-3 py-1.5 rounded-lg text-sm border border-zinc-700 text-zinc-400 hover:border-red-500 hover:text-red-300 transition-colors"
           >
             {label}
           </a>
@@ -392,7 +392,7 @@ export default async function LegalPage({
               {t.mentions_editor_email.split(':')[0]} :{' '}
               <a
                 href="mailto:v.milliand@gmail.com"
-                className="text-violet-400 hover:text-violet-300 transition-colors"
+                className="text-red-400 hover:text-red-300 transition-colors"
               >
                 v.milliand@gmail.com
               </a>
@@ -403,7 +403,7 @@ export default async function LegalPage({
                 href="https://aevia.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-violet-400 hover:text-violet-300 transition-colors"
+                className="text-red-400 hover:text-red-300 transition-colors"
               >
                 aevia.vercel.app
               </a>
@@ -429,7 +429,7 @@ export default async function LegalPage({
               href="https://vercel.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-violet-400 hover:text-violet-300 transition-colors text-xs inline-block mt-1"
+              className="text-red-400 hover:text-red-300 transition-colors text-xs inline-block mt-1"
             >
               {t.mentions_host_site} &rarr;
             </a>
@@ -444,7 +444,7 @@ export default async function LegalPage({
               Email :{' '}
               <a
                 href="mailto:v.milliand@gmail.com"
-                className="text-violet-400 hover:text-violet-300 transition-colors"
+                className="text-red-400 hover:text-red-300 transition-colors"
               >
                 v.milliand@gmail.com
               </a>
@@ -507,7 +507,7 @@ export default async function LegalPage({
                 {t.privacy_contact_label}{' '}
                 <a
                   href="mailto:v.milliand@gmail.com"
-                  className="text-violet-400 hover:text-violet-300 transition-colors"
+                  className="text-red-400 hover:text-red-300 transition-colors"
                 >
                   v.milliand@gmail.com
                 </a>
@@ -519,7 +519,7 @@ export default async function LegalPage({
                     href="https://www.cnil.fr"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-violet-400 hover:text-violet-300 transition-colors"
+                    className="text-red-400 hover:text-red-300 transition-colors"
                   >
                     cnil.fr &rarr;
                   </a>
@@ -545,13 +545,13 @@ export default async function LegalPage({
           <div className="flex flex-wrap gap-3">
             <Link
               href={`/${locale}/legal/privacy`}
-              className="text-xs text-violet-400 hover:text-violet-300 transition-colors"
+              className="text-xs text-red-400 hover:text-red-300 transition-colors"
             >
               {t.more_privacy} &rarr;
             </Link>
             <Link
               href={`/${locale}/legal/cookies`}
-              className="text-xs text-violet-400 hover:text-violet-300 transition-colors"
+              className="text-xs text-red-400 hover:text-red-300 transition-colors"
             >
               {t.more_cookies} &rarr;
             </Link>
@@ -615,7 +615,7 @@ export default async function LegalPage({
           <p className="text-xs text-zinc-500 mb-3">{t.more_detail}</p>
           <Link
             href={`/${locale}/legal/terms`}
-            className="text-xs text-violet-400 hover:text-violet-300 transition-colors"
+            className="text-xs text-red-400 hover:text-red-300 transition-colors"
           >
             {t.more_terms} &rarr;
           </Link>

@@ -46,13 +46,13 @@ export default function CookiesPage() {
         </p>
         <div className="space-y-3 text-sm">
           <div className="flex items-center gap-3 bg-zinc-900/40 border border-zinc-800 rounded-xl p-4">
-            <span className="text-violet-400 font-bold shrink-0 text-xs">INBOX</span>
+            <span className="text-red-400 font-bold shrink-0 text-xs">INBOX</span>
             <span className="text-zinc-400">
               <strong className="text-zinc-300">app.aevia.io</strong> — Plateforme CRM multi-canal
             </span>
           </div>
           <div className="flex items-center gap-3 bg-zinc-900/40 border border-zinc-800 rounded-xl p-4">
-            <span className="text-fuchsia-400 font-bold shrink-0 text-xs">LAUNCH</span>
+            <span className="text-red-400 font-bold shrink-0 text-xs">LAUNCH</span>
             <span className="text-zinc-400">
               <strong className="text-zinc-300">launch.aevia.io</strong> — Générateur de sites web IA
             </span>
@@ -191,7 +191,7 @@ export default function CookiesPage() {
             href="https://plausible.io/data-policy"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-violet-400 hover:text-violet-300 transition-colors inline-block"
+            className="text-xs text-red-400 hover:text-red-300 transition-colors inline-block"
           >
             Politique de données Plausible Analytics &rarr;
           </a>
@@ -249,7 +249,7 @@ export default function CookiesPage() {
             href="https://stripe.com/fr/privacy"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-violet-400 hover:text-violet-300 transition-colors mt-3 inline-block"
+            className="text-xs text-red-400 hover:text-red-300 transition-colors mt-3 inline-block"
           >
             Politique de confidentialité Stripe &rarr;
           </a>
@@ -280,7 +280,7 @@ export default function CookiesPage() {
             href="https://www.facebook.com/policy/cookies/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-violet-400 hover:text-violet-300 transition-colors inline-block"
+            className="text-xs text-red-400 hover:text-red-300 transition-colors inline-block"
           >
             Politique de cookies Meta &rarr;
           </a>
@@ -423,7 +423,7 @@ export default function CookiesPage() {
                 href={browser.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-violet-400 hover:text-violet-300 transition-colors text-xs"
+                className="text-red-400 hover:text-red-300 transition-colors text-xs"
               >
                 Guide officiel &rarr;
               </a>
@@ -444,7 +444,7 @@ export default function CookiesPage() {
               href="https://www.youronlinechoices.eu"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-violet-400 hover:text-violet-300 transition-colors text-xs"
+              className="text-red-400 hover:text-red-300 transition-colors text-xs"
             >
               youronlinechoices.eu &rarr;
             </a>
@@ -455,7 +455,7 @@ export default function CookiesPage() {
               href="https://optout.networkadvertising.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-violet-400 hover:text-violet-300 transition-colors text-xs"
+              className="text-red-400 hover:text-red-300 transition-colors text-xs"
             >
               networkadvertising.org &rarr;
             </a>
@@ -509,7 +509,7 @@ export default function CookiesPage() {
             Aevia s'engage à auditer régulièrement les cookies déposés sur ses services
             (au minimum annuellement) et à mettre à jour la présente politique en conséquence.
             En cas de détection d'un cookie non référencé, vous pouvez nous le signaler à{" "}
-            <a href="mailto:privacy@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="mailto:privacy@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
               privacy@aevia.io
             </a>.
           </p>
@@ -528,7 +528,7 @@ export default function CookiesPage() {
         <ul className="list-disc list-inside text-sm text-zinc-400 space-y-1.5 ml-2 mb-4">
           <li>
             Contactez-nous à{" "}
-            <a href="mailto:privacy@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="mailto:privacy@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
               privacy@aevia.io
             </a>
           </li>
@@ -540,7 +540,7 @@ export default function CookiesPage() {
               href="https://www.cnil.fr/fr/vous-souhaitez-contacter-la-cnil"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-violet-400 hover:text-violet-300 transition-colors"
+              className="text-red-400 hover:text-red-300 transition-colors"
             >
               cnil.fr &rarr;
             </a>
@@ -573,7 +573,7 @@ export default function CookiesPage() {
           </p>
           <p className="text-zinc-400">
             <span className="text-zinc-300">Email :</span>{" "}
-            <a href="mailto:privacy@aevia.io" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="mailto:privacy@aevia.io" className="text-red-400 hover:text-red-300 transition-colors">
               privacy@aevia.io
             </a>
           </p>
@@ -582,10 +582,10 @@ export default function CookiesPage() {
           </p>
           <div className="pt-2 border-t border-zinc-800 mt-2 space-y-1">
             <p className="text-zinc-500 text-xs">Documents liés :</p>
-            <a href="/fr/legal/privacy" className="text-violet-400 hover:text-violet-300 transition-colors text-xs block">
+            <a href="/fr/legal/privacy" className="text-red-400 hover:text-red-300 transition-colors text-xs block">
               Politique de Confidentialité &rarr;
             </a>
-            <a href="/fr/legal/terms" className="text-violet-400 hover:text-violet-300 transition-colors text-xs block">
+            <a href="/fr/legal/terms" className="text-red-400 hover:text-red-300 transition-colors text-xs block">
               Conditions Générales d'Utilisation et de Vente &rarr;
             </a>
           </div>

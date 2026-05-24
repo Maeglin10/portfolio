@@ -271,10 +271,10 @@ export default function TemplatesPage() {
       tagline: t.landing_tagline,
       description: t.landing_desc,
       url: "https://aevia-launch.vercel.app/demo/landing",
-      accentFrom: "from-violet-500",
-      accentTo: "to-fuchsia-500",
+      accentFrom: "from-red-500",
+      accentTo: "to-red-500",
       icon: <Sparkles className="w-5 h-5" />,
-      dot: "bg-violet-400",
+      dot: "bg-red-400",
       features: [t.landing_f1, t.landing_f2, t.landing_f3, t.landing_f4, t.landing_f5],
       useCases: [t.landing_uc1, t.landing_uc2, t.landing_uc3, t.landing_uc4],
     },
@@ -312,15 +312,11 @@ export default function TemplatesPage() {
       {/* Hero */}
       <section className="relative pt-16 pb-10 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-violet-600/8 blur-[100px]" />
-          <div className="absolute top-40 -left-40 w-[400px] h-[400px] rounded-full bg-fuchsia-600/6 blur-[100px]" />
+          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-red-600/8 blur-[100px]" />
+          <div className="absolute top-40 -left-40 w-[400px] h-[400px] rounded-full bg-red-600/6 blur-[100px]" />
         </div>
         <div className="mx-auto max-w-6xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium mb-6">
-              <Sparkles className="w-3 h-3" />
-              {t.badge}
-            </div>
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-tight mb-4">
               {t.h1.split("\n").map((line, i) => (
                 <span key={i}>{line}{i < t.h1.split("\n").length - 1 && <br />}</span>
@@ -434,11 +430,11 @@ export default function TemplatesPage() {
       {/* CTA */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-violet-900/20 to-fuchsia-900/10 p-10 text-center">
+          <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-red-900/20 to-red-900/10 p-10 text-center">
             <h3 className="text-white font-bold text-2xl mb-3">{t.cta_title}</h3>
             <p className="text-zinc-400 mb-8 max-w-lg mx-auto">{t.cta_sub}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={`/${locale}/contact`} className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white font-semibold transition-colors">
+              <Link href={`/${locale}/contact`} className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-red-600 hover:bg-red-500 text-white font-semibold transition-colors">
                 {t.start_project} <ArrowRight className="w-4 h-4" />
               </Link>
               <a href="https://aevia-launch.vercel.app/themes" target="_blank" rel="noopener noreferrer"

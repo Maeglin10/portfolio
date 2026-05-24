@@ -45,7 +45,7 @@ const ARTICLE_T: Record<ArticleLocale, {
 };
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; ring: string }> = {
-  "Web & Marketing": { bg: "bg-violet-500/10", text: "text-violet-300", ring: "ring-violet-500/20" },
+  "Web & Marketing": { bg: "bg-red-500/10", text: "text-red-300", ring: "ring-red-500/20" },
   "Cybersécurité": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
   "Cybersecurity": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
   "CRM & Support": { bg: "bg-cyan-500/10", text: "text-cyan-300", ring: "ring-cyan-500/20" },
@@ -77,7 +77,7 @@ function renderContent(content: string) {
       <ul key={key++} className="my-5 space-y-2 pl-0 list-none">
         {listBuffer.map((item, i) => (
           <li key={i} className="flex items-start gap-3 text-zinc-300 leading-relaxed">
-            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0" />
+            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
             <span dangerouslySetInnerHTML={{ __html: inlineFormat(item) }} />
           </li>
         ))}
@@ -89,7 +89,7 @@ function renderContent(content: string) {
   function inlineFormat(text: string): string {
     return text
       .replace(/\*\*(.+?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
-      .replace(/`(.+?)`/g, '<code class="px-1.5 py-0.5 rounded bg-zinc-800 text-violet-300 text-[0.875em] font-mono">$1</code>');
+      .replace(/`(.+?)`/g, '<code class="px-1.5 py-0.5 rounded bg-zinc-800 text-red-300 text-[0.875em] font-mono">$1</code>');
   }
 
   for (const raw of lines) {
@@ -149,7 +149,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <div className="relative pt-28 pb-12 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-violet-600/8 blur-[120px]" />
+          <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-red-600/8 blur-[120px]" />
         </div>
         <div className="mx-auto max-w-3xl">
           <Link
@@ -179,7 +179,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
           <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-5">
             {post.title}
           </h1>
-          <p className="text-zinc-400 text-lg leading-relaxed border-l-2 border-violet-500/40 pl-4">
+          <p className="text-zinc-400 text-lg leading-relaxed border-l-2 border-red-500/40 pl-4">
             {post.excerpt}
           </p>
         </div>
@@ -226,7 +226,7 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
                             <Clock size={10} />
                             {related.readingTime}
                           </span>
-                          <ArrowRight size={13} className="text-zinc-600 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all" />
+                          <ArrowRight size={13} className="text-zinc-600 group-hover:text-red-400 group-hover:translate-x-0.5 transition-all" />
                         </div>
                       </div>
                     </Link>
@@ -242,14 +242,14 @@ export default function ArticlePage({ params }: { params: { slug: string; locale
       <section className="px-6 pb-20">
         <div className="mx-auto max-w-3xl">
           <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-900/50 p-8 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 rounded-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-red-600/5 rounded-2xl" />
             <div className="relative z-10">
               <h2 className="text-xl font-bold text-white mb-2">{t.cta_title}</h2>
               <p className="text-zinc-400 text-sm max-w-md mx-auto mb-6">{t.cta_sub}</p>
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href={`/${locale}/contact`}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-sm font-semibold transition-colors"
                 >
                   {t.contact_btn}
                   <ArrowRight size={16} />

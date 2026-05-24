@@ -50,7 +50,7 @@ export default function TermsPage() {
             <span className="text-zinc-400">Contact :</span>{' '}
             <a
               href="mailto:v.milliand@gmail.com"
-              className="text-violet-400 hover:text-violet-300 transition-colors"
+              className="text-red-400 hover:text-red-300 transition-colors"
             >
               v.milliand@gmail.com
             </a>
@@ -94,7 +94,7 @@ export default function TermsPage() {
           Les traitements de données à caractère personnel sont détaillés dans notre{' '}
           <Link
             href="/privacy"
-            className="text-violet-400 hover:text-violet-300 transition-colors"
+            className="text-red-400 hover:text-red-300 transition-colors"
           >
             politique de confidentialité
           </Link>
@@ -115,13 +115,13 @@ export default function TermsPage() {
       <div className="mt-12 flex gap-4 text-sm">
         <Link
           href="/legal"
-          className="text-violet-400 hover:text-violet-300 transition-colors"
+          className="text-red-400 hover:text-red-300 transition-colors"
         >
           Mentions légales
         </Link>
         <Link
           href="/privacy"
-          className="text-violet-400 hover:text-violet-300 transition-colors"
+          className="text-red-400 hover:text-red-300 transition-colors"
         >
           Politique de confidentialité
         </Link>

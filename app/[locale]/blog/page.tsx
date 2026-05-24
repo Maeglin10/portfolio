@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Clock, Tag, BookOpen } from "lucide-react";
+import { ArrowRight, Clock, Tag } from "lucide-react";
 import { getBlogPosts, formatDate, type BlogLocale } from "@/lib/blog-posts";
 
 // BlogLocale is imported from lib/blog-posts
@@ -55,7 +55,7 @@ const BLOG_T: Record<BlogLocale, {
 };
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; ring: string }> = {
-  "Web & Marketing": { bg: "bg-violet-500/10", text: "text-violet-300", ring: "ring-violet-500/20" },
+  "Web & Marketing": { bg: "bg-red-500/10", text: "text-red-300", ring: "ring-red-500/20" },
   "Cybersécurité": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
   "Cybersecurity": { bg: "bg-emerald-500/10", text: "text-emerald-300", ring: "ring-emerald-500/20" },
   "CRM & Support": { bg: "bg-cyan-500/10", text: "text-cyan-300", ring: "ring-cyan-500/20" },
@@ -82,19 +82,13 @@ export default function BlogPage() {
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
       <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-violet-600/8 blur-[120px]" />
+          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-red-600/8 blur-[120px]" />
           <div className="absolute top-40 -left-32 w-[400px] h-[400px] rounded-full bg-cyan-600/5 blur-[100px]" />
         </div>
         <div className="mx-auto max-w-5xl">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 ring-1 ring-violet-500/20 text-violet-300 text-xs font-medium">
-              <BookOpen size={12} />
-              {t.badge}
-            </div>
-          </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-[1.1] mb-4">
             {t.h1_1}{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-400">
               {t.h1_2}
             </span>
           </h1>
@@ -113,8 +107,8 @@ export default function BlogPage() {
               href={`/${locale}/blog/${posts[0].slug}`}
               className="group block mb-6"
             >
-              <article className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 sm:p-10 hover:border-zinc-600 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/10 transition-all duration-300">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-violet-600/5 to-fuchsia-600/3 pointer-events-none" />
+              <article className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 sm:p-10 hover:border-zinc-600 hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-red-600/5 to-red-600/3 pointer-events-none" />
 
                 <div className="relative z-10">
                   <div className="flex flex-wrap items-center gap-3 mb-5">
@@ -132,18 +126,18 @@ export default function BlogPage() {
                       <Clock size={11} />
                       {posts[0].readingTime} {t.reading_time}
                     </span>
-                    <span className="ml-auto hidden sm:inline-flex items-center gap-1 text-xs font-medium text-violet-400 bg-violet-500/10 ring-1 ring-violet-500/20 px-2.5 py-1 rounded-full">
+                    <span className="ml-auto hidden sm:inline-flex items-center gap-1 text-xs font-medium text-red-400 bg-red-500/10 ring-1 ring-red-500/20 px-2.5 py-1 rounded-full">
                       {t.featured}
                     </span>
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-violet-100 transition-colors leading-tight">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-red-100 transition-colors leading-tight">
                     {posts[0].title}
                   </h2>
                   <p className="text-zinc-400 leading-relaxed mb-6 max-w-2xl">
                     {posts[0].excerpt}
                   </p>
-                  <div className="inline-flex items-center gap-2 text-sm font-semibold text-violet-400 group-hover:text-violet-300 transition-colors">
+                  <div className="inline-flex items-center gap-2 text-sm font-semibold text-red-400 group-hover:text-red-300 transition-colors">
                     {t.read_article}
                     <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -174,7 +168,7 @@ export default function BlogPage() {
                           </span>
                         </div>
 
-                        <h2 className="text-lg font-bold text-white mb-2 group-hover:text-violet-100 transition-colors leading-snug flex-1">
+                        <h2 className="text-lg font-bold text-white mb-2 group-hover:text-red-100 transition-colors leading-snug flex-1">
                           {post.title}
                         </h2>
                         <p className="text-zinc-500 text-sm leading-relaxed mb-5 line-clamp-2">
@@ -189,7 +183,7 @@ export default function BlogPage() {
                               {post.readingTime}
                             </span>
                           </div>
-                          <ArrowRight size={14} className="text-zinc-600 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all" />
+                          <ArrowRight size={14} className="text-zinc-600 group-hover:text-red-400 group-hover:translate-x-0.5 transition-all" />
                         </div>
                       </div>
                     </article>
@@ -205,7 +199,7 @@ export default function BlogPage() {
       <section className="px-6 pb-20">
         <div className="mx-auto max-w-5xl">
           <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-900/50 p-8 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 rounded-2xl" />
+            <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-red-600/5 rounded-2xl" />
             <div className="relative z-10">
               <h2 className="text-xl font-bold text-white mb-2">
                 {t.cta_title}
@@ -215,7 +209,7 @@ export default function BlogPage() {
               </p>
               <Link
                 href={`/${locale}/contact`}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-white text-sm font-semibold transition-colors"
               >
                 {t.cta_btn}
                 <ArrowRight size={16} />
