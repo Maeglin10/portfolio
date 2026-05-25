@@ -119,18 +119,13 @@ export default function SecurityProductPage() {
         </div>
         <div className="mx-auto max-w-4xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 ring-1 ring-emerald-500/20 text-emerald-300 text-xs font-medium mb-6">
-              <Shield className="w-3 h-3" />
-              Produit Aevia · AeviaSecurity
-            </div>
-
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6">
               Votre site est-il{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                vraiment sécurisé
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 whitespace-nowrap">
+                vraiment sécurisé&nbsp;?
               </span>
               <br />
-              ? Vérifiez en 60s.
+              Vérifiez en 60 secondes.
             </h1>
 
             <p className="text-zinc-300 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
@@ -163,7 +158,7 @@ export default function SecurityProductPage() {
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 tracking-tight">
-              Un audit pro, sans bullshit
+              Un audit pro, sans compromis
             </h2>
             <p className="text-zinc-400 text-lg max-w-xl mx-auto">
               Pensé pour les TPE/PME qui veulent prouver leur sérieux avant un client important.

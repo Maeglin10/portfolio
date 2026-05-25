@@ -113,12 +113,6 @@ export default function InboxProductPage() {
         </div>
         <div className="mx-auto max-w-4xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 ring-1 ring-cyan-500/20 text-cyan-300 text-xs font-medium mb-6">
-              <MessageSquare className="w-3 h-3" />
-              Produit Aevia · AeviaInbox
-              <span className="ml-1 px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold">BETA</span>
-            </div>
-
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6">
               Tous vos clients,{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
