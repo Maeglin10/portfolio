@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Mail, MessageSquare, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Mail, MessageSquare, ArrowRight, CheckCircle2, Calendar } from "lucide-react";
+
+// Cal.com link — to update once Aevia booking page is created
+const CAL_BOOKING_URL = process.env.NEXT_PUBLIC_CAL_URL ?? "https://cal.com/aevia/30min";
 
 type ContactLocale = "fr" | "en" | "es" | "de" | "pt";
 
@@ -116,13 +119,24 @@ export default function ContactPage() {
                 <p className="text-sm font-semibold text-white mb-1">{t.card1_title}</p>
                 <p className="text-xs text-zinc-500">{t.card1_sub}</p>
               </div>
-              <div className="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
-                <div className="w-9 h-9 rounded-xl bg-red-500/10 flex items-center justify-center mb-3">
-                  <MessageSquare size={16} className="text-red-400" />
+              <a
+                href={CAL_BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-5 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-500/10 to-red-700/5 hover:border-red-500/60 transition-colors block"
+              >
+                <div className="w-9 h-9 rounded-xl bg-red-500/15 flex items-center justify-center mb-3">
+                  <Calendar size={16} className="text-red-400" />
                 </div>
-                <p className="text-sm font-semibold text-white mb-1">{t.card2_title}</p>
-                <p className="text-xs text-zinc-500">{t.card2_sub}</p>
-              </div>
+                <p className="text-sm font-semibold text-white mb-1 flex items-center gap-1.5">
+                  {t.card2_title}
+                  <ArrowRight size={12} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                </p>
+                <p className="text-xs text-zinc-400">{t.card2_sub}</p>
+                <p className="text-[10px] text-red-400/80 mt-2 font-mono uppercase tracking-wider">
+                  Réserver un créneau →
+                </p>
+              </a>
               <div className="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
                 <p className="text-xs text-zinc-500 mb-1">Email direct</p>
                 <a href="mailto:v.milliand@gmail.com" className="text-sm text-red-400 hover:text-red-300 transition-colors break-all">
