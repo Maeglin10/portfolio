@@ -63,23 +63,50 @@ export default function InboxProductPage() {
   const plans = [
     {
       name: "Starter",
-      price: "Sur devis",
-      sub: "1 canal · IA basique",
-      features: ["WhatsApp ou Instagram", "Inbox unifiée", "Templates de réponses", "Support email"],
+      price: "Gratuit",
+      sub: "Pour tester sans risque",
+      features: [
+        "100 messages / mois",
+        "1 canal au choix",
+        "1 utilisateur",
+        "Historique 30 jours",
+      ],
       featured: false,
     },
     {
-      name: "Business",
-      price: "Sur devis",
-      sub: "Le plus populaire",
-      features: ["Tous canaux", "IA conversationnelle", "Scoring leads", "Multi-utilisateurs"],
+      name: "Pro",
+      price: "79€",
+      sub: "Pour les TPE qui décollent",
+      features: [
+        "2 000 messages / mois",
+        "3 canaux + IA Claude Haiku",
+        "Jusqu'à 3 utilisateurs",
+        "Workflows n8n (5 inclus)",
+      ],
       featured: true,
     },
     {
+      name: "Business",
+      price: "249€",
+      sub: "Pour les équipes en croissance",
+      features: [
+        "Messages illimités",
+        "Tous canaux + IA Sonnet 4.5",
+        "Utilisateurs illimités",
+        "SLA 99.9% + support dédié",
+      ],
+      featured: false,
+    },
+    {
       name: "Agency",
-      price: "Sur mesure",
-      sub: "Multi-comptes",
-      features: ["Tout Business +", "Multi-tenant", "API & webhooks", "Agents n8n custom"],
+      price: "599€",
+      sub: "Multi-marques en white-label",
+      features: [
+        "Tout Business +",
+        "Multi-tenant illimité",
+        "White-label complet",
+        "Account manager dédié",
+      ],
       featured: false,
     },
   ];
@@ -202,16 +229,16 @@ export default function InboxProductPage() {
       <section id="pricing" className="px-6 py-16 border-t border-zinc-800/60">
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 tracking-tight">Pricing beta</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 tracking-tight">Pricing transparent</h2>
             <p className="text-zinc-400 text-lg max-w-xl mx-auto">
-              Les early users bénéficient d&apos;un tarif préférentiel à vie sur leur plan.
+              Tarif fixe au mois, utilisateurs illimités sur Business+. Sans engagement, résiliable en 1 clic.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {plans.map((p) => (
               <div
                 key={p.name}
-                className={`p-7 rounded-2xl border ${
+                className={`p-6 rounded-2xl border flex flex-col ${
                   p.featured
                     ? "border-cyan-500/40 bg-gradient-to-br from-cyan-900/20 to-blue-900/10 ring-1 ring-cyan-500/20"
                     : "border-zinc-800 bg-zinc-900/40"
@@ -226,8 +253,9 @@ export default function InboxProductPage() {
                 <p className="text-zinc-500 text-xs mb-4">{p.sub}</p>
                 <div className="flex items-baseline gap-1 mb-5">
                   <span className="text-white font-bold text-3xl">{p.price}</span>
+                  {p.price !== "Gratuit" && <span className="text-zinc-500 text-sm">/mois</span>}
                 </div>
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-2 mb-6 flex-1">
                   {p.features.map((feat) => (
                     <li key={feat} className="flex items-start gap-2 text-zinc-300 text-sm">
                       <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
@@ -235,16 +263,18 @@ export default function InboxProductPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={`/${locale}/contact`}
+                <a
+                  href="https://aevia-inbox.vercel.app/fr/signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`block text-center px-4 py-2.5 rounded-full text-sm font-semibold transition-colors ${
                     p.featured
                       ? "bg-cyan-600 hover:bg-cyan-500 text-white"
                       : "border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-white"
                   }`}
                 >
-                  Demander une démo
-                </Link>
+                  {p.price === "Gratuit" ? "Démarrer gratuitement" : `Choisir ${p.name}`}
+                </a>
               </div>
             ))}
           </div>
