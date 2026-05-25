@@ -118,7 +118,7 @@ const organizationSchema = {
   },
   brand: [
     { '@type': 'Brand', name: 'Aevia Launch', url: 'https://aevia-launch.vercel.app' },
-    { '@type': 'Brand', name: 'Aevia Security', url: 'https://aevia-skysecurity.vercel.app' },
+    { '@type': 'Brand', name: 'Aevia Security', url: 'https://aevia-security.vercel.app' },
     { '@type': 'Brand', name: 'Aevia Inbox', url: 'https://aevia-inbox.vercel.app' },
   ],
 };
