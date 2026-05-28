@@ -30,6 +30,16 @@ export async function generateMetadata({
     openGraph: {
       locale: ogLocale,
       alternateLocale: altLocales,
+      // Explicit images so Next.js metadata merging keeps OG image
+      // (per-locale override would otherwise strip the parent layout's images)
+      images: [
+        {
+          url: '/api/og',
+          width: 1200,
+          height: 630,
+          alt: 'Aevia — SaaS pour entrepreneurs',
+        },
+      ],
     },
   };
 }

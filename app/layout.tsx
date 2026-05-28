@@ -23,7 +23,8 @@ export const metadata: Metadata = {
     template: "%s | Aevia",
   },
   description:
-    "Aevia conçoit des outils SaaS pour entrepreneurs : sites web livrés en 2h (Launch), inbox unifiée multi-canal (Inbox), audits de sécurité instantanés (Security). Trois produits pensés pour les TPE et PME.",
+    // 159 chars — under Google's ~160-char SERP limit
+    "Aevia conçoit des outils SaaS pour entrepreneurs : sites web en 2h, inbox unifiée multi-canal, audits de sécurité instantanés. Pensés pour TPE et PME.",
   keywords: [
     "Aevia",
     "SaaS France",
