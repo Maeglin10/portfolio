@@ -65,24 +65,31 @@ export default function LaunchProductPage() {
 
   const plans = [
     {
+      name: "Landing",
+      price: "299€",
+      sub: "1 page de conversion",
+      features: ["Thème premium au choix", "Page unique (offre / event)", "Hébergement 1 an", "Livraison 2h"],
+      featured: false,
+    },
+    {
       name: "Essentiel",
       price: "599€",
-      sub: "Site vitrine 5 pages",
-      features: ["Template au choix", "Nom de domaine 1 an", "Hébergement inclus", "Livraison 7 jours"],
+      sub: "Site one-page complet",
+      features: ["Thème au choix", "Toutes sections (hero→contact)", "Hébergement 1 an", "Livraison 2h"],
       featured: false,
     },
     {
       name: "Pro",
       price: "899€",
       sub: "Le plus populaire",
-      features: ["Tout Essentiel +", "Builder IA 21 thèmes", "SEO multi-langue", "Livraison 5 jours"],
+      features: ["3-5 pages sur thème", "Blog + analytics + SEO local", "Stripe ou Calendly", "Livraison 24-48h"],
       featured: true,
     },
     {
       name: "Premium",
       price: "1499€",
-      sub: "Site sur mesure",
-      features: ["Tout Pro +", "Design 100% custom", "E-commerce Stripe", "Livraison 48h prioritaire"],
+      sub: "100% sur-mesure",
+      features: ["Design unique hors thème", "E-commerce / espace membre", "Branding complet inclus", "Livraison 5-7 jours"],
       featured: false,
     },
   ];
@@ -90,7 +97,7 @@ export default function LaunchProductPage() {
   const faqs = [
     {
       q: "En combien de temps mon site sera-t-il en ligne ?",
-      a: "Entre 2 heures (Premium prioritaire) et 7 jours (Essentiel). La majorité des projets Pro sont livrés en 3 à 5 jours ouvrés après réception de votre contenu.",
+      a: "Selon la complexité : Landing et Essentiel sont 100% templatisés et livrés en 2h. Le Pro (3-5 pages semi-custom) en 24-48h. Le Premium, entièrement sur-mesure hors thème, en 5 à 7 jours ouvrés. Tous les délais démarrent à réception de votre contenu.",
     },
     {
       q: "Qui rédige le contenu de mon site ?",
@@ -212,7 +219,7 @@ export default function LaunchProductPage() {
               Pas d&apos;abonnement caché. Vous payez votre site, il est à vous.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {plans.map((p) => (
               <div
                 key={p.name}
@@ -257,7 +264,7 @@ export default function LaunchProductPage() {
             ))}
           </div>
           <p className="text-center text-zinc-500 text-sm mt-6">
-            Maintenance optionnelle : <span className="text-zinc-300 font-semibold">59€/mois</span> · mises à jour, backups & support prioritaire.
+            Service Branding en option : <span className="text-zinc-300 font-semibold">149€</span> (logo + charte + retouche photos) · Maintenance : <span className="text-zinc-300 font-semibold">59€/mois</span> (mises à jour, backups & support).
           </p>
         </div>
       </section>

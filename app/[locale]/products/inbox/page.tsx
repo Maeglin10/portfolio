@@ -63,13 +63,13 @@ export default function InboxProductPage() {
   const plans = [
     {
       name: "Starter",
-      price: "Gratuit",
-      sub: "Pour tester sans risque",
+      price: "20€",
+      sub: "Pour démarrer en solo",
       features: [
-        "100 messages / mois",
-        "1 canal au choix",
+        "500 messages IA / mois",
+        "WhatsApp + Instagram + email",
         "1 utilisateur",
-        "Historique 30 jours",
+        "Sans engagement",
       ],
       featured: false,
     },

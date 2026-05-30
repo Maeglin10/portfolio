@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Aevia Launch — Sites web pros en 2 heures par IA",
   description:
-    "Aevia Launch : générateur de sites web pro par IA, en 2 heures. Templates premium, contenu IA, déploiement Vercel. À partir de 599€.",
+    "Aevia Launch : générateur de sites web pro par IA, en 2 heures. Templates premium, contenu IA, déploiement Vercel. À partir de 299€.",
   alternates: {
     canonical: "/fr/products/launch",
   },
@@ -23,7 +23,7 @@ const FAQ_SCHEMA = {
       name: "En combien de temps mon site sera-t-il en ligne ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Entre 2 heures (Premium prioritaire) et 7 jours (Essentiel). La majorité des projets Pro sont livrés en 3 à 5 jours ouvrés après réception de votre contenu.",
+        text: "Selon la complexité : Landing et Essentiel sont 100% templatisés et livrés en 2h. Le Pro (3-5 pages semi-custom) en 24-48h. Le Premium, entièrement sur-mesure hors thème, en 5 à 7 jours ouvrés.",
       },
     },
     {
@@ -70,9 +70,11 @@ const PRODUCT_SCHEMA = {
   description: "Générateur de sites web professionnels par IA, livrés en 2 heures.",
   brand: { "@type": "Brand", name: "Aevia" },
   offers: [
+    { "@type": "Offer", name: "Landing", price: "299", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Essentiel", price: "599", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Pro", price: "899", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Premium", price: "1499", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
+    { "@type": "Offer", name: "Branding (option)", price: "149", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
   ],
 };
 

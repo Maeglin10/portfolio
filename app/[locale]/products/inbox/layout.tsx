@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Aevia Inbox — Inbox unifiée WhatsApp Instagram avec IA",
   description:
-    "Aevia Inbox : centralisez WhatsApp Business, Instagram, email avec IA. CRM multicanal pour TPE/PME. À partir de 0€/mois.",
+    "Aevia Inbox : centralisez WhatsApp Business, Instagram, email avec IA. CRM multicanal pour TPE/PME. À partir de 20€/mois.",
   alternates: {
     canonical: "/fr/products/inbox",
   },
   openGraph: {
     title: "Aevia Inbox — Inbox unifiée multicanal avec IA",
-    description: "WhatsApp + Instagram + email centralisés. IA conversationnelle. Plan gratuit dispo.",
+    description: "WhatsApp + Instagram + email centralisés. IA conversationnelle. À partir de 20€/mois.",
     type: "website",
   },
 };
@@ -44,10 +44,10 @@ const FAQ_SCHEMA = {
     },
     {
       "@type": "Question",
-      name: "Y a-t-il un plan gratuit ?",
+      name: "Combien coûte le plan d'entrée ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Oui, le plan Starter à 0€ permet de connecter 1 canal et gérer 100 messages par mois. Idéal pour démarrer.",
+        text: "Le plan Starter à 20€/mois connecte WhatsApp, Instagram et email, avec 500 messages IA par mois et 1 utilisateur, sans engagement. 14 jours satisfait ou remboursé.",
       },
     },
   ],
@@ -70,7 +70,7 @@ const PRODUCT_SCHEMA = {
   description: "Inbox unifiée WhatsApp, Instagram et email avec IA conversationnelle. CRM multicanal.",
   brand: { "@type": "Brand", name: "Aevia" },
   offers: [
-    { "@type": "Offer", name: "Starter", price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
+    { "@type": "Offer", name: "Starter", price: "20", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Pro", price: "79", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Business", price: "249", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Agency", price: "599", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
